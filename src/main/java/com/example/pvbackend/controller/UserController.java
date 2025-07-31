@@ -61,24 +61,39 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // ✅ Make admin (Only haider84it@gmail.com & myfriend@gmail.com can do this)
+    // ✅ Make admin (Only haider84it@gmail.com)
     @PatchMapping("/make-admin/{id}")
     public ResponseEntity<String> makeAdmin(@PathVariable Long id, Authentication auth) {
         String currentEmail = auth.getName();
 
-        // ✅ Only global admins can promote users to admin
-        if (!currentEmail.equals("haider84it@gmail.com") &&
-                !currentEmail.equals("myfriend@gmail.com")) {
-            return ResponseEntity.status(403).body("❌ You are not allowed to promote users to admin");
-        }
+        return userRepo.findById(id).map(user -> {
 
-        return userRepo.findById(id)
-                .map(user -> {
-                    user.setRole("ROLE_ADMIN");
-                    user.setEnabled(true);
-                    userRepo.save(user);
-                    return ResponseEntity.ok("✅ User promoted to admin!");
-                })
-                .orElse(ResponseEntity.notFound().build());
+            // ✅ Get current admin info
+            User currentAdmin = userRepo.findByEmail(currentEmail).orElse(null);
+            if (currentAdmin == null || !currentAdmin.getRole().equals("ROLE_ADMIN")) {
+                return ResponseEntity.status(403).body("❌ You are not allowed to promote users to admin");
+            }
+
+            // ✅ Only GLOBAL admin can create GLOBAL or HIGH admins
+            if ("GLOBAL".equals(currentAdmin.getAdminLevel())) {
+                user.setRole("ROLE_ADMIN");
+                user.setAdminLevel("NORMAL"); // Or set to HIGH/GLOBAL manually if needed
+                user.setEnabled(true);
+                userRepo.save(user);
+                return ResponseEntity.ok("✅ User promoted to ADMIN by GLOBAL ADMIN!");
+            }
+
+            // ✅ High admin can only create normal admins
+            if ("HIGH".equals(currentAdmin.getAdminLevel())) {
+                user.setRole("ROLE_ADMIN");
+                user.setAdminLevel("NORMAL");
+                user.setEnabled(true);
+                userRepo.save(user);
+                return ResponseEntity.ok("✅ User promoted to NORMAL ADMIN by HIGH ADMIN!");
+            }
+
+            return ResponseEntity.status(403).body("❌ You are not allowed to promote users to admin");
+
+        }).orElse(ResponseEntity.notFound().build());
     }
 }

@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
-@Table(name = "users") // ✅ Rename table to avoid PostgreSQL keyword conflict
+@Table(name = "users")
 @Getter
 @Setter
 public class User {
@@ -22,4 +22,7 @@ public class User {
     private String role; // ROLE_ADMIN or ROLE_USER
 
     private boolean enabled = false;
+
+    // ✅ New field to differentiate admin levels
+    private String adminLevel = "NORMAL"; // GLOBAL, HIGH, NORMAL
 }
