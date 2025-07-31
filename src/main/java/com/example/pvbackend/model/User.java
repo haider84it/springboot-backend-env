@@ -1,12 +1,13 @@
 package com.example.pvbackend.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Table(name = "users") // ✅ Rename table to avoid PostgreSQL keyword conflict
+@Getter
+@Setter
 public class User {
 
     @Id
@@ -18,8 +19,7 @@ public class User {
 
     private String password;
 
-    // ✅ Use ROLE_USER / ROLE_ADMIN
-    private String role = "ROLE_USER";
+    private String role; // ROLE_ADMIN or ROLE_USER
 
     private boolean enabled = false;
 }
