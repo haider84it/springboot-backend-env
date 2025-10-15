@@ -2,6 +2,8 @@ package com.example.pvbackend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 
 @SpringBootApplication
 public class PvBackendApplication {
@@ -10,4 +12,8 @@ public class PvBackendApplication {
         SpringApplication.run(PvBackendApplication.class, args);
     }
 
+    @Bean
+    public WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().requestMatchers("/**");
+    }
 }
