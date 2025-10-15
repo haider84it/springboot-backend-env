@@ -1,5 +1,5 @@
 # Use OpenJDK 17 as the base image
-FROM eclipse-temurin:17-jdk
+FROM eclipse-temurin:21-jdk
 
 # Set working directory
 WORKDIR /app
