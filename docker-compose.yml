@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  postgres-db:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: pv_wartung_db
+      POSTGRES_USER: pv_user
+      POSTGRES_PASSWORD: jana
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  pv-backend:
+    build: .
+    depends_on:
+      - postgres-db
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-db:5432/pv_wartung_db
+      SPRING_DATASOURCE_USERNAME: pv_user
+      SPRING_DATASOURCE_PASSWORD: jana
+
+volumes:
+  pgdata:
