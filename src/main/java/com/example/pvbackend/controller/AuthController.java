@@ -25,16 +25,26 @@ public class AuthController {
     }
 
     @GetMapping("/me")
-    public ResponseEntity<?> getCurrentUser(@RequestHeader("Authorization") String authHeader) {
-        String token = authHeader.replace("Bearer ", "");
-        String email = jwtUtil.extractUsername(token);
-        return userRepo.findByEmail(email)
-                .map(u -> ResponseEntity.ok(Map.of(
-                        "email", u.getEmail(),
-                        "role", u.getRole(),
-                        "adminLevel", u.getAdminLevel()
-                )))
-                .orElse(ResponseEntity.status(404).body(Map.of("error", "User not found")));
+    public ResponseEntity<?> getCurrentUser(@RequestHeader(value = "Authorization", required = false) String authHeader) {
+        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+            return ResponseEntity.status(401).body(Map.of("error", "Missing or invalid token"));
+        }
+        try {
+            String token = authHeader.replace("Bearer ", "");
+            if (!jwtUtil.validateToken(token)) {
+                return ResponseEntity.status(401).body(Map.of("error", "Invalid or expired token"));
+            }
+            String email = jwtUtil.extractUsername(token);
+            return userRepo.findByEmail(email)
+                    .map(u -> ResponseEntity.ok(Map.of(
+                            "email", u.getEmail(),
+                            "role", u.getRole(),
+                            "adminLevel", u.getAdminLevel()
+                    )))
+                    .orElse(ResponseEntity.status(404).body(Map.of("error", "User not found")));
+        } catch (Exception e) {
+            return ResponseEntity.status(401).body(Map.of("error", "Token error"));
+        }
     }
 
 
