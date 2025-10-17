@@ -24,6 +24,20 @@ public class AuthController {
         this.jwtUtil = jwtUtil;
     }
 
+    @GetMapping("/me")
+    public ResponseEntity<?> getCurrentUser(@RequestHeader("Authorization") String authHeader) {
+        String token = authHeader.replace("Bearer ", "");
+        String email = jwtUtil.extractUsername(token);
+        return userRepo.findByEmail(email)
+                .map(u -> ResponseEntity.ok(Map.of(
+                        "email", u.getEmail(),
+                        "role", u.getRole(),
+                        "adminLevel", u.getAdminLevel()
+                )))
+                .orElse(ResponseEntity.status(404).body(Map.of("error", "User not found")));
+    }
+
+
     // ✅ Register a new user (disabled by default until admin approves)
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody Map<String, String> req) {
