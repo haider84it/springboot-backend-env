@@ -43,6 +43,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
 
+                        // ✅ Allow logged-in users to change their password
+                        .requestMatchers("/api/users/change-password").authenticated()
+
                         // ✅ Admin-only for create/update/delete Anlagen
                         .requestMatchers(HttpMethod.POST, "/api/anlagen/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/anlagen/**").hasRole("ADMIN")
