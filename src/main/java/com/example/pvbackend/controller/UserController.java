@@ -4,6 +4,7 @@ import com.example.pvbackend.model.User;
 import com.example.pvbackend.repository.UserRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,9 +15,11 @@ import java.util.List;
 public class UserController {
 
     private final UserRepository userRepo;
+    private final PasswordEncoder passwordEncoder;   // ⬅️ inject
 
-    public UserController(UserRepository userRepo) {
+    public UserController(UserRepository userRepo, PasswordEncoder passwordEncoder) {
         this.userRepo = userRepo;
+        this.passwordEncoder = passwordEncoder;
     }
 
     // ✅ Get all users (Admin Dashboard)
@@ -96,4 +99,22 @@ public class UserController {
 
         }).orElse(ResponseEntity.notFound().build());
     }
+
+    // ↓ add DTO (or put in its own file)
+    public record ChangePasswordRequest(String currentPassword, String newPassword, String confirmPassword) {}
+
+    @PostMapping("/change-password")
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest req, Authentication auth) {
+        User user = userRepo.findByEmail(auth.getName()).orElse(null);
+        if (user == null) return ResponseEntity.status(401).build();
+        if (!passwordEncoder.matches(req.currentPassword(), user.getPassword()))
+            return ResponseEntity.badRequest().body("Current password incorrect");
+        if (!req.newPassword().equals(req.confirmPassword()))
+            return ResponseEntity.badRequest().body("Passwords do not match");
+
+        user.setPassword(passwordEncoder.encode(req.newPassword())); // hash!
+        userRepo.save(user);
+        return ResponseEntity.ok("Password updated");
+    }
 }
+
