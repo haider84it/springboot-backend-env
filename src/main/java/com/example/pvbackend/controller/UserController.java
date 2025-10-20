@@ -7,6 +7,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -104,8 +105,9 @@ public class UserController {
     public record ChangePasswordRequest(String currentPassword, String newPassword, String confirmPassword) {}
 
     @PostMapping("/change-password")
-    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest req, Authentication auth) {
-        User user = userRepo.findByEmail(auth.getName()).orElse(null);
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest req, Principal principal) {
+        if (principal == null) return ResponseEntity.status(401).body("Unauthorized");
+        User user = userRepo.findByEmail(principal.getName()).orElse(null);
         if (user == null) return ResponseEntity.status(401).build();
         if (!passwordEncoder.matches(req.currentPassword(), user.getPassword()))
             return ResponseEntity.badRequest().body("Current password incorrect");
