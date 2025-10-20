@@ -15,13 +15,13 @@ public class CorsConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 // Allow API requests
                 registry.addMapping("/api/**")
-                        .allowedOrigins("https://envaris.cloudaxes.de", "http://localhost:3000")
+                        .allowedOrigins("*")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*");
 
                 // Allow Auth (login/register) requests
                 registry.addMapping("/auth/**")
-                        .allowedOrigins("https://envaris.cloudaxes.de", "http://localhost:3000")
+                        .allowedOrigins("*")
                         .allowedMethods("POST", "OPTIONS")
                         .allowedHeaders("*");
             }
