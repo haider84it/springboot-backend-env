@@ -2,6 +2,7 @@ package com.example.pvbackend.controller;
 
 import com.example.pvbackend.model.User;
 import com.example.pvbackend.repository.UserRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -105,17 +106,19 @@ public class UserController {
     public record ChangePasswordRequest(String currentPassword, String newPassword, String confirmPassword) {}
 
     @PostMapping("/change-password")
-    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest req, Principal principal) {
-        System.out.println("Authenticated user: " + (principal != null ? principal.getName() : "null")); // 👈 add here
-        if (principal == null) return ResponseEntity.status(401).body("Unauthorized");
-        User user = userRepo.findByEmail(principal.getName()).orElse(null);
+    public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest req, HttpServletRequest request) {
+        String email = (String) request.getAttribute("email");
+        System.out.println("Authenticated user: " + email);
+        if (email == null) return ResponseEntity.status(401).body("Unauthorized");
+
+        User user = userRepo.findByEmail(email).orElse(null);
         if (user == null) return ResponseEntity.status(401).build();
         if (!passwordEncoder.matches(req.currentPassword(), user.getPassword()))
             return ResponseEntity.badRequest().body("Current password incorrect");
         if (!req.newPassword().equals(req.confirmPassword()))
             return ResponseEntity.badRequest().body("Passwords do not match");
 
-        user.setPassword(passwordEncoder.encode(req.newPassword())); // hash!
+        user.setPassword(passwordEncoder.encode(req.newPassword()));
         userRepo.save(user);
         return ResponseEntity.ok("Password updated");
     }
