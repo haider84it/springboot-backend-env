@@ -122,5 +122,30 @@ public class UserController {
         userRepo.save(user);
         return ResponseEntity.ok("Password updated");
     }
+
+
+    // ✅ Get current user profile
+    @GetMapping("/me")
+    public ResponseEntity<?> getProfile(HttpServletRequest request) {
+        String email = (String) request.getAttribute("email");
+        if (email == null) return ResponseEntity.status(401).body("Unauthorized");
+        return userRepo.findByEmail(email)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    // ✅ Update current user profile
+    @PutMapping("/me")
+    public ResponseEntity<?> updateProfile(@RequestBody User updatedUser, HttpServletRequest request) {
+        String email = (String) request.getAttribute("email");
+        if (email == null) return ResponseEntity.status(401).body("Unauthorized");
+
+        return userRepo.findByEmail(email).map(user -> {
+            user.setFirstName(updatedUser.getFirstName());
+            user.setLastName(updatedUser.getLastName());
+            userRepo.save(user);
+            return ResponseEntity.ok(user);
+        }).orElse(ResponseEntity.notFound().build());
+    }
 }
 
