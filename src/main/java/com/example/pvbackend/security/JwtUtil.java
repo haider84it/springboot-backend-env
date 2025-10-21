@@ -30,6 +30,7 @@ public class JwtUtil {
 
     // ✅ Extract all claims
     public Claims extractClaims(String token) {
+        System.out.println("JWT secret key: " + secretKey); // 👈 Add here
         return Jwts.parserBuilder()
                 .setSigningKey(getSigningKey())
                 .build()
