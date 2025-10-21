@@ -36,6 +36,8 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         }
 
         String token = authHeader.substring(7);
+        System.out.println("JWT token received: " + token);
+        System.out.println("Token valid: " + jwtUtil.isTokenValid(token));
         try {
             Claims claims = jwtUtil.extractClaims(token);
             String email = claims.getSubject();
