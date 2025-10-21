@@ -25,4 +25,10 @@ public class User {
 
     // ✅ New field to differentiate admin levels
     private String adminLevel = "NORMAL"; // GLOBAL, HIGH, NORMAL
+
+    private String firstName;
+
+    private String lastName;
+
+
 }
