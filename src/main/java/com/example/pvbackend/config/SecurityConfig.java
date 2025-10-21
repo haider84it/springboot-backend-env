@@ -60,7 +60,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/users/**").hasRole("ADMIN")
                 )
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
-
+        System.out.println("✅ SecurityFilterChain configured successfully");
         return http.build();
     }
 
