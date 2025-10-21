@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/anlagen")
-@CrossOrigin(origins = "http://localhost:3000") // Allow React frontend
+@CrossOrigin(origins = "https://envaris.cloudaxes.de") // Allow React frontend
 public class PhotovoltaikAnlageController {
 
     private final PhotovoltaikAnlageService service;

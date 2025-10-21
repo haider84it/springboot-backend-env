@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "https://envaris.cloudaxes.de")
 public class UserController {
 
     private final UserRepository userRepo;
