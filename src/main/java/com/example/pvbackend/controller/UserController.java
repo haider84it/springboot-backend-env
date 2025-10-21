@@ -106,6 +106,7 @@ public class UserController {
 
     @PostMapping("/change-password")
     public ResponseEntity<?> changePassword(@RequestBody ChangePasswordRequest req, Principal principal) {
+        System.out.println("Authenticated user: " + (principal != null ? principal.getName() : "null")); // 👈 add here
         if (principal == null) return ResponseEntity.status(401).body("Unauthorized");
         User user = userRepo.findByEmail(principal.getName()).orElse(null);
         if (user == null) return ResponseEntity.status(401).build();
