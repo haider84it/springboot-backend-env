@@ -1,9 +1,6 @@
 package com.example.pvbackend.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class PhotovoltaikAnlage {
@@ -24,6 +21,10 @@ public class PhotovoltaikAnlage {
     // Getters and Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "wartung_id")
+    private WartungNeueAnlage wartung;
 
     public String getProjektNummer() { return projektNummer; }
     public void setProjektNummer(String projektNummer) { this.projektNummer = projektNummer; }
