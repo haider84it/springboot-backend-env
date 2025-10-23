@@ -15,7 +15,7 @@ public class WartungNeueAnlage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "anlage_id")
     private PhotovoltaikAnlage anlage;
 
