@@ -1,7 +1,9 @@
 package com.example.pvbackend.service;
 
 import com.example.pvbackend.model.PhotovoltaikAnlage;
+import com.example.pvbackend.model.WartungNeueAnlage;
 import com.example.pvbackend.repository.PhotovoltaikAnlageRepository;
+import com.example.pvbackend.repository.WartungNeueAnlageRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,15 +13,20 @@ import java.util.Optional;
 public class PhotovoltaikAnlageService {
 
     private final PhotovoltaikAnlageRepository repository;
+    private final WartungNeueAnlageRepository wartungRepo;
 
-    public PhotovoltaikAnlageService(PhotovoltaikAnlageRepository repository) {
+    public PhotovoltaikAnlageService(PhotovoltaikAnlageRepository repository,  WartungNeueAnlageRepository wartungRepo) {
         this.repository = repository;
+        this.wartungRepo = wartungRepo;
     }
 
     // ✅ Create or update an Anlage
     public PhotovoltaikAnlage save(PhotovoltaikAnlage anlage) {
-        if (anlage.getWartung() != null) {
-            anlage.getWartung().setAnlage(anlage);
+        if (anlage.getWartung() == null) { //
+            WartungNeueAnlage wartung = new WartungNeueAnlage();
+            wartung.setAnlage(anlage);
+            wartungRepo.save(wartung);
+            anlage.setWartung(wartung);
         }
         return repository.save(anlage);
     }
