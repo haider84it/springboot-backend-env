@@ -18,6 +18,9 @@ public class PhotovoltaikAnlageService {
 
     // ✅ Create or update an Anlage
     public PhotovoltaikAnlage save(PhotovoltaikAnlage anlage) {
+        if (anlage.getWartung() != null) {
+            anlage.getWartung().setAnlage(anlage);
+        }
         return repository.save(anlage);
     }
 
