@@ -1,5 +1,6 @@
 package com.example.pvbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,7 +27,7 @@ public class PhotovoltaikAnlage {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "wartung_id")
+    @JsonManagedReference
     private WartungNeueAnlage wartung;
-
 
 }
