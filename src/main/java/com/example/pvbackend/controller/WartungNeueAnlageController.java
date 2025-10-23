@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/wartung")
-@CrossOrigin(origins = "https://envaris.cloudaxes.de")
 public class WartungNeueAnlageController {
 
     private final WartungNeueAnlageService service;
