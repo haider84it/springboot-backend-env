@@ -5,6 +5,7 @@ import com.example.pvbackend.service.PhotovoltaikAnlageService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/anlagen")
@@ -51,5 +52,12 @@ public class PhotovoltaikAnlageController {
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         service.deleteById(id);
+    }
+
+    // ✅ Check if Projekt-Nr. already exists
+    @GetMapping("/check/{projektNummer}")
+    public Map<String, Boolean> checkProjektNummer(@PathVariable String projektNummer) {
+        boolean exists = service.existsByProjektNummer(projektNummer);
+        return Map.of("exists", exists);
     }
 }

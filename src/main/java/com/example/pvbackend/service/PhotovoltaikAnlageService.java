@@ -35,4 +35,8 @@ public class PhotovoltaikAnlageService {
     public void deleteById(Long id) {
         repository.deleteById(id);
     }
+
+    public boolean existsByProjektNummer(String projektNummer) {
+        return repository.existsByProjektNummer(projektNummer);
+    }
 }
