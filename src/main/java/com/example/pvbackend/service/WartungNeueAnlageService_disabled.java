@@ -1,4 +1,4 @@
-package com.example.pvbackend.service;
+/* package com.example.pvbackend.service;
 
 import com.example.pvbackend.model.WartungNeueAnlage;
 import com.example.pvbackend.repository.WartungNeueAnlageRepository;
@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-public class WartungNeueAnlageService {
+public class WartungNeueAnlageService_disabled {
 
     private final WartungNeueAnlageRepository wartungRepo;
 
     @Autowired
-    public WartungNeueAnlageService(WartungNeueAnlageRepository wartungRepo) {
+    public WartungNeueAnlageService_disabled(WartungNeueAnlageRepository wartungRepo) {
         this.wartungRepo = wartungRepo;
     }
 
@@ -31,3 +31,6 @@ public class WartungNeueAnlageService {
         wartungRepo.deleteById(id);
     }
 }
+
+
+ */

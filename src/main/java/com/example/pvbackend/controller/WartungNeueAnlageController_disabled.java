@@ -1,4 +1,4 @@
-package com.example.pvbackend.controller;
+/*package com.example.pvbackend.controller;
 
 import com.example.pvbackend.model.WartungNeueAnlage;
 import com.example.pvbackend.service.WartungNeueAnlageService;
@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/wartung")
-public class WartungNeueAnlageController {
+public class WartungNeueAnlageController_disabled {
 
     private final WartungNeueAnlageService service;
 
-    public WartungNeueAnlageController(WartungNeueAnlageService service) {
+    public WartungNeueAnlageController_disabled(WartungNeueAnlageService service) {
         this.service = service;
     }
 
@@ -35,3 +35,5 @@ public class WartungNeueAnlageController {
         service.deleteById(id);
     }
 }
+
+*/
