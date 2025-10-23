@@ -15,13 +15,15 @@ public class CorsConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 // Allow API requests
                 registry.addMapping("/api/**")
-                        .allowedOrigins("https://envaris.cloudaxes.de")
+                        .allowedOrigins("https://envaris.cloudaxes.de",
+                                "https://i0ko848g8wwgws400884sg4c.168.119.177.216.sslip.io")
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowedHeaders("*");
 
                 // Allow Auth (login/register) requests
                 registry.addMapping("/auth/**")
-                        .allowedOrigins("https://envaris.cloudaxes.de").allowedMethods("POST", "OPTIONS")
+                        .allowedOrigins("https://envaris.cloudaxes.de",
+                                "https://i0ko848g8wwgws400884sg4c.168.119.177.216.sslip.io").allowedMethods("POST", "OPTIONS")
                         .allowedHeaders("*");
             }
         };
