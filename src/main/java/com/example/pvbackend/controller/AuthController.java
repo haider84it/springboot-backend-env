@@ -11,7 +11,10 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
-@CrossOrigin(origins = "https://envaris.cloudaxes.de")
+@CrossOrigin(origins = {
+        "https://envaris.cloudaxes.de",
+        "https://i0ko848g8wwgws400884sg4c.168.119.177.216.sslip.io"
+})
 public class AuthController {
 
     private final UserRepository userRepo;
