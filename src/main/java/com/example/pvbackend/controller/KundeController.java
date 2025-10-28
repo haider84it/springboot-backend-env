@@ -52,4 +52,13 @@ public class KundeController {
     public void delete(@PathVariable Long id) {
         service.deleteById(id);
     }
+
+
+    // ✅ Get all Kunden belonging to a specific Anlage
+    @GetMapping("/anlage/{anlageId}")
+    public List<Kunde> getKundenByAnlage(@PathVariable Long anlageId) {
+        return service.findByAnlageId(anlageId);
+    }
+
+
 }

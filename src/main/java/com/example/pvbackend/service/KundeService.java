@@ -35,4 +35,8 @@ public class KundeService {
     public void deleteById(Long id) {
         repository.deleteById(id);
     }
+
+    public List<Kunde> findByAnlageId(Long anlageId) {
+        return repository.findByAnlageId(anlageId);
+    }
 }
