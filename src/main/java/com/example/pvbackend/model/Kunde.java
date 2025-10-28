@@ -14,7 +14,6 @@ public class Kunde {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name;
     private String firma;
     private String anrede;
     private String vorname;
