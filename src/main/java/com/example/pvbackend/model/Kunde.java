@@ -1,8 +1,11 @@
 package com.example.pvbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Table(name = "kunden")
@@ -25,4 +28,9 @@ public class Kunde {
 
     @Column(unique = true)
     private String email;
+
+    @ManyToOne
+    @JoinColumn(name = "anlage_id")
+    @JsonBackReference
+    private PhotovoltaikAnlage anlage;
 }

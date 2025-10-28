@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -29,5 +31,9 @@ public class PhotovoltaikAnlage {
     @JoinColumn(name = "wartung_id")
     @JsonManagedReference
     private WartungNeueAnlage wartung;
+
+    @OneToMany(mappedBy = "anlage", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Kunde> kunden;
 
 }
