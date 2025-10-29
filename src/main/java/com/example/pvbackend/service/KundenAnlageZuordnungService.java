@@ -1,17 +1,24 @@
 package com.example.pvbackend.service;
 
 import com.example.pvbackend.model.KundenAnlageZuordnung;
+import com.example.pvbackend.repository.KundeRepository;
 import com.example.pvbackend.repository.KundenAnlageZuordnungRepository;
+import com.example.pvbackend.repository.PhotovoltaikAnlageRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class KundenAnlageZuordnungService {
 
     private final KundenAnlageZuordnungRepository repository;
+
+
+    public KundenAnlageZuordnungService(KundenAnlageZuordnungRepository repository) {
+        this.repository = repository;
+    }
+
 
     public KundenAnlageZuordnung save(KundenAnlageZuordnung zuordnung) {
         return repository.save(zuordnung);
