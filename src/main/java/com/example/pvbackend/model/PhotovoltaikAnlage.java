@@ -32,7 +32,7 @@ public class PhotovoltaikAnlage {
     @JsonManagedReference
     private WartungNeueAnlage wartung;
 
-    @OneToMany(mappedBy = "anlage", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "anlage")
     @JsonManagedReference
     private List<Kunde> kunden;
 
