@@ -1,10 +1,7 @@
 package com.example.pvbackend.service;
 
 import com.example.pvbackend.model.KundenAnlageZuordnung;
-import com.example.pvbackend.repository.KundeRepository;
 import com.example.pvbackend.repository.KundenAnlageZuordnungRepository;
-import com.example.pvbackend.repository.PhotovoltaikAnlageRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
