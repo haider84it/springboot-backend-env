@@ -61,4 +61,10 @@ public class KundeController {
     }
 
 
+    @PutMapping("/{kundeId}/anlage/{anlageId}")
+    public Kunde assignKundeToAnlage(@PathVariable Long kundeId, @PathVariable Long anlageId) {
+        return service.assignToAnlage(kundeId, anlageId);
+    }
+
+
 }

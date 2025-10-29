@@ -1,7 +1,9 @@
 package com.example.pvbackend.service;
 
 import com.example.pvbackend.model.Kunde;
+import com.example.pvbackend.model.PhotovoltaikAnlage;
 import com.example.pvbackend.repository.KundeRepository;
+import com.example.pvbackend.repository.PhotovoltaikAnlageRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,9 +13,11 @@ import java.util.Optional;
 public class KundeService {
 
     private final KundeRepository repository;
+    private final PhotovoltaikAnlageRepository anlageRepository;
 
-    public KundeService(KundeRepository repository) {
+    public KundeService(KundeRepository repository, PhotovoltaikAnlageRepository anlageRepository) {
         this.repository = repository;
+        this.anlageRepository = anlageRepository;
     }
 
     // ✅ Create or update Kunde
@@ -39,4 +43,13 @@ public class KundeService {
     public List<Kunde> findByAnlageId(Long anlageId) {
         return repository.findByAnlageId(anlageId);
     }
+
+
+    public Kunde assignToAnlage(Long kundeId, Long anlageId) {
+        Kunde kunde = repository.findById(kundeId).orElseThrow();
+        PhotovoltaikAnlage anlage = anlageRepository.findById(anlageId).orElseThrow();
+        kunde.setAnlage(anlage);
+        return repository.save(kunde);
+    }
+
 }
