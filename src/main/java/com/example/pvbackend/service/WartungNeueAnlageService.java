@@ -26,6 +26,7 @@ public class WartungNeueAnlageService {
         if (wartung.getAnlage() != null && wartung.getAnlage().getId() != null) {
             var anlage = photovoltaikRepo.findById(wartung.getAnlage().getId()).orElseThrow();
             anlage.setWartung(wartung);
+            photovoltaikRepo.save(anlage);
             wartung.setAnlage(anlage);
         }
         return wartungRepo.save(wartung);
