@@ -25,9 +25,6 @@ public class WartungNeueAnlage {
 
 
 
-    private Integer jahrInbetriebnahme;
-    private Boolean hebebuehne;
-    private Boolean anmeldungErforderlich;
     private Integer jahrErsteWartung;
     private String artDerWartung;
     private String wartungsturnus;
