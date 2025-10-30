@@ -1,6 +1,7 @@
 package com.example.pvbackend.service;
 
 import com.example.pvbackend.model.WartungNeueAnlage;
+import com.example.pvbackend.repository.PhotovoltaikAnlageRepository;
 import com.example.pvbackend.repository.WartungNeueAnlageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,13 +12,22 @@ import java.util.List;
 public class WartungNeueAnlageService {
 
     private final WartungNeueAnlageRepository wartungRepo;
+    private final PhotovoltaikAnlageRepository photovoltaikRepo;
 
     @Autowired
-    public WartungNeueAnlageService(WartungNeueAnlageRepository wartungRepo) {
+    public WartungNeueAnlageService(WartungNeueAnlageRepository wartungRepo, PhotovoltaikAnlageRepository photovoltaikRepo) {
         this.wartungRepo = wartungRepo;
+        this.photovoltaikRepo = photovoltaikRepo;
     }
 
     public WartungNeueAnlage save(WartungNeueAnlage wartung) {
+        if (wartung.getAnlage() != null && wartung.getAnlage().getId() != null) {
+            var anlage = photovoltaikRepo.findById(wartung.getAnlage().getId()).orElse(null);
+            if (anlage != null) {
+                anlage.setWartung(wartung);
+                wartung.setAnlage(anlage);
+            }
+        }
         return wartungRepo.save(wartung);
     }
 
