@@ -17,12 +17,10 @@ public class KundenAnlageZuordnung {
     private Long id;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "kunde_id")
     private Kunde kunde;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "anlage_id")
     private PhotovoltaikAnlage anlage;
 
