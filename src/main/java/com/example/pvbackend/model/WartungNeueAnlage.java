@@ -17,10 +17,7 @@ public class WartungNeueAnlage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonManagedReference
-    @OneToOne
-    @JoinColumn(name = "anlage_id")
-    private PhotovoltaikAnlage anlage;
+
 
     private Integer jahrInbetriebnahme;
     private Boolean hebebuehne;

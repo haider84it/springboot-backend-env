@@ -28,8 +28,8 @@ public class PhotovoltaikAnlage {
 
 
 
-    @JsonBackReference
-    @OneToOne(mappedBy = "anlage", cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "wartung_id")
     private WartungNeueAnlage wartung;
 
     @OneToMany(mappedBy = "anlage")
