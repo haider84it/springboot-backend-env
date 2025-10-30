@@ -16,8 +16,8 @@ public class WartungNeueAnlage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(mappedBy = "wartung")
-    @JsonBackReference
+    @OneToOne
+    @JoinColumn(name = "anlage_id")
     private PhotovoltaikAnlage anlage;
 
     private Integer jahrInbetriebnahme;
