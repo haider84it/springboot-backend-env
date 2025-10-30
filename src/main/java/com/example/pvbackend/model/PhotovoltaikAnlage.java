@@ -1,5 +1,6 @@
 package com.example.pvbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -27,8 +28,8 @@ public class PhotovoltaikAnlage {
 
 
 
+    @JsonBackReference
     @OneToOne(mappedBy = "anlage", cascade = CascadeType.ALL)
-    @JsonManagedReference
     private WartungNeueAnlage wartung;
 
     @OneToMany(mappedBy = "anlage")
