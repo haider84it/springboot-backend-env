@@ -28,6 +28,8 @@ public class WartungNeueAnlageService {
                 wartung.setAnlage(anlage);
                 photovoltaikRepo.save(anlage);
             }
+        } else {
+            throw new IllegalArgumentException("Anlage darf nicht null sein");
         }
         return wartungRepo.save(wartung);
     }
