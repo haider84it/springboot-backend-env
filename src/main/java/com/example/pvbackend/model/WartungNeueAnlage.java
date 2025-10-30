@@ -2,6 +2,7 @@ package com.example.pvbackend.model;
 
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,7 @@ public class WartungNeueAnlage {
 
     @OneToOne
     @JoinColumn(name = "anlage_id")
+    @JsonBackReference
     private PhotovoltaikAnlage anlage;
 
 
