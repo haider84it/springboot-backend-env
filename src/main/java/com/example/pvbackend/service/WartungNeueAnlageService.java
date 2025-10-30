@@ -3,6 +3,7 @@ package com.example.pvbackend.service;
 import com.example.pvbackend.model.WartungNeueAnlage;
 import com.example.pvbackend.repository.PhotovoltaikAnlageRepository;
 import com.example.pvbackend.repository.WartungNeueAnlageRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,16 +21,12 @@ public class WartungNeueAnlageService {
         this.photovoltaikRepo = photovoltaikRepo;
     }
 
+    @Transactional
     public WartungNeueAnlage save(WartungNeueAnlage wartung) {
         if (wartung.getAnlage() != null && wartung.getAnlage().getId() != null) {
-            var anlage = photovoltaikRepo.findById(wartung.getAnlage().getId()).orElse(null);
-            if (anlage != null) {
-                anlage.setWartung(wartung);
-                wartung.setAnlage(anlage);
-                photovoltaikRepo.save(anlage);
-            }
-        } else {
-            throw new IllegalArgumentException("Anlage darf nicht null sein");
+            var anlage = photovoltaikRepo.findById(wartung.getAnlage().getId()).orElseThrow();
+            anlage.setWartung(wartung);
+            wartung.setAnlage(anlage);
         }
         return wartungRepo.save(wartung);
     }
