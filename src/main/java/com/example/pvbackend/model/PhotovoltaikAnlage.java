@@ -29,7 +29,7 @@ public class PhotovoltaikAnlage {
 
 
     //@OneToOne(cascade = CascadeType.ALL)  //old working with wartung_id
-    //@JoinColumn(name = "wartung_id")
+    //@JoinColumn(name = "wartung_id")  //old working with wartung_id
 
 
    // @OneToOne(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true) // this what the suggestion c
