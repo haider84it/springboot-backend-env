@@ -28,11 +28,16 @@ public class PhotovoltaikAnlage {
 
 
 
-    //@OneToOne(cascade = CascadeType.ALL)
+    //@OneToOne(cascade = CascadeType.ALL)  //old working with wartung_id
     //@JoinColumn(name = "wartung_id")
 
-    @OneToOne(mappedBy = "anlage", cascade = CascadeType.ALL)
+
+   // @OneToOne(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
+
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
+    @JoinColumn(name = "wartung_id")
     private WartungNeueAnlage wartung;
 
     @OneToMany(mappedBy = "anlage")
