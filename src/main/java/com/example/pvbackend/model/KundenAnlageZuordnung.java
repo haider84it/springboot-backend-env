@@ -16,12 +16,12 @@ public class KundenAnlageZuordnung {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonBackReference
+    @JsonBackReference("kunde-zuordnung")
     @ManyToOne
     @JoinColumn(name = "kunde_id")
     private Kunde kunde;
 
-    @JsonBackReference
+    @JsonBackReference("zuordnung-anlage")
     @ManyToOne
     @JoinColumn(name = "anlage_id")
     private PhotovoltaikAnlage anlage;

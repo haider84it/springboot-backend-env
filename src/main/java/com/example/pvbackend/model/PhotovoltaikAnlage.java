@@ -41,5 +41,4 @@ public class PhotovoltaikAnlage {
     private List<KundenAnlageZuordnung> kundenAnlagzuordnungen;
 
 
-
 }
