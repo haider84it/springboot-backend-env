@@ -19,7 +19,7 @@ public class PhotovoltaikAnlageController {
     }
 
     // ✅ Create a new Anlage
-    @PostMapping
+    @PostMapping(consumes = "application/json")
     public PhotovoltaikAnlage create(@RequestBody PhotovoltaikAnlage anlage) {
         return service.save(anlage);
     }
