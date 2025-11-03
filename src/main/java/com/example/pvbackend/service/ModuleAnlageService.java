@@ -24,6 +24,10 @@ public class ModuleAnlageService {
         return moduleAnlageRepository.findById(id);
     }
 
+    public List<ModuleAnlage> getModulesByAnlage(Long anlageId) {
+        return moduleAnlageRepository.findByAnlageId(anlageId);
+    }
+
     public ModuleAnlage saveModule(ModuleAnlage moduleAnlage) {
         return moduleAnlageRepository.save(moduleAnlage);
     }

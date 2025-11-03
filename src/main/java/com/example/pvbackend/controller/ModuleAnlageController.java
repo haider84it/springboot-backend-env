@@ -28,6 +28,11 @@ public class ModuleAnlageController {
         return moduleAnlageService.getModuleById(id);
     }
 
+    @GetMapping("/anlage/{anlageId}")
+    public List<ModuleAnlage> getModulesByAnlage(@PathVariable Long anlageId) {
+        return moduleAnlageService.getModulesByAnlage(anlageId);
+    }
+
     @PostMapping
     public ModuleAnlage createModule(@RequestBody ModuleAnlage moduleAnlage) {
         return moduleAnlageService.saveModule(moduleAnlage);
