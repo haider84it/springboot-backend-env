@@ -1,6 +1,6 @@
 package com.example.pvbackend.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -28,20 +28,17 @@ public class PhotovoltaikAnlage {
 
 
 
-    //@OneToOne(cascade = CascadeType.ALL)  //old working with wartung_id
-    //@JoinColumn(name = "wartung_id")  //old working with wartung_id
-
-
-   // @OneToOne(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true) // this what the suggestion c
-
-
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToOne(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference
-    @JoinColumn(name = "wartung_id")
     private WartungNeueAnlage wartung;
 
     @OneToMany(mappedBy = "anlage")
     @JsonManagedReference
     private List<Kunde> kunden;
+
+    @OneToMany(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<KundenAnlageZuordnung> kundenAnlagzuordnungen;
+
+
 
 }
