@@ -41,4 +41,9 @@ public class PhotovoltaikAnlage {
     private List<KundenAnlageZuordnung> kundenAnlagzuordnungen;
 
 
+    @OneToMany(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("module-anlage")
+    private List<ModuleAnlage> module;
+
+
 }
