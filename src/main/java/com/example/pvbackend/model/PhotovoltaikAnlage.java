@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.util.List;
+
 
 @Entity
 @Getter
@@ -37,6 +37,7 @@ public class PhotovoltaikAnlage {
     private List<Kunde> kunden;
 
     @OneToMany(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<KundenAnlageZuordnung> kundenAnlagzuordnungen;
 
 

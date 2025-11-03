@@ -1,5 +1,6 @@
 package com.example.pvbackend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,10 +16,12 @@ public class KundenAnlageZuordnung {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "kunde_id")
     private Kunde kunde;
 
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "anlage_id")
     private PhotovoltaikAnlage anlage;
