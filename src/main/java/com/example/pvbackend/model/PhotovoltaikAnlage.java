@@ -29,15 +29,15 @@ public class PhotovoltaikAnlage {
 
 
     @OneToOne(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+    @JsonManagedReference("wartung-anlage")
     private WartungNeueAnlage wartung;
 
     @OneToMany(mappedBy = "anlage")
-    @JsonManagedReference
+    @JsonManagedReference("kunde-anlage")
     private List<Kunde> kunden;
 
     @OneToMany(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
+    @JsonManagedReference("zuordnung-anlage")
     private List<KundenAnlageZuordnung> kundenAnlagzuordnungen;
 
 
