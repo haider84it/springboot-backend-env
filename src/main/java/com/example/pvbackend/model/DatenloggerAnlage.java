@@ -1,5 +1,6 @@
 package com.example.pvbackend.model;
 
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -8,22 +9,24 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "module_anlage")
-public class ModuleAnlage {
+@Table(name = "datenlogger_anlage")
+public class DatenloggerAnlage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String hersteller;
-    private String typ;
-    private String leistungWp;
-    private String art;
-    private Integer anzahl;
+    private String modell;
+    private String ipAdresse;
+    private String login;
+    private String Passwort;
+
 
     @ManyToOne
     @JoinColumn(name = "anlage_id")
-    @JsonBackReference("module-anlage")
+    @JsonBackReference("datenlogger-anlage")
     private PhotovoltaikAnlage anlage;
+
 
 }

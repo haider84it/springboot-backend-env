@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/module")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://envaris.cloudaxes.de")
 public class ModuleAnlageController {
     //service for dependency injection
     private final ModuleAnlageService moduleAnlageService;
