@@ -46,4 +46,9 @@ public class PhotovoltaikAnlage {
     private List<ModuleAnlage> module;
 
 
+    @OneToMany(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("wechselrichter-anlage")
+    private List<WechselrichterAnlage> wechselrichter;
+
+
 }
