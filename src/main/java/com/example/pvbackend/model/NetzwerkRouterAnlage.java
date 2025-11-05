@@ -20,6 +20,7 @@ public class NetzwerkRouterAnlage {
     private String hersteller;
     private String ipAdresse;
     private String netzwerk;
+    private String subnetmask;
 
     @OneToOne
     @JoinColumn(name = "anlage_id")
