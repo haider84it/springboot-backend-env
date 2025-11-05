@@ -51,4 +51,22 @@ public class PhotovoltaikAnlage {
     private List<WechselrichterAnlage> wechselrichter;
 
 
+    @OneToMany(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("stromspeicher-anlage")
+    private List<StromspeicherAnlage> stromspeicher;
+
+
+    @OneToMany(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("datenlogger-anlage")
+    private List<DatenloggerAnlage> datenlogger;
+
+    @OneToOne(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("mobilfunk-router-anlage")
+    private MobilefunkRouterAnlage mobilefunkRouter;
+
+    @OneToOne(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("netzwerk-router-anlage")
+    private NetzwerkRouterAnlage netzwerkRouterAnlage;
+
+
 }
