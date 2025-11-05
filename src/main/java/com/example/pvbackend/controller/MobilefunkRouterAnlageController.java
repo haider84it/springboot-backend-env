@@ -31,4 +31,27 @@ public class MobilefunkRouterAnlageController {
         return mobilefunkRouterService.getMobilefunkRouterById(id);
     }
 
+    @GetMapping("/anlage/{anlageId}")
+    public MobilefunkRouterAnlage getMobilefunkRouterByAnlage(@PathVariable Long anlageId) {
+        return mobilefunkRouterService.getMobilefunkRouterByAnlage(anlageId);
+    }
+
+    @PostMapping
+    public MobilefunkRouterAnlage createMobilefunkRouter(@RequestBody MobilefunkRouterAnlage mobilefunkRouterAnlage) {
+        return mobilefunkRouterService.saveMobilefunkRouter(mobilefunkRouterAnlage);
+    }
+
+    @PutMapping("/{id}")
+    public MobilefunkRouterAnlage updateMobilefunkRouter(@PathVariable Long id, @RequestBody MobilefunkRouterAnlage updateMobilefunkRouter) {
+        updateMobilefunkRouter.setId(id);
+        return mobilefunkRouterService.saveMobilefunkRouter(updateMobilefunkRouter);
+    }
+
+
+    @DeleteMapping("/{id}")
+    public void deleteMobilefunkRouter(@PathVariable Long id) {
+        mobilefunkRouterService.deleteMobilefunkRouter(id);
+    }
+
+
 }
