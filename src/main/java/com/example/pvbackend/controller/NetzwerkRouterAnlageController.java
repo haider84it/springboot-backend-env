@@ -36,7 +36,7 @@ public class NetzwerkRouterAnlageController {
         return netzwerkRouterService.getNetzwerkRouterByAnlage(anlageId);
     }
 
-    @PostMapping("/{id}")
+    @PostMapping
     public NetzwerkRouterAnlage createNetzwerkRouter(@RequestBody NetzwerkRouterAnlage netzwerkRouterAnlage) {
         return netzwerkRouterService.saveNetzwerkRouter(netzwerkRouterAnlage);
     }
