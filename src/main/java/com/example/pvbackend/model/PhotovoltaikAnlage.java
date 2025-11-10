@@ -69,4 +69,9 @@ public class PhotovoltaikAnlage {
     private NetzwerkRouterAnlage netzwerkRouterAnlage;
 
 
+    @OneToOne(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("aufstellungsort-anlage")
+    private AufstellungsortAnlage aufstellungsortAnlage;
+
+
 }
