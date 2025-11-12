@@ -6,28 +6,28 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @Entity
-@Table(name = "beschwerung_anlage")
-public class BeschwerungAnlage {
-
-
+@Table(name = "zaehler_anlage")
+public class ZaehlerAnlage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private boolean wannen;
-    private boolean steine;
-    private boolean kies;
-    private boolean andere;
 
+    private String zaehlernummer;
+    private BigDecimal wandlerFaktor;
 
     @OneToOne
     @JoinColumn(name = "anlage_id")
-    @JsonBackReference("beschwerung_anlage")
+    @JsonBackReference("zahler_anlage")
     private PhotovoltaikAnlage anlage;
+
+
 
 
 }

@@ -18,7 +18,7 @@ public class AufstellungsortController {
 
 
     @GetMapping
-    public List<AufstellungsortAnlage> getAufstellungsorte() {
+    public List<AufstellungsortAnlage> getAllAufstellungsorte() {
         return aufstellungsortService.getAllAufstellungsorte();
     }
 

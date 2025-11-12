@@ -9,24 +9,28 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "beschwerung_anlage")
-public class BeschwerungAnlage {
-
-
+@Table(name = "ausrichtung_neigung_module")
+public class AusrichtungNeigungModule {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private boolean wannen;
-    private boolean steine;
-    private boolean kies;
+    private boolean sued;
+    private boolean ost;
+    private boolean west;
+    private boolean ostWest;
+    private boolean nord;
+    private boolean suedOst;
+    private boolean suedWest;
+    private boolean nordOst;
+    private boolean nordWest;
     private boolean andere;
 
 
     @OneToOne
     @JoinColumn(name = "anlage_id")
-    @JsonBackReference("beschwerung_anlage")
+    @JsonBackReference("ausrichtung_neigung_module")
     private PhotovoltaikAnlage anlage;
 
 
