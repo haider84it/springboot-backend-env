@@ -16,7 +16,7 @@ public class BefestigungAnlageService {
 
     private final BefestigungAnlageRepository befestigungAnlageRepository;
 
-    public List<BefestigungAnlage> getAllBefestigungAnlagen() {
+    public List<BefestigungAnlage> getAllBefestigungen() {
         return befestigungAnlageRepository.findAll();
     }
 

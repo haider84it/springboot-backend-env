@@ -1,0 +1,51 @@
+package com.example.pvbackend.controller;
+
+
+import com.example.pvbackend.model.BeschwerungAnlage;
+import com.example.pvbackend.service.BeschwerungAnlageService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/api/beschwerung")
+@CrossOrigin(origins = "https://envaris.cloudaxes.de")
+@RequiredArgsConstructor
+public class BeschwerungAnlageController {
+
+    private final BeschwerungAnlageService beschwerungAnlageService;
+
+    @GetMapping
+    public List<BeschwerungAnlage> getAllBeschwerungen() {
+        return beschwerungAnlageService.getAllBeschwerungen();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<BeschwerungAnlage> getBeschwerungAnlage(@PathVariable Long id) {
+        return beschwerungAnlageService.getBeschwerungById(id);
+    }
+
+    @GetMapping("/anlage/{anlageId}")
+    public BeschwerungAnlage getBeschwerungByAnlage(@PathVariable Long anlageId) {
+        return beschwerungAnlageService.getBeschwerungByAnlage(anlageId);
+    }
+
+    @PostMapping
+    public BeschwerungAnlage createBeschwerungAnlage(@RequestBody BeschwerungAnlage beschwerungAnlage) {
+        return beschwerungAnlageService.saveBeschwerung(beschwerungAnlage);
+    }
+
+    @PutMapping("/{id}")
+    public BeschwerungAnlage updateBeschwerung(@PathVariable Long id, @RequestBody BeschwerungAnlage updateBeschwerungAnlage) {
+        updateBeschwerungAnlage.setId(id);
+        return beschwerungAnlageService.saveBeschwerung(updateBeschwerungAnlage);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteBeschwerungAnlage(@PathVariable Long id) {
+        beschwerungAnlageService.deleteBeschwerungAnlage(id);
+    }
+
+}

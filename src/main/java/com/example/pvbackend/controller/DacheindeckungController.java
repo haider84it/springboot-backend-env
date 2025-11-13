@@ -28,7 +28,7 @@ public class DacheindeckungController {
     }
 
     @GetMapping("/anlage/{anlageId}")
-    public DacheindeckungAnlage getDacheindeckungAnlage(@PathVariable Long anlageId) {
+    public DacheindeckungAnlage getDacheindeckungByAnlage(@PathVariable Long anlageId) {
         return dacheindeckungService.getDacheindeckungByAnlage(anlageId);
     }
 
