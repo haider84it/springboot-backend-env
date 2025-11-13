@@ -20,7 +20,7 @@ public class WartungNeueAnlage {
 
     @OneToOne
     @JoinColumn(name = "anlage_id")
-    @JsonBackReference("wartung_nlage")
+    @JsonBackReference("wartung_anlage")
     private PhotovoltaikAnlage anlage;
 
 
