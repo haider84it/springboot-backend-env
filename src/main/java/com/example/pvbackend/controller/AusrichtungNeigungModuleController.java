@@ -1,0 +1,51 @@
+package com.example.pvbackend.controller;
+
+
+import com.example.pvbackend.model.AusrichtungNeigungModule;
+import com.example.pvbackend.service.AusrichtungNeigungModuleService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/api/ausrichtungneigungmodule")
+@CrossOrigin(origins = "https://envaris.cloudaxes.de")
+@RequiredArgsConstructor
+public class AusrichtungNeigungModuleController {
+
+    private final AusrichtungNeigungModuleService ausrichtungNeigungModuleService;
+
+    @GetMapping
+    public List<AusrichtungNeigungModule> getAllAusrichtungNeigungModule() {
+        return ausrichtungNeigungModuleService.getAllAusrichtungNeigungModule();
+    }
+
+    @GetMapping("/{id}")
+    public Optional<AusrichtungNeigungModule> getAusrichtungNeigungModule(@PathVariable Long id) {
+        return ausrichtungNeigungModuleService.getAusrichtungNeigungById(id);
+    }
+
+    @GetMapping("/anlage/{anlageId}")
+    public AusrichtungNeigungModule getAusrichtungModuleByAnlage(@PathVariable Long anlageId) {
+        return ausrichtungNeigungModuleService.getAusrichtungNeigungByAnlage(anlageId);
+    }
+
+    @PostMapping
+    public AusrichtungNeigungModule createAusrichtungModule(@RequestBody AusrichtungNeigungModule ausrichtungNeigungModule) {
+        return ausrichtungNeigungModuleService.saveAusrichtungNeigungModule(ausrichtungNeigungModule);
+    }
+
+    @PutMapping("/{id}")
+    public AusrichtungNeigungModule updateAusrichtungModule(@PathVariable Long id, @RequestBody AusrichtungNeigungModule updateAusrichtungNeigungModule) {
+        updateAusrichtungNeigungModule.setId(id);
+        return ausrichtungNeigungModuleService.saveAusrichtungNeigungModule(updateAusrichtungNeigungModule);
+    }
+
+
+    @DeleteMapping("/{id}")
+    public void deleteAusrichtungModule(@PathVariable Long id) {
+        ausrichtungNeigungModuleService.deleteAusrichtungNeigungModule(id);
+    }
+}

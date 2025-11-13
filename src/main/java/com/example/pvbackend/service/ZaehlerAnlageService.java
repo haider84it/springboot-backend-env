@@ -16,7 +16,7 @@ public class ZaehlerAnlageService {
 
     private final ZaehlerAnlageRepository zaehlerAnlageRepository;
 
-    public List<ZaehlerAnlage> getAllZaehlerAnlagen() {
+    public List<ZaehlerAnlage> getAllZaehlerAnlage() {
         return zaehlerAnlageRepository.findAll();
     }
 
