@@ -23,7 +23,7 @@ public class WechselrichterAnlage {
 
     @ManyToOne
     @JoinColumn(name = "anlage_id")
-    @JsonBackReference("wechselrichter-anlage")
+    @JsonBackReference("wechselrichter_anlage")
     private PhotovoltaikAnlage anlage;
 
 

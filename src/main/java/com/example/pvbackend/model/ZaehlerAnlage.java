@@ -24,7 +24,7 @@ public class ZaehlerAnlage {
 
     @OneToOne
     @JoinColumn(name = "anlage_id")
-    @JsonBackReference("zahler_anlage")
+    @JsonBackReference("zaehler_anlage")
     private PhotovoltaikAnlage anlage;
 
 

@@ -27,7 +27,7 @@ public class AufstellungsortAnlage {
 
     @OneToOne
     @JoinColumn(name = "anlage_id")
-    @JsonBackReference("aufstellungsort-anlage")
+    @JsonBackReference("aufstellungsort_anlage")
     private PhotovoltaikAnlage anlage;
 
 }

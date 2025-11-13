@@ -24,7 +24,7 @@ public class NetzwerkRouterAnlage {
 
     @OneToOne
     @JoinColumn(name = "anlage_id")
-    @JsonBackReference("netzwerk-router-anlage")
+    @JsonBackReference("netzwerk_router_anlage")
     private PhotovoltaikAnlage anlage;
 
 

@@ -23,7 +23,7 @@ public class MobilefunkRouterAnlage {
 
     @OneToOne
     @JoinColumn(name = "anlage_id")
-    @JsonBackReference("mobilfunk-router-anlage")
+    @JsonBackReference("mobilfunk_router_anlage")
     private PhotovoltaikAnlage anlage;
 
 

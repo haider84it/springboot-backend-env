@@ -25,7 +25,7 @@ public class DatenloggerAnlage {
 
     @ManyToOne
     @JoinColumn(name = "anlage_id")
-    @JsonBackReference("datenlogger-anlage")
+    @JsonBackReference("datenlogger_anlage")
     private PhotovoltaikAnlage anlage;
 
 

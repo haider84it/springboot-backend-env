@@ -22,7 +22,7 @@ public class StromspeicherAnlage {
 
     @ManyToOne
     @JoinColumn(name = "anlage_id")
-    @JsonBackReference("stromspeicher-anlage")
+    @JsonBackReference("stromspeicher_anlage")
     private PhotovoltaikAnlage anlage;
 
 }

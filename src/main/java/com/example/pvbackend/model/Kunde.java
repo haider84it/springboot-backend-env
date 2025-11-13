@@ -30,6 +30,6 @@ public class Kunde {
 
     @ManyToOne
     @JoinColumn(name = "anlage_id")
-    @JsonBackReference("kunde-anlage")
+    @JsonBackReference("kunde_anlage")
     private PhotovoltaikAnlage anlage;
 }

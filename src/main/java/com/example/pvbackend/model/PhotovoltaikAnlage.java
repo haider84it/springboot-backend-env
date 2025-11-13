@@ -29,49 +29,86 @@ public class PhotovoltaikAnlage {
 
 
     @OneToOne(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference("wartung-anlage")
+    @JsonManagedReference("wartung_anlage")
     private WartungNeueAnlage wartung;
 
     @OneToMany(mappedBy = "anlage")
-    @JsonManagedReference("kunde-anlage")
+    @JsonManagedReference("kunde_anlage")
     private List<Kunde> kunden;
 
     @OneToMany(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference("zuordnung-anlage")
+    @JsonManagedReference("zuordnung_anlage")
     private List<KundenAnlageZuordnung> kundenAnlagzuordnungen;
 
 
     @OneToMany(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference("module-anlage")
+    @JsonManagedReference("module_anlage")
     private List<ModuleAnlage> module;
 
 
     @OneToMany(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference("wechselrichter-anlage")
+    @JsonManagedReference("wechselrichter_anlage")
     private List<WechselrichterAnlage> wechselrichter;
 
 
     @OneToMany(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference("stromspeicher-anlage")
+    @JsonManagedReference("stromspeicher_anlage")
     private List<StromspeicherAnlage> stromspeicher;
 
 
     @OneToMany(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference("datenlogger-anlage")
+    @JsonManagedReference("datenlogger_anlage")
     private List<DatenloggerAnlage> datenlogger;
 
     @OneToOne(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference("mobilfunk-router-anlage")
+    @JsonManagedReference("mobilfunk_router_anlage")
     private MobilefunkRouterAnlage mobilefunkRouter;
 
     @OneToOne(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference("netzwerk-router-anlage")
+    @JsonManagedReference("netzwerk_router_anlage")
     private NetzwerkRouterAnlage netzwerkRouterAnlage;
 
 
     @OneToOne(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference("aufstellungsort-anlage")
+    @JsonManagedReference("aufstellungsort_anlage")
     private AufstellungsortAnlage aufstellungsortAnlage;
+
+    @OneToOne(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("angabenzumdach_anlage")
+    private AngabenZumDachAnlage angabenZumDachAnlage;
+
+    @OneToOne(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("dacheindeckung_anlage")
+    private DacheindeckungAnlage dacheindeckungAnlage;
+
+    @OneToOne(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("schienensystem_anlage")
+    private SchienensystemAnlage schienensystemAnlage;
+
+    @OneToOne(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("modulbefestigung_anlage")
+    private ModulbefestigungAnlage modulbefestigungAnlage;
+
+    @OneToOne(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("befestigung_anlage")
+    private BefestigungAnlage befestigungAnlage;
+
+    @OneToOne(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("beschwerung_anlage")
+    private BeschwerungAnlage beschwerungAnlage;
+
+    @OneToOne(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("ausrichtung_neigung_module")
+    private AusrichtungNeigungModule ausrichtungNeigungModule;
+
+    @OneToOne(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("neigung_module_anlage")
+    private NeigungModuleAnlage neigungModuleAnlage;
+
+
+    @OneToOne(mappedBy = "anlage", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("zaehler_anlage")
+    private ZaehlerAnlage zaehlerAnlage;
 
 
 }
