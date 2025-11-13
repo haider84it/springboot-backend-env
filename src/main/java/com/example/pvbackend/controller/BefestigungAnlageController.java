@@ -27,7 +27,7 @@ public class BefestigungAnlageController {
         return befestigungAnlageService.getBefestigungAnlageById(id);
     }
 
-    @GetMapping("/{anlage/{anlageId}")
+    @GetMapping("/anlage/{anlageId}")
     public BefestigungAnlage getBefestigungByAnlage(@PathVariable Long anlageId) {
         return befestigungAnlageService.getBefestigungByAnlage(anlageId);
     }
