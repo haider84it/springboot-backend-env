@@ -1,5 +1,6 @@
 package com.example.pvbackend.controller;
 
+import com.example.pvbackend.dto.AnlageCreateDto;
 import com.example.pvbackend.model.PhotovoltaikAnlage;
 import com.example.pvbackend.service.PhotovoltaikAnlageService;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,18 @@ public class PhotovoltaikAnlageController {
 
     // ✅ Create a new Anlage
     @PostMapping(consumes = "application/json")
-    public PhotovoltaikAnlage create(@RequestBody PhotovoltaikAnlage anlage) {
+    public PhotovoltaikAnlage create(@RequestBody AnlageCreateDto dto) {
+
+        PhotovoltaikAnlage anlage = new PhotovoltaikAnlage();
+        anlage.setProjektNummer(dto.projektNummer());
+        anlage.setAnlagenName(dto.anlagenName());
+        anlage.setAnlagenGroesse(dto.anlagenGroesse());
+        anlage.setStrasse(dto.strasse());
+        anlage.setPlz(dto.plz());
+        anlage.setOrt(dto.ort());
+        anlage.setLatitude(dto.latitude());
+        anlage.setLongitude(dto.longitude());
+
         return service.save(anlage);
     }
 
