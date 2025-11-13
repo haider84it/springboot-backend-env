@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/ausrichtungneigungmodule")
+@RequestMapping("/api/ausrichtungneigung")
 @CrossOrigin(origins = "https://envaris.cloudaxes.de")
 @RequiredArgsConstructor
 public class AusrichtungNeigungModuleController {

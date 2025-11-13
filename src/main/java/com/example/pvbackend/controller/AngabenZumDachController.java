@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/requestzumdach")
+@RequestMapping("/api/angabenzumdach")
 @CrossOrigin(origins = "https://envaris.cloudaxes.de")
 @RequiredArgsConstructor
 public class AngabenZumDachController {
