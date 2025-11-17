@@ -17,7 +17,7 @@ public class WechselrichterAnlage {
 
     private String hersteller;
     private String type;
-    private String leistung;
+    private Double leistung;
     private String art;
     private Integer anzahl;
 

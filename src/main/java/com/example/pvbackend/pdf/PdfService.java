@@ -30,7 +30,7 @@ public class PdfService {
 
             PDPageContentStream stream = new PDPageContentStream(doc, page);
             stream.beginText();
-            stream.setFont(PDType1Font.HELVETICA, 12);
+            stream.setFont(PDType1Font.HELVETICA, 8);
             stream.newLineAtOffset(40, 750);
 
             stream.showText("Anlagenname: " + anlage.getAnlagenName());
