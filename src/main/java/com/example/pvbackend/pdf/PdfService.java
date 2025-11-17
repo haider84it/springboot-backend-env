@@ -223,31 +223,44 @@ public class PdfService {
             }
 
 
+
+            // + add more fields if the page1 has more space
+            stream.endText();
+            stream.close();
+
+            PDPage page2 = new PDPage();
+            doc.addPage(page2);
+
+            PDPageContentStream stream2 = new PDPageContentStream(doc, page2);
+            stream2.beginText();
+            stream2.setFont(PDType1Font.HELVETICA, 8);
+            stream2.newLineAtOffset(40, 750);
+
             //14
             if (anlage.getBeschwerungAnlage() != null) {
                 var beschwerungAnlage = anlage.getBeschwerungAnlage();
-                stream.showText("Beschwerung:");
-                stream.newLineAtOffset(0, -15);
-                stream.showText("  Wannen: " + beschwerungAnlage.isWannen());
-                stream.newLineAtOffset(0, -15);
-                stream.showText("  Steine: " + beschwerungAnlage.isSteine());
-                stream.newLineAtOffset(0, -15);
-                stream.showText("  Kies: " + beschwerungAnlage.isKies());
-                stream.newLineAtOffset(0, -15);
+                stream2.showText("Beschwerung:");
+                stream2.newLineAtOffset(0, -15);
+                stream2.showText("  Wannen: " + beschwerungAnlage.isWannen());
+                stream2.newLineAtOffset(0, -15);
+                stream2.showText("  Steine: " + beschwerungAnlage.isSteine());
+                stream2.newLineAtOffset(0, -15);
+                stream2.showText("  Kies: " + beschwerungAnlage.isKies());
+                stream2.newLineAtOffset(0, -15);
             }
 
 
             //15
             if (anlage.getAusrichtungNeigungModule() != null) {
                 var ausrichtungNeigungModule = anlage.getAusrichtungNeigungModule();
-                stream.showText("Ausrichtung der Module:");
-                stream.newLineAtOffset(0, -15);
-                stream.showText("  Süd: " + ausrichtungNeigungModule.isSued());
-                stream.newLineAtOffset(0, -15);
-                stream.showText("  Ost: " + ausrichtungNeigungModule.isOst());
-                stream.newLineAtOffset(0, -15);
-                stream.showText("  West: " + ausrichtungNeigungModule.isWest());
-                stream.newLineAtOffset(0, -15);
+                stream2.showText("Ausrichtung der Module:");
+                stream2.newLineAtOffset(0, -15);
+                stream2.showText("  Süd: " + ausrichtungNeigungModule.isSued());
+                stream2.newLineAtOffset(0, -15);
+                stream2.showText("  Ost: " + ausrichtungNeigungModule.isOst());
+                stream2.newLineAtOffset(0, -15);
+                stream2.showText("  West: " + ausrichtungNeigungModule.isWest());
+                stream2.newLineAtOffset(0, -15);
                 // add more if needed **************************************************
             }
 
@@ -255,25 +268,25 @@ public class PdfService {
             //16
             if (anlage.getNeigungModuleAnlage() != null) {
                 var neigungModuleAnlage = anlage.getNeigungModuleAnlage();
-                stream.showText("Neigung der Module: " + neigungModuleAnlage.getNeigung() + "°");
-                stream.newLineAtOffset(0, -15);
+                stream2.showText("Neigung der Module: " + neigungModuleAnlage.getNeigung() + "°");
+                stream2.newLineAtOffset(0, -15);
             }
 
 
             //17
             if (anlage.getZaehlerAnlage() != null) {
                 var zaehlerAnlage = anlage.getZaehlerAnlage();
-                stream.showText("Zähler:");
-                stream.newLineAtOffset(0, -15);
-                stream.showText("  Zählernummer: " + zaehlerAnlage.getZaehlernummer());
-                stream.newLineAtOffset(0, -15);
-                stream.showText("  Wandlerfaktor: " + zaehlerAnlage.getWandlerFaktor());
-                stream.newLineAtOffset(0, -15);
+                stream2.showText("Zähler:");
+                stream2.newLineAtOffset(0, -15);
+                stream2.showText("  Zählernummer: " + zaehlerAnlage.getZaehlernummer());
+                stream2.newLineAtOffset(0, -15);
+                stream2.showText("  Wandlerfaktor: " + zaehlerAnlage.getWandlerFaktor());
+                stream2.newLineAtOffset(0, -15);
             }
 
             // + add more fields
-            stream.endText();
-            stream.close();
+            stream2.endText();
+            stream2.close();
 
             doc.save(out);
         } catch (Exception e) {
