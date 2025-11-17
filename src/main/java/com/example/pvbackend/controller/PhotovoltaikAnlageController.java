@@ -2,7 +2,10 @@ package com.example.pvbackend.controller;
 
 import com.example.pvbackend.dto.AnlageCreateDto;
 import com.example.pvbackend.model.PhotovoltaikAnlage;
+import com.example.pvbackend.pdf.PdfService;
 import com.example.pvbackend.service.PhotovoltaikAnlageService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,14 +13,12 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/anlagen")
-@CrossOrigin(origins = "https://envaris.cloudaxes.de") // Allow React frontend
+@CrossOrigin(origins = "https://envaris.cloudaxes.de")
+@RequiredArgsConstructor// Allow React frontend
 public class PhotovoltaikAnlageController {
 
     private final PhotovoltaikAnlageService service;
-
-    public PhotovoltaikAnlageController(PhotovoltaikAnlageService service) {
-        this.service = service;
-    }
+    private final PdfService pdfService;
 
     // ✅ Create a new Anlage
     @PostMapping(consumes = "application/json")
@@ -72,4 +73,16 @@ public class PhotovoltaikAnlageController {
         boolean exists = service.existsByProjektNummer(projektNummer);
         return Map.of("exists", exists);
     }
+
+    @GetMapping("/{id}/pdf")
+    public ResponseEntity<byte[]> getPdf(@PathVariable Long id) {
+        byte[] pdf = pdfService.generateAnlagePdf(id);
+
+        return ResponseEntity.ok()
+                .header("Content-Type", "application/pdf")
+                .header("Content-Disposition", "inline; filename=anlage.pdf")
+                .body(pdf);
+    }
+
+
 }
