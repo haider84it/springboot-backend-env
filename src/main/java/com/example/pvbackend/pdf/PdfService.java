@@ -145,8 +145,36 @@ public class PdfService {
             if (aufstellungsort != null) {
                 stream.showText("Aufstellungsort:");
                 stream.newLineAtOffset(0, -15);
-                stream.showText("  Garage: " + aufstellungsort.isGarage());
-                stream.newLineAtOffset(0, -15);
+
+                if (aufstellungsort.isWohngebaeude()) {
+                    stream.showText("  Wohngebäude: true");
+                    stream.newLineAtOffset(0, -15);
+                }
+
+                if (aufstellungsort.isGarage()) {
+                    stream.showText("  Garage: true");
+                    stream.newLineAtOffset(0, -15);
+                }
+
+                if (aufstellungsort.isLandwirtschaftsgebaeude()) {
+                    stream.showText("  Landwirtschaftsgebäude: true");
+                    stream.newLineAtOffset(0, -15);
+                }
+
+                if (aufstellungsort.isGewerblicheHalle()) {
+                    stream.showText("  Gewerbliche Halle: true");
+                    stream.newLineAtOffset(0, -15);
+                }
+
+                if (aufstellungsort.isFreiland()) {
+                    stream.showText("  Freiland: true");
+                    stream.newLineAtOffset(0, -15);
+                }
+
+                if (aufstellungsort.isAndere()) {
+                    stream.showText("  Andere: true");
+                    stream.newLineAtOffset(0, -15);
+                }
             }
 
             //9
@@ -154,14 +182,22 @@ public class PdfService {
                 var angabenZumDachAnlage = anlage.getAngabenZumDachAnlage();
                 stream.showText("Angaben zum Dach:");
                 stream.newLineAtOffset(0, -15);
-                stream.showText("  Satteldach: " + angabenZumDachAnlage.isSatteldach());
-                stream.newLineAtOffset(0, -15);
-                stream.showText("  Flachdach: " + angabenZumDachAnlage.isFlachdach());
-                stream.newLineAtOffset(0, -15);
-                stream.showText("  Pultdach: " + angabenZumDachAnlage.isPultdach());
-                stream.newLineAtOffset(0, -15);
-                stream.showText("  Sheddach: " + angabenZumDachAnlage.isSheddach());
-                stream.newLineAtOffset(0, -15);
+                if (angabenZumDachAnlage.isSatteldach()) {
+                    stream.showText("  Satteldach");
+                    stream.newLineAtOffset(0, -15);
+                }
+                if (angabenZumDachAnlage.isFlachdach()) {
+                    stream.showText("  Flachdach");
+                    stream.newLineAtOffset(0, -15);
+                }
+                if (angabenZumDachAnlage.isPultdach()) {
+                    stream.showText("  Pultdach");
+                    stream.newLineAtOffset(0, -15);
+                }
+                if (angabenZumDachAnlage.isSheddach()) {
+                    stream.showText("  Sheddach");
+                    stream.newLineAtOffset(0, -15);
+                }
             }
 
             //10
@@ -169,16 +205,26 @@ public class PdfService {
                 var dacheindeckungAnlage = anlage.getDacheindeckungAnlage();
                 stream.showText("Dacheindeckung:");
                 stream.newLineAtOffset(0, -15);
-                stream.showText("  Ziegel: " + dacheindeckungAnlage.isZiegel());
-                stream.newLineAtOffset(0, -15);
-                stream.showText("  Faserzement: " + dacheindeckungAnlage.isFaserzement());
-                stream.newLineAtOffset(0, -15);
-                stream.showText("  Metall: " + dacheindeckungAnlage.isMetall());
-                stream.newLineAtOffset(0, -15);
-                stream.showText("  Bitumen: " + dacheindeckungAnlage.isBitumen());
-                stream.newLineAtOffset(0, -15);
-                stream.showText("  Folie: " + dacheindeckungAnlage.isFolie());
-                stream.newLineAtOffset(0, -15);
+                if (dacheindeckungAnlage.isZiegel()) {
+                    stream.showText("  Ziegel");
+                    stream.newLineAtOffset(0, -15);
+                }
+                if (dacheindeckungAnlage.isFaserzement()) {
+                    stream.showText("  Faserzement");
+                    stream.newLineAtOffset(0, -15);
+                }
+                if (dacheindeckungAnlage.isMetall()) {
+                    stream.showText("  Metall");
+                    stream.newLineAtOffset(0, -15);
+                }
+                if (dacheindeckungAnlage.isBitumen()) {
+                    stream.showText("  Bitumen");
+                    stream.newLineAtOffset(0, -15);
+                }
+                if (dacheindeckungAnlage.isFolie()) {
+                    stream.showText("  Folie");
+                    stream.newLineAtOffset(0, -15);
+                }
             }
 
 
@@ -187,12 +233,18 @@ public class PdfService {
                 var schienensystemAnlage = anlage.getSchienensystemAnlage();
                 stream.showText("Schienensystem:");
                 stream.newLineAtOffset(0, -15);
-                stream.showText("  einlagig: " + schienensystemAnlage.isEinlagige());
-                stream.newLineAtOffset(0, -15);
-                stream.showText("  zweilagig: " + schienensystemAnlage.isZweilagig());
-                stream.newLineAtOffset(0, -15);
-                stream.showText("  aufgeständert: " + schienensystemAnlage.isAufgeständert());
-                stream.newLineAtOffset(0, -15);
+                if (schienensystemAnlage.isEinlagige()) {
+                    stream.showText("  einlagig");
+                    stream.newLineAtOffset(0, -15);
+                }
+                if (schienensystemAnlage.isZweilagig()) {
+                    stream.showText("  zweilagig");
+                    stream.newLineAtOffset(0, -15);
+                }
+                if (schienensystemAnlage.isAufgeständert()) {
+                    stream.showText("  aufgeständert");
+                    stream.newLineAtOffset(0, -15);
+                }
             }
 
 
@@ -201,12 +253,18 @@ public class PdfService {
                 var modulbefestigungAnlage = anlage.getModulbefestigungAnlage();
                 stream.showText("Modulbefestigung:");
                 stream.newLineAtOffset(0, -15);
-                stream.showText("  Klemmen: " + modulbefestigungAnlage.isKlemmen());
-                stream.newLineAtOffset(0, -15);
-                stream.showText("  Einschubsystem: " + modulbefestigungAnlage.isEinschubsystem());
-                stream.newLineAtOffset(0, -15);
-                stream.showText("  Schraube an UK: " + modulbefestigungAnlage.isSchraubeAnUK());
-                stream.newLineAtOffset(0, -15);
+                if (modulbefestigungAnlage.isKlemmen()) {
+                    stream.showText("  Klemmen");
+                    stream.newLineAtOffset(0, -15);
+                }
+                if (modulbefestigungAnlage.isEinschubsystem()) {
+                    stream.showText("  Einschubsystem");
+                    stream.newLineAtOffset(0, -15);
+                }
+                if (modulbefestigungAnlage.isSchraubeAnUK()) {
+                    stream.showText("  Schraube an UK");
+                    stream.newLineAtOffset(0, -15);
+                }
             }
 
             //13
@@ -214,12 +272,18 @@ public class PdfService {
                 var befestigungAnlage = anlage.getBefestigungAnlage();
                 stream.showText("Befestigung:");
                 stream.newLineAtOffset(0, -15);
-                stream.showText("  Dachhaken: " + befestigungAnlage.isDachhacken());
-                stream.newLineAtOffset(0, -15);
-                stream.showText("  Stockschrauben: " + befestigungAnlage.isStockschrauben());
-                stream.newLineAtOffset(0, -15);
-                stream.showText("  Ballastierung: " + befestigungAnlage.isBallastierung());
-                stream.newLineAtOffset(0, -15);
+                if (befestigungAnlage.isDachhacken()) {
+                    stream.showText("  Dachhaken");
+                    stream.newLineAtOffset(0, -15);
+                }
+                if (befestigungAnlage.isStockschrauben()) {
+                    stream.showText("  Stockschrauben");
+                    stream.newLineAtOffset(0, -15);
+                }
+                if (befestigungAnlage.isBallastierung()) {
+                    stream.showText("  Ballastierung");
+                    stream.newLineAtOffset(0, -15);
+                }
             }
 
 
@@ -241,12 +305,18 @@ public class PdfService {
                 var beschwerungAnlage = anlage.getBeschwerungAnlage();
                 stream2.showText("Beschwerung:");
                 stream2.newLineAtOffset(0, -15);
-                stream2.showText("  Wannen: " + beschwerungAnlage.isWannen());
-                stream2.newLineAtOffset(0, -15);
-                stream2.showText("  Steine: " + beschwerungAnlage.isSteine());
-                stream2.newLineAtOffset(0, -15);
-                stream2.showText("  Kies: " + beschwerungAnlage.isKies());
-                stream2.newLineAtOffset(0, -15);
+                if (beschwerungAnlage.isWannen()) {
+                    stream2.showText("  Wannen");
+                    stream2.newLineAtOffset(0, -15);
+                }
+                if (beschwerungAnlage.isSteine()) {
+                    stream2.showText("  Steine");
+                    stream2.newLineAtOffset(0, -15);
+                }
+                if (beschwerungAnlage.isKies()) {
+                    stream2.showText("  Kies");
+                    stream2.newLineAtOffset(0, -15);
+                }
             }
 
 
@@ -255,12 +325,18 @@ public class PdfService {
                 var ausrichtungNeigungModule = anlage.getAusrichtungNeigungModule();
                 stream2.showText("Ausrichtung der Module:");
                 stream2.newLineAtOffset(0, -15);
-                stream2.showText("  Süd: " + ausrichtungNeigungModule.isSued());
-                stream2.newLineAtOffset(0, -15);
-                stream2.showText("  Ost: " + ausrichtungNeigungModule.isOst());
-                stream2.newLineAtOffset(0, -15);
-                stream2.showText("  West: " + ausrichtungNeigungModule.isWest());
-                stream2.newLineAtOffset(0, -15);
+                if (ausrichtungNeigungModule.isSued()) {
+                    stream2.showText("  Süd");
+                    stream2.newLineAtOffset(0, -15);
+                }
+                if (ausrichtungNeigungModule.isOst()) {
+                    stream2.showText("  Ost");
+                    stream2.newLineAtOffset(0, -15);
+                }
+                if (ausrichtungNeigungModule.isWest()) {
+                    stream2.showText("  West");
+                    stream2.newLineAtOffset(0, -15);
+                }
                 // add more if needed **************************************************
             }
 
