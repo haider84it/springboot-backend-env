@@ -68,12 +68,13 @@ public class PdfService {
             stream.showText("Kontaktdaten:");
             stream.newLineAtOffset(0, -15);
 
-            for (Kunde kunde : anlage.getKunden()) {
-                stream.showText("  Name: " + kunde.getVorname() + " " + kunde.getNachname());
+            for (KundenAnlageZuordnung z : anlage.getKundenAnlagzuordnungen()) {
+                Kunde k = z.getKunde();
+                stream.showText("  Name: " + k.getVorname() + " " + k.getNachname());
                 stream.newLineAtOffset(0, -15);
-                stream.showText("  Telefon: " + kunde.getTelefon());
+                stream.showText("  Telefon: " + k.getTelefon());
                 stream.newLineAtOffset(0, -15);
-                stream.showText("  Email: " + kunde.getEmail());
+                stream.showText("  Email: " + k.getEmail());
                 stream.newLineAtOffset(0, -15);
             }
 

@@ -17,6 +17,15 @@ public class PhotovoltaikAnlage {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    public PhotovoltaikAnlage() {} // default constructor required by JPA
+
+    // 🔥 Add this constructor
+    public PhotovoltaikAnlage(Long id) {
+        this.id = id;
+    }
+
+
     private String projektNummer;
     private String anlagenName;
     private Double anlagenGroesse;

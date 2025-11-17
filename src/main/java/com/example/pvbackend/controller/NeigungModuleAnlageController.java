@@ -2,11 +2,14 @@ package com.example.pvbackend.controller;
 
 
 import com.example.pvbackend.model.NeigungModuleAnlage;
+import com.example.pvbackend.model.PhotovoltaikAnlage;
 import com.example.pvbackend.service.NeigungModuleAnlageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -33,8 +36,18 @@ public class NeigungModuleAnlageController {
     }
 
     @PostMapping
-    public NeigungModuleAnlage createNeigungModuleAnlage(@RequestBody NeigungModuleAnlage neigungModuleAnlage) {
-        return neigungModuleAnlageService.saveNeigungModule(neigungModuleAnlage);
+    public NeigungModuleAnlage createNeigungModuleAnlage(@RequestBody Map<String, Object> body) {
+
+        BigDecimal neigung = BigDecimal.valueOf(Double.valueOf(body.get("neigung").toString()));
+
+        Map anlageMap = (Map) body.get("anlage");
+        Long anlageId = Long.valueOf(anlageMap.get("id").toString());
+
+        NeigungModuleAnlage n = new NeigungModuleAnlage();
+        n.setAnlage(new PhotovoltaikAnlage(anlageId));
+        n.setNeigung(neigung);
+
+        return neigungModuleAnlageService.saveNeigungModule(n);
     }
 
     @PutMapping("/{id}")

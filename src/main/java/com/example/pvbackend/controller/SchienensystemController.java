@@ -1,12 +1,14 @@
 package com.example.pvbackend.controller;
 
 
+import com.example.pvbackend.model.PhotovoltaikAnlage;
 import com.example.pvbackend.model.SchienensystemAnlage;
 import com.example.pvbackend.service.SchienensystemAnlageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -34,8 +36,21 @@ public class SchienensystemController {
     }
 
     @PostMapping
-    public SchienensystemAnlage createSchienensystem(@RequestBody SchienensystemAnlage schienensystemAnlage) {
-        return schienensystemAnlageService.saveSchienensystem(schienensystemAnlage);
+    public SchienensystemAnlage createSchienensystem(@RequestBody Map<String, Object> body) {
+
+        List<String> systemarten = (List<String>) body.get("systemarten");
+        Map anlageMap = (Map) body.get("anlage");
+        Long anlageId = Long.valueOf(anlageMap.get("id").toString());
+
+        SchienensystemAnlage sys = new SchienensystemAnlage();
+        sys.setAnlage(new PhotovoltaikAnlage(anlageId));
+
+        sys.setEinlagige(systemarten.contains("einlagig"));
+        sys.setZweilagig(systemarten.contains("zweilagig"));
+        sys.setAufgeständert(systemarten.contains("aufgeständert"));
+        sys.setAndere(systemarten.contains("andere"));
+
+        return schienensystemAnlageService.saveSchienensystem(sys);
     }
 
     @PutMapping("/{id}")

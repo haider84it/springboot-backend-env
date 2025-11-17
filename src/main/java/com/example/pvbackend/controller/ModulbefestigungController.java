@@ -2,11 +2,13 @@ package com.example.pvbackend.controller;
 
 
 import com.example.pvbackend.model.ModulbefestigungAnlage;
+import com.example.pvbackend.model.PhotovoltaikAnlage;
 import com.example.pvbackend.service.ModulbefestigungService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -34,8 +36,21 @@ public class ModulbefestigungController {
     }
 
     @PostMapping
-    public ModulbefestigungAnlage createModulbefestigungAnlage(@RequestBody ModulbefestigungAnlage modulbefestigungAnlage) {
-        return modulbefestigungService.saveModulbefestigung(modulbefestigungAnlage);
+    public ModulbefestigungAnlage createModulbefestigung(@RequestBody Map<String, Object> body) {
+
+        List<String> befestigungsarten = (List<String>) body.get("befestigungsarten");
+        Map anlageMap = (Map) body.get("anlage");
+        Long anlageId = Long.valueOf(anlageMap.get("id").toString());
+
+        ModulbefestigungAnlage bef = new ModulbefestigungAnlage();
+        bef.setAnlage(new PhotovoltaikAnlage(anlageId));
+
+        bef.setKlemmen(befestigungsarten.contains("Klemmen"));
+        bef.setEinschubsystem(befestigungsarten.contains("Einschubsystem"));
+        bef.setSchraubeAnUK(befestigungsarten.contains("Schraube an UK"));
+        bef.setAndere(befestigungsarten.contains("andere"));
+
+        return modulbefestigungService.saveModulbefestigung(bef);
     }
 
 

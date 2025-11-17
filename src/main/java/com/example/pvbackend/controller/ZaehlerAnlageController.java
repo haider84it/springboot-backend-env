@@ -2,12 +2,15 @@ package com.example.pvbackend.controller;
 
 
 
+import com.example.pvbackend.model.PhotovoltaikAnlage;
 import com.example.pvbackend.model.ZaehlerAnlage;
 import com.example.pvbackend.service.ZaehlerAnlageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -35,8 +38,21 @@ public class ZaehlerAnlageController {
 
 
     @PostMapping
-    public ZaehlerAnlage createZaehlerAnlage(@RequestBody ZaehlerAnlage zaehlerAnlage) {
-        return zaehlerAnlageService.saveZaehlerAnlage(zaehlerAnlage);
+    public ZaehlerAnlage createZaehlerAnlage(@RequestBody Map<String, Object> body) {
+
+        Map anlageMap = (Map) body.get("anlage");
+        Long anlageId = Long.valueOf(anlageMap.get("id").toString());
+
+        ZaehlerAnlage z = new ZaehlerAnlage();
+        z.setAnlage(new PhotovoltaikAnlage(anlageId));
+
+        z.setZaehlernummer(body.get("zaehlernummer").toString());
+
+        if (body.get("wandlerfaktor") != null) {
+            z.setWandlerFaktor(new BigDecimal(body.get("wandlerfaktor").toString()));
+        }
+
+        return zaehlerAnlageService.saveZaehlerAnlage(z);
     }
 
     @PutMapping("/{id}")

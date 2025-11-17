@@ -2,11 +2,13 @@ package com.example.pvbackend.controller;
 
 
 import com.example.pvbackend.model.BeschwerungAnlage;
+import com.example.pvbackend.model.PhotovoltaikAnlage;
 import com.example.pvbackend.service.BeschwerungAnlageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -33,8 +35,21 @@ public class BeschwerungAnlageController {
     }
 
     @PostMapping
-    public BeschwerungAnlage createBeschwerungAnlage(@RequestBody BeschwerungAnlage beschwerungAnlage) {
-        return beschwerungAnlageService.saveBeschwerung(beschwerungAnlage);
+    public BeschwerungAnlage createBeschwerung(@RequestBody Map<String, Object> body) {
+
+        List<String> arten = (List<String>) body.get("beschwerungsarten");
+        Map anlageMap = (Map) body.get("anlage");
+        Long anlageId = Long.valueOf(anlageMap.get("id").toString());
+
+        BeschwerungAnlage b = new BeschwerungAnlage();
+        b.setAnlage(new PhotovoltaikAnlage(anlageId));
+
+        b.setWannen(arten.contains("Wannen"));
+        b.setSteine(arten.contains("Steine"));
+        b.setKies(arten.contains("Kies"));
+        b.setAndere(arten.contains("andere"));
+
+        return beschwerungAnlageService.saveBeschwerung(b);
     }
 
     @PutMapping("/{id}")
