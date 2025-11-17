@@ -20,7 +20,7 @@ public class DatenloggerAnlage {
     private String modell;
     private String ipAdresse;
     private String login;
-    private String Passwort;
+    private String passwort;
 
 
     @ManyToOne

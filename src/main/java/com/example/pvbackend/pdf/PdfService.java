@@ -1,8 +1,6 @@
 package com.example.pvbackend.pdf;
 
-import com.example.pvbackend.model.ModuleAnlage;
-import com.example.pvbackend.model.PhotovoltaikAnlage;
-import com.example.pvbackend.model.WartungNeueAnlage;
+import com.example.pvbackend.model.*;
 import com.example.pvbackend.service.PhotovoltaikAnlageService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -36,41 +34,242 @@ public class PdfService {
             stream.newLineAtOffset(40, 750);
 
             stream.showText("Anlagenname: " + anlage.getAnlagenName());
-            stream.newLine();
+            stream.newLineAtOffset(0, -15);;
             stream.showText("Projekt-Nr: " + anlage.getProjektNummer());
-            stream.newLine();
+            stream.newLineAtOffset(0, -15);;
             stream.showText("Groesse: " + anlage.getAnlagenGroesse());
-            stream.newLine();
+            stream.newLineAtOffset(0, -15);;
             stream.showText("Straße: " + anlage.getStrasse());
-            stream.newLine();
+            stream.newLineAtOffset(0, -15);;
             stream.showText("PLZ: " + anlage.getPlz());
-            stream.newLine();
+            stream.newLineAtOffset(0, -15);;
             stream.showText("Ort: " + anlage.getOrt());
-            stream.newLine();
+            stream.newLineAtOffset(0, -15);;
             stream.showText("Latitude: " + anlage.getLatitude());
-            stream.newLine();
+            stream.newLineAtOffset(0, -15);;
             stream.showText("Longitude: " + anlage.getLongitude());
-            stream.newLine();
+            stream.newLineAtOffset(0, -15);;
+
+
+            //1
 
             if (wartung != null) {
                 stream.showText("Wartung:");
-                stream.newLine();
+                stream.newLineAtOffset(0, -15);;
                 stream.showText("  Erste Wartung: " + wartung.getJahrErsteWartung());
-                stream.newLine();
+                stream.newLineAtOffset(0, -15);;
                 stream.showText("  Art der Wartung: " + wartung.getArtDerWartung());
-                stream.newLine();
+                stream.newLineAtOffset(0, -15);;
                 stream.showText("  Wartungsturnus: " + wartung.getWartungsturnus());
-                stream.newLine();
+                stream.newLineAtOffset(0, -15);;
             }
+
+            //2
+            stream.showText("Kontaktdaten:");
+            stream.newLineAtOffset(0, -15);
+
+            for (Kunde kunde : anlage.getKunden()) {
+                stream.showText("  Name: " + kunde.getVorname() + " " + kunde.getNachname());
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Telefon: " + kunde.getTelefon());
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Email: " + kunde.getEmail());
+                stream.newLineAtOffset(0, -15);
+            }
+
+
+            //3
             if (anlage.getModule() != null && !anlage.getModule().isEmpty()) {
                 stream.showText("Module:");
-                stream.newLine();
+                stream.newLineAtOffset(0, -15);;
                 for (ModuleAnlage m : anlage.getModule()) {
                     stream.showText("  Hersteller: " + m.getHersteller() + ", Typ: " + m.getTyp()
                             + ", Leistung: " + m.getLeistungWp() + ", Anzahl: " + m.getAnzahl());
-                    stream.newLine();
+                    stream.newLineAtOffset(0, -15);;
                 }
             }
+
+
+            //4
+            stream.showText("Wechselrichter:");
+            stream.newLineAtOffset(0, -15);
+
+            for (WechselrichterAnlage wechselrichterAnlage : anlage.getWechselrichter()) {
+                stream.showText("  Hersteller: " + wechselrichterAnlage.getHersteller() +
+                        ", Typ: " + wechselrichterAnlage.getType() +
+                        ", Leistung: " + wechselrichterAnlage.getLeistung() +
+                        ", Anzahl: " + wechselrichterAnlage.getAnzahl());
+                stream.newLineAtOffset(0, -15);
+            }
+
+
+            //5
+            stream.showText("Datenlogger:");
+            stream.newLineAtOffset(0, -15);
+
+            for (DatenloggerAnlage datenloggerAnlage : anlage.getDatenlogger()) {
+                stream.showText(
+                        "  Hersteller: " + datenloggerAnlage.getHersteller() +
+                                ", Modell: " + datenloggerAnlage.getModell() +
+                                ", IP: " + datenloggerAnlage.getIpAdresse()
+                );
+                stream.newLineAtOffset(0, -15);
+            }
+
+
+            //6
+            MobilefunkRouterAnlage mobilefunkRouter = anlage.getMobilefunkRouter();
+            if (mobilefunkRouter != null) {
+                stream.showText("Mobilfunk-Router:");
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Hersteller: " + mobilefunkRouter.getHersteller());
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  IP: " + mobilefunkRouter.getIpAdresse());
+                stream.newLineAtOffset(0, -15);
+            }
+
+            //7
+            NetzwerkRouterAnlage netzwerkRouterAnlage = anlage.getNetzwerkRouterAnlage();
+            if (netzwerkRouterAnlage != null) {
+                stream.showText("Mobilfunk-Router:");
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Hersteller: " + netzwerkRouterAnlage.getHersteller());
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  IP: " + netzwerkRouterAnlage.getIpAdresse());
+                stream.newLineAtOffset(0, -15);
+            }
+
+            //8
+            AufstellungsortAnlage aufstellungsort = anlage.getAufstellungsortAnlage();
+            if (aufstellungsort != null) {
+                stream.showText("Aufstellungsort:");
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Garage: " + aufstellungsort.isGarage());
+                stream.newLineAtOffset(0, -15);
+            }
+
+            //9
+            if (anlage.getAngabenZumDachAnlage() != null) {
+                var angabenZumDachAnlage = anlage.getAngabenZumDachAnlage();
+                stream.showText("Angaben zum Dach:");
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Satteldach: " + angabenZumDachAnlage.isSatteldach());
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Flachdach: " + angabenZumDachAnlage.isFlachdach());
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Pultdach: " + angabenZumDachAnlage.isPultdach());
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Sheddach: " + angabenZumDachAnlage.isSheddach());
+                stream.newLineAtOffset(0, -15);
+            }
+
+            //10
+            if (anlage.getDacheindeckungAnlage() != null) {
+                var dacheindeckungAnlage = anlage.getDacheindeckungAnlage();
+                stream.showText("Dacheindeckung:");
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Ziegel: " + dacheindeckungAnlage.isZiegel());
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Faserzement: " + dacheindeckungAnlage.isFaserzement());
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Metall: " + dacheindeckungAnlage.isMetall());
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Bitumen: " + dacheindeckungAnlage.isBitumen());
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Folie: " + dacheindeckungAnlage.isFolie());
+                stream.newLineAtOffset(0, -15);
+            }
+
+
+            //11
+            if (anlage.getSchienensystemAnlage() != null) {
+                var schienensystemAnlage = anlage.getSchienensystemAnlage();
+                stream.showText("Schienensystem:");
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  einlagig: " + schienensystemAnlage.isEinlagige());
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  zweilagig: " + schienensystemAnlage.isZweilagig());
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  aufgeständert: " + schienensystemAnlage.isAufgeständert());
+                stream.newLineAtOffset(0, -15);
+            }
+
+
+            //12
+            if (anlage.getModulbefestigungAnlage() != null) {
+                var modulbefestigungAnlage = anlage.getModulbefestigungAnlage();
+                stream.showText("Modulbefestigung:");
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Klemmen: " + modulbefestigungAnlage.isKlemmen());
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Einschubsystem: " + modulbefestigungAnlage.isEinschubsystem());
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Schraube an UK: " + modulbefestigungAnlage.isSchraubeAnUK());
+                stream.newLineAtOffset(0, -15);
+            }
+
+            //13
+            if (anlage.getBefestigungAnlage() != null) {
+                var befestigungAnlage = anlage.getBefestigungAnlage();
+                stream.showText("Befestigung:");
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Dachhaken: " + befestigungAnlage.isDachhacken());
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Stockschrauben: " + befestigungAnlage.isStockschrauben());
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Ballastierung: " + befestigungAnlage.isBallastierung());
+                stream.newLineAtOffset(0, -15);
+            }
+
+
+            //14
+            if (anlage.getBeschwerungAnlage() != null) {
+                var beschwerungAnlage = anlage.getBeschwerungAnlage();
+                stream.showText("Beschwerung:");
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Wannen: " + beschwerungAnlage.isWannen());
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Steine: " + beschwerungAnlage.isSteine());
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Kies: " + beschwerungAnlage.isKies());
+                stream.newLineAtOffset(0, -15);
+            }
+
+
+            //15
+            if (anlage.getAusrichtungNeigungModule() != null) {
+                var ausrichtungNeigungModule = anlage.getAusrichtungNeigungModule();
+                stream.showText("Ausrichtung der Module:");
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Süd: " + ausrichtungNeigungModule.isSued());
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Ost: " + ausrichtungNeigungModule.isOst());
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  West: " + ausrichtungNeigungModule.isWest());
+                stream.newLineAtOffset(0, -15);
+                // add more if needed **************************************************
+            }
+
+
+            //16
+            if (anlage.getNeigungModuleAnlage() != null) {
+                var neigungModuleAnlage = anlage.getNeigungModuleAnlage();
+                stream.showText("Neigung der Module: " + neigungModuleAnlage.getNeigung() + "°");
+                stream.newLineAtOffset(0, -15);
+            }
+
+
+            //17
+            if (anlage.getZaehlerAnlage() != null) {
+                var zaehlerAnlage = anlage.getZaehlerAnlage();
+                stream.showText("Zähler:");
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Zählernummer: " + zaehlerAnlage.getZaehlernummer());
+                stream.newLineAtOffset(0, -15);
+                stream.showText("  Wandlerfaktor: " + zaehlerAnlage.getWandlerFaktor());
+                stream.newLineAtOffset(0, -15);
+            }
+
             // + add more fields
             stream.endText();
             stream.close();
