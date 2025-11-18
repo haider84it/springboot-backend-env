@@ -19,7 +19,7 @@ public class MobilefunkRouterAnlage {
     private String hersteller;
     private String ipAdresse;
     private String netzwerk;
-    private String subnetmask;
+    private String subnetmaske;
 
     @OneToOne
     @JoinColumn(name = "anlage_id")

@@ -132,7 +132,7 @@ public class PdfService {
             //7
             NetzwerkRouterAnlage netzwerkRouterAnlage = anlage.getNetzwerkRouterAnlage();
             if (netzwerkRouterAnlage != null) {
-                stream.showText("Mobilfunk-Router:");
+                stream.showText("Netzwerk-Router:");
                 stream.newLineAtOffset(0, -15);
                 stream.showText("  Hersteller: " + netzwerkRouterAnlage.getHersteller());
                 stream.newLineAtOffset(0, -15);

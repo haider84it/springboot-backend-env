@@ -20,14 +20,12 @@ public class NetzwerkRouterAnlage {
     private String hersteller;
     private String ipAdresse;
     private String netzwerk;
-    private String subnetmask;
+    private String subnetmaske;
 
     @OneToOne
     @JoinColumn(name = "anlage_id")
     @JsonBackReference("netzwerk_router_anlage")
     private PhotovoltaikAnlage anlage;
-
-
 
 
 }
