@@ -18,9 +18,8 @@ public class Wartungsprotokoll {
     private Long id;
 
 
-    @Lob
-    @ElementCollection
-    private List<byte[]> bilder = new ArrayList<>();
+    @OneToMany(mappedBy = "protokoll", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<WartungsprotokollBild> bilder = new ArrayList<>();
 
     // ---------------------------------------
     // SECTION 1 – Bedingungen vor Ort

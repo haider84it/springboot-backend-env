@@ -1,6 +1,7 @@
 package com.example.pvbackend.service;
 
 import com.example.pvbackend.model.Wartungsprotokoll;
+import com.example.pvbackend.model.WartungsprotokollBild;
 import com.example.pvbackend.repository.WartungsprotokollRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,16 +29,12 @@ public class WartungsprotokollService {
     }
 
     public void saveImage(Long id, MultipartFile file) {
-        Wartungsprotokoll protokoll = repo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Protokoll not found"));
-
-        try {
-            byte[] bytes = file.getBytes();
-            protokoll.getBilder().add(bytes);   // <-- your entity needs a List<byte[]> bilder
-            repo.save(protokoll);
-        } catch (IOException e) {
-            throw new RuntimeException("Could not store image", e);
-        }
+        Wartungsprotokoll p = repo.findById(id).orElseThrow();
+        WartungsprotokollBild b = new WartungsprotokollBild();
+        b.setDaten(file.getBytes());
+        b.setProtokoll(p);
+        p.getBilder().add(b);
+        repo.save(p);
     }
 
 }
