@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
@@ -43,14 +42,16 @@ public class WartungsprotokollController {
         response.put("teilbetriebWert", p.getTeilbetriebWert());
         response.put("einstrahlung", p.getEinstrahlung());
         response.put("verschattung", p.getVerschattung());
-        // … add other fields …
+        // …all other fields you need…
 
         // ⭐ Convert images → Base64
-        List<Map<String, ? extends Serializable>> bilder = p.getBilder().stream()
-                .map(b -> Map.of(
-                        "id", b.getId(),
-                        "daten", Base64.getEncoder().encodeToString(b.getDaten())
-                ))
+        List<Map<String, Object>> bilder = p.getBilder().stream()
+                .map(b -> {
+                    Map<String, Object> m = new HashMap<>();
+                    m.put("id", b.getId());
+                    m.put("daten", Base64.getEncoder().encodeToString(b.getDaten()));
+                    return m;
+                })
                 .collect(Collectors.toList());
 
         response.put("bilder", bilder);

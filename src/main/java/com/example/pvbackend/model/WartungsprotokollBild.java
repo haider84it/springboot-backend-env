@@ -15,7 +15,6 @@ public class WartungsprotokollBild {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonIgnore
     @Lob
     @Column(columnDefinition = "BYTEA")
     private byte[] daten;
