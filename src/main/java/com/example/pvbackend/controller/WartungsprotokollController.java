@@ -9,7 +9,6 @@ import org.springframework.web.multipart.MultipartFile;
 @RestController
 @RequestMapping("/api/wartungsprotokoll")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "https://envaris.cloudaxes.de")
 public class WartungsprotokollController {
 
     private final WartungsprotokollService service;
