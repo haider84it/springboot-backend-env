@@ -45,6 +45,17 @@ public class SecurityConfig {
 
 
 
+                        // allow create protocol
+                        .requestMatchers(HttpMethod.POST, "/api/wartungsprotokoll/**").authenticated()
+
+                        // allow upload images
+                        .requestMatchers(HttpMethod.POST, "/api/wartungsprotokoll/*/bilder").authenticated()
+
+                        // allow viewing
+                        .requestMatchers(HttpMethod.GET, "/api/wartungsprotokoll/**").authenticated()
+
+
+
                         // ✅ Admin-only for create/update/delete Anlagen
                         .requestMatchers(HttpMethod.POST, "/api/anlagen/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/anlagen/**").hasRole("ADMIN")
