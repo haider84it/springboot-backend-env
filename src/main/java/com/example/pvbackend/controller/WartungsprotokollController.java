@@ -7,6 +7,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/wartungsprotokoll")
@@ -21,8 +27,35 @@ public class WartungsprotokollController {
     }
 
     @GetMapping("/{id}")
-    public Wartungsprotokoll getById(@PathVariable Long id) {
-        return service.findById(id);
+    public Map<String, Object> getById(@PathVariable Long id) {
+
+        Wartungsprotokoll p = service.findById(id);
+
+        Map<String, Object> response = new HashMap<>();
+
+        response.put("id", p.getId());
+        response.put("anlagennummer", p.getAnlagennummer());
+        response.put("datum", p.getDatum());
+        response.put("uhrzeitVon", p.getUhrzeitVon());
+        response.put("uhrzeitBis", p.getUhrzeitBis());
+        response.put("temperatur", p.getTemperatur());
+        response.put("betriebszustand", p.getBetriebszustand());
+        response.put("teilbetriebWert", p.getTeilbetriebWert());
+        response.put("einstrahlung", p.getEinstrahlung());
+        response.put("verschattung", p.getVerschattung());
+        // … add other fields …
+
+        // ⭐ Convert images → Base64
+        List<Map<String, ? extends Serializable>> bilder = p.getBilder().stream()
+                .map(b -> Map.of(
+                        "id", b.getId(),
+                        "daten", Base64.getEncoder().encodeToString(b.getDaten())
+                ))
+                .collect(Collectors.toList());
+
+        response.put("bilder", bilder);
+
+        return response;
     }
 
     @DeleteMapping("/{id}")
