@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping("/api/wartungsprotokoll")
 @RequiredArgsConstructor
@@ -33,7 +35,7 @@ public class WartungsprotokollController {
     public void uploadImage(
             @PathVariable Long id,
             @RequestParam("file") MultipartFile file
-    ) {
+    ) throws IOException {
         service.saveImage(id, file);
     }
 }

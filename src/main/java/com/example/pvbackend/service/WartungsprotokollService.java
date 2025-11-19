@@ -28,7 +28,7 @@ public class WartungsprotokollService {
         repo.deleteById(id);
     }
 
-    public void saveImage(Long id, MultipartFile file) {
+    public void saveImage(Long id, MultipartFile file) throws IOException {
         Wartungsprotokoll p = repo.findById(id).orElseThrow();
         WartungsprotokollBild b = new WartungsprotokollBild();
         b.setDaten(file.getBytes());
