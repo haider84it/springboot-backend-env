@@ -1,6 +1,7 @@
 package com.example.pvbackend.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +15,7 @@ public class WartungsprotokollBild {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnore
     @Lob
     @Column(columnDefinition = "BYTEA")
     private byte[] daten;
