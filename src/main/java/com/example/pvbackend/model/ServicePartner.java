@@ -35,5 +35,8 @@ public class ServicePartner {
     private String ort;
 
 
+    private String energieErzeuger;
+
+
 
 }
