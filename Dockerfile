@@ -9,7 +9,7 @@ COPY .mvn/ .mvn
 COPY mvnw pom.xml ./
 
 # Download dependencies
-RUN ./mvnw dependency:go-offline
+#RUN ./mvnw dependency:go-offline
 
 # Copy all source code
 COPY src ./src
