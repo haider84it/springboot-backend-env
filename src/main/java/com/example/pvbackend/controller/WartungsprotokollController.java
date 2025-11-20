@@ -73,4 +73,20 @@ public class WartungsprotokollController {
         System.out.println("UPLOAD RECEIVED → id=" + id + ", size=" + file.getSize());
         service.saveImage(id, file);
     }
+
+
+    @GetMapping("/{id}/bilder")
+    public List<Map<String, Object>> getImages(@PathVariable Long id) {
+
+        Wartungsprotokoll p = service.findById(id);
+
+        return p.getBilder().stream().map(b -> {
+            Map<String, Object> m = new HashMap<>();
+            m.put("id", b.getId());
+            m.put("daten", Base64.getEncoder().encodeToString(b.getDaten()));
+            return m;
+        }).toList();
+    }
+
+
 }
