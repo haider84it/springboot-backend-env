@@ -9,6 +9,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@Table(name = "wartungsprotokoll_bild")
 public class WartungsprotokollBild {
 
     @Id

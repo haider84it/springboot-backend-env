@@ -3,8 +3,8 @@ package com.example.pvbackend.service;
 import com.example.pvbackend.model.Wartungsprotokoll;
 import com.example.pvbackend.model.WartungsprotokollBild;
 import com.example.pvbackend.repository.WartungsprotokollRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,6 +28,7 @@ public class WartungsprotokollService {
         repo.deleteById(id);
     }
 
+    @Transactional
     public void saveImage(Long id, MultipartFile file) throws IOException {
         Wartungsprotokoll p = repo.findById(id).orElseThrow();
         WartungsprotokollBild b = new WartungsprotokollBild();
