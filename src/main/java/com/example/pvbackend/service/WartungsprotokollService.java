@@ -1,14 +1,17 @@
 package com.example.pvbackend.service;
 
 import com.example.pvbackend.model.Wartungsprotokoll;
-import com.example.pvbackend.model.WartungsprotokollBild;
+import com.example.pvbackend.model.WartungsprotokollImage;
 import com.example.pvbackend.repository.WartungsprotokollRepository;
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -28,26 +31,20 @@ public class WartungsprotokollService {
         repo.deleteById(id);
     }
 
-    @Transactional
     public void saveImage(Long id, MultipartFile file) throws IOException {
-
-        System.out.println("saveImage() called → id=" + id + ", fileSize=" + file.getSize());
-
         Wartungsprotokoll p = repo.findById(id).orElseThrow();
 
-        System.out.println("Found protocol: " + p.getId());
-        System.out.println("Current image count BEFORE: " + p.getBilder().size());
+        String fileName = UUID.randomUUID() + "-" + file.getOriginalFilename();
+        Path uploadPath = Paths.get("uploads");
+        Files.createDirectories(uploadPath);
+        Files.copy(file.getInputStream(), uploadPath.resolve(fileName));
 
-        WartungsprotokollBild b = new WartungsprotokollBild();
-        b.setDaten(file.getBytes());
-        b.setProtokoll(p);
-        p.getBilder().add(b);
+        WartungsprotokollImage img = new WartungsprotokollImage();
+        img.setFilename(fileName);
+        img.setProtokoll(p);
 
-        System.out.println("Image count AFTER: " + p.getBilder().size());
-
+        p.getBilder().add(img);
         repo.save(p);
-
-        System.out.println("SAVE DONE");
     }
 
 }

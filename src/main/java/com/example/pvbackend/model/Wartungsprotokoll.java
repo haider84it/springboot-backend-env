@@ -19,7 +19,7 @@ public class Wartungsprotokoll {
 
 
     @OneToMany(mappedBy = "protokoll", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<WartungsprotokollBild> bilder = new ArrayList<>();
+    private List<WartungsprotokollImage> bilder = new ArrayList<>();
 
     // ---------------------------------------
     // SECTION 1 – Bedingungen vor Ort

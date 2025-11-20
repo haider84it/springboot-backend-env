@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,7 +48,7 @@ public class WartungsprotokollController {
                 .map(b -> {
                     Map<String, Object> m = new HashMap<>();
                     m.put("id", b.getId());
-                    m.put("daten", Base64.getEncoder().encodeToString(b.getDaten()));
+                    m.put("filename", b.getFilename());
                     return m;
                 })
                 .collect(Collectors.toList());
@@ -83,7 +82,7 @@ public class WartungsprotokollController {
         return p.getBilder().stream().map(b -> {
             Map<String, Object> m = new HashMap<>();
             m.put("id", b.getId());
-            m.put("daten", Base64.getEncoder().encodeToString(b.getDaten()));
+            m.put("filename", b.getFilename());
             return m;
         }).toList();
     }
