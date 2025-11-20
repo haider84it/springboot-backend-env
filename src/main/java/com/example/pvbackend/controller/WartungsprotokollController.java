@@ -70,6 +70,7 @@ public class WartungsprotokollController {
             @PathVariable Long id,
             @RequestParam("file") MultipartFile file
     ) throws IOException {
+        System.out.println("UPLOAD RECEIVED → id=" + id + ", size=" + file.getSize());
         service.saveImage(id, file);
     }
 }
