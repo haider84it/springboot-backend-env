@@ -60,20 +60,20 @@ public class Wartungsprotokoll {
     private String unterkonstruktion;
 
     // Documentation checkboxes
-    private boolean panorama;
-    private boolean schienensystem;
-    private boolean dachbefestigung;
-    private boolean beschwerung;
-    private boolean modulbefestigung;
+    private Boolean  panorama;
+    private Boolean  schienensystem;
+    private Boolean  dachbefestigung;
+    private Boolean  beschwerung;
+    private Boolean  modulbefestigung;
 
     // ---------------------------------------
     // SECTION 6 – Schäden an Modulen
     // ---------------------------------------
     private String schaeden; // CSV format, same as verschattung
-    private boolean reinigungNotwendig;
-    private boolean einzelbilder;
-    private boolean detailbilder;
-    private boolean typenschild;
+    private Boolean  reinigungNotwendig;
+    private Boolean  einzelbilder;
+    private Boolean  detailbilder;
+    private Boolean  typenschild;
 
     // ---------------------------------------
     // SECTION 7 – Potenzialausgleich
