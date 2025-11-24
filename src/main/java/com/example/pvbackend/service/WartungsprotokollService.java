@@ -1,50 +1,83 @@
 package com.example.pvbackend.service;
 
 import com.example.pvbackend.model.Wartungsprotokoll;
-import com.example.pvbackend.model.WartungsprotokollImage;
 import com.example.pvbackend.repository.WartungsprotokollRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.UUID;
+import java.util.List;
+import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class WartungsprotokollService {
 
-    private final WartungsprotokollRepository repo;
+    private final WartungsprotokollRepository repository;
 
-    public Wartungsprotokoll save(Wartungsprotokoll w) {
-        return repo.save(w);
+    public WartungsprotokollService(WartungsprotokollRepository repository) {
+        this.repository = repository;
     }
 
-    public Wartungsprotokoll findById(Long id) {
-        return repo.findById(id).orElseThrow();
+    // CREATE
+    public Wartungsprotokoll create(Wartungsprotokoll protokoll) {
+        return repository.save(protokoll);
     }
 
+    // GET ALL
+    public List<Wartungsprotokoll> findAll() {
+        return repository.findAll();
+    }
+
+    // GET BY ID
+    public Optional<Wartungsprotokoll> findById(Long id) {
+        return repository.findById(id);
+    }
+
+    // UPDATE
+    public Wartungsprotokoll update(Long id, Wartungsprotokoll updated) {
+        return repository.findById(id)
+                .map(existing -> {
+
+                    existing.setVorgang(updated.getVorgang());
+                    existing.setAnlagenbezeichnung(updated.getAnlagenbezeichnung());
+                    existing.setAuftraggeber(updated.getAuftraggeber());
+                    existing.setWartungspaket(updated.getWartungspaket());
+
+                    existing.setDcMessungen(updated.getDcMessungen());
+                    existing.setDcNurBeiUnregelmaessigkeiten(updated.getDcNurBeiUnregelmaessigkeiten());
+                    existing.setDcVollstaendigOderBereich(updated.getDcVollstaendigOderBereich());
+                    existing.setVollstaendigGemaessDin(updated.getVollstaendigGemaessDin());
+
+                    existing.setAcMessungen(updated.getAcMessungen());
+                    existing.setAcNurBeiUnregelmaessigkeiten(updated.getAcNurBeiUnregelmaessigkeiten());
+                    existing.setAcVollstaendigOderBereich(updated.getAcVollstaendigOderBereich());
+
+                    existing.setZentralwechselrichter(updated.getZentralwechselrichter());
+                    existing.setMittelspannungsanlagenErweitert(updated.getMittelspannungsanlagenErweitert());
+                    existing.setErdungsmessungenStationen(updated.getErdungsmessungenStationen());
+                    existing.setSichtpruefungMittelspannungsanlagen(updated.getSichtpruefungMittelspannungsanlagen());
+
+                    existing.setReinigung(updated.getReinigung());
+                    existing.setReinigungWr(updated.getReinigungWr());
+                    existing.setReinigungGak(updated.getReinigungGak());
+                    existing.setReinigungModule(updated.getReinigungModule());
+
+                    existing.setThermografie(updated.getThermografie());
+                    existing.setThermografieVerteiler(updated.getThermografieVerteiler());
+                    existing.setThermografieModule(updated.getThermografieModule());
+                    existing.setThermografieMspAnlagen(updated.getThermografieMspAnlagen());
+
+                    existing.setKennlinienmessungen(updated.getKennlinienmessungen());
+
+                    existing.setErstErsatzPunkt(updated.getErstErsatzPunkt());
+                    existing.setZweitErsatzPunkt(updated.getZweitErsatzPunkt());
+                    existing.setDrittErsatzPunkt(updated.getDrittErsatzPunkt());
+
+                    return repository.save(existing);
+                })
+                .orElseThrow(() -> new RuntimeException("Wartungsprotokoll not found"));
+    }
+
+    // DELETE
     public void delete(Long id) {
-        repo.deleteById(id);
+        repository.deleteById(id);
     }
-
-    public void saveImage(Long id, MultipartFile file) throws IOException {
-        Wartungsprotokoll p = repo.findById(id).orElseThrow();
-
-        String fileName = UUID.randomUUID() + "-" + file.getOriginalFilename();
-        Path uploadPath = Paths.get("uploads");
-        Files.createDirectories(uploadPath);
-        Files.copy(file.getInputStream(), uploadPath.resolve(fileName));
-
-        WartungsprotokollImage img = new WartungsprotokollImage();
-        img.setFilename(fileName);
-        img.setProtokoll(p);
-
-        p.getBilder().add(img);
-        repo.save(p);
-    }
-
 }

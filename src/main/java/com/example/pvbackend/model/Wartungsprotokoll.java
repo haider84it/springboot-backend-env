@@ -4,8 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Entity
 @Getter
@@ -18,82 +17,59 @@ public class Wartungsprotokoll {
     private Long id;
 
 
-    @OneToMany(mappedBy = "protokoll", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<WartungsprotokollImage> bilder = new ArrayList<>();
+    // @OneToMany(mappedBy = "protokoll", cascade = CascadeType.ALL, orphanRemoval = true)
+    //private List<WartungsprotokollImage> bilder = new ArrayList<>();
 
     // ---------------------------------------
-    // SECTION 1 – Bedingungen vor Ort
+    // Seite 1
     // ---------------------------------------
 
-    private String anlagennummer;
-    private String datum;
-    private String uhrzeitVon;
-    private String uhrzeitBis;
-    private String temperatur;
+    private String vorgang;
+    private String anlagenbezeichnung;
+    private String auftraggeber;
+    private String wartungspaket;
 
-    // ---------------------------------------
-    // SECTION 2 – Betriebszustand
-    // ---------------------------------------
-    private String betriebszustand;
-    private String teilbetriebWert;
 
-    // ---------------------------------------
-    // SECTION 3 – Einstrahlung
-    // ---------------------------------------
-    private String einstrahlung;
 
-    // ---------------------------------------
-    // SECTION 4 – Verschattung (store as CSV)
-    // ---------------------------------------
-    private String verschattung; // e.g. "Bäume,Schornstein,keine"
+    private Boolean dcMessungen;                    // Haupt-Checkbox
+    private Boolean dcNurBeiUnregelmaessigkeiten;   // Unterpunkt
+    private String  dcVollstaendigOderBereich;      // „vollständig“ oder Bereich-Text
 
-    // ---------------------------------------
-    // SECTION 5 – Allgemeiner Zustand
-    // ---------------------------------------
-    private String dach;
-    private String gebaeude;
-    private String verschmutzung;
-    private String verformung;
-    private String korrosion;
-    private String dehnungsabstaende;
-    private String dachdurchdringung;
-    private String unterkonstruktion;
+    private Boolean vollstaendigGemaessDin;
 
-    // Documentation checkboxes
-    private Boolean  panorama;
-    private Boolean  schienensystem;
-    private Boolean  dachbefestigung;
-    private Boolean  beschwerung;
-    private Boolean  modulbefestigung;
 
-    // ---------------------------------------
-    // SECTION 6 – Schäden an Modulen
-    // ---------------------------------------
-    private String schaeden; // CSV format, same as verschattung
-    private Boolean  reinigungNotwendig;
-    private Boolean  einzelbilder;
-    private Boolean  detailbilder;
-    private Boolean  typenschild;
+    private Boolean acMessungen;
+    private Boolean acNurBeiUnregelmaessigkeiten;
+    private String  acVollstaendigOderBereich;
 
-    // ---------------------------------------
-    // SECTION 7 – Potenzialausgleich
-    // ---------------------------------------
-    private String potenzialausgleich;
 
-    // ---------------------------------------
-    // SECTION 8 – Funktionserdung
-    // ---------------------------------------
-    private String funktionserdung;
+    private Boolean zentralwechselrichter;
+    private Boolean mittelspannungsanlagenErweitert;
+    private Boolean erdungsmessungenStationen;
+    private Boolean sichtpruefungMittelspannungsanlagen;
 
-    // ---------------------------------------
-    // SECTION 9 – DC-Verkabelung
-    // ---------------------------------------
-    private String kritischeStellen;
-    private String dokumentationFehlerhaft;
-    private String biegeradienMantelUv;
-    private String kabelInWasserschicht;
-    private String markierungBeschriftung;
-    private String lochFrassKnick;
-    private String verlaengerungenQuetschungen;
-    private String dacheinfuehrungUndicht;
+
+    private Boolean reinigung;
+
+    private Boolean reinigungWr;
+    private Boolean reinigungGak;
+    private Boolean reinigungModule;
+
+
+    private Boolean thermografie;          // Hauptpunkt
+
+    private Boolean thermografieVerteiler; // Unterpunkt
+    private Boolean thermografieModule;    // Unterpunkt
+    private Boolean thermografieMspAnlagen; // Unterpunkt
+
+    private Boolean kennlinienmessungen;
+
+
+    private Boolean erstErsatzPunkt;
+    private Boolean zweitErsatzPunkt;
+    private Boolean drittErsatzPunkt;
+
+
+
+
 }

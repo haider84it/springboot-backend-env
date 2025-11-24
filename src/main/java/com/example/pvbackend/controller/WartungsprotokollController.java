@@ -2,90 +2,55 @@ package com.example.pvbackend.controller;
 
 import com.example.pvbackend.model.Wartungsprotokoll;
 import com.example.pvbackend.service.WartungsprotokollService;
-import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/wartungsprotokoll")
-@RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class WartungsprotokollController {
 
     private final WartungsprotokollService service;
 
+    public WartungsprotokollController(WartungsprotokollService service) {
+        this.service = service;
+    }
+
+    // CREATE
     @PostMapping
-    public Wartungsprotokoll create(@RequestBody Wartungsprotokoll protokoll) {
-        return service.save(protokoll);
+    public ResponseEntity<Wartungsprotokoll> create(@RequestBody Wartungsprotokoll protokoll) {
+        return ResponseEntity.ok(service.create(protokoll));
     }
 
+    // GET ALL
+    @GetMapping
+    public ResponseEntity<List<Wartungsprotokoll>> getAll() {
+        return ResponseEntity.ok(service.findAll());
+    }
+
+    // GET BY ID
     @GetMapping("/{id}")
-    public Map<String, Object> getById(@PathVariable Long id) {
-
-        Wartungsprotokoll p = service.findById(id);
-
-        Map<String, Object> response = new HashMap<>();
-
-        response.put("id", p.getId());
-        response.put("anlagennummer", p.getAnlagennummer());
-        response.put("datum", p.getDatum());
-        response.put("uhrzeitVon", p.getUhrzeitVon());
-        response.put("uhrzeitBis", p.getUhrzeitBis());
-        response.put("temperatur", p.getTemperatur());
-        response.put("betriebszustand", p.getBetriebszustand());
-        response.put("teilbetriebWert", p.getTeilbetriebWert());
-        response.put("einstrahlung", p.getEinstrahlung());
-        response.put("verschattung", p.getVerschattung());
-        // …all other fields you need…
-
-        // ⭐ Convert images → Base64
-        List<Map<String, Object>> bilder = p.getBilder().stream()
-                .map(b -> {
-                    Map<String, Object> m = new HashMap<>();
-                    m.put("id", b.getId());
-                    m.put("filename", b.getFilename());
-                    return m;
-                })
-                .collect(Collectors.toList());
-
-        response.put("bilder", bilder);
-
-        return response;
+    public ResponseEntity<Wartungsprotokoll> getById(@PathVariable Long id) {
+        return service.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Long id) {
-        service.delete(id);
-    }
-
-    // ⭐ IMAGE UPLOAD
-    @PostMapping("/{id}/bilder")
-    public void uploadImage(
+    // UPDATE
+    @PutMapping("/{id}")
+    public ResponseEntity<Wartungsprotokoll> update(
             @PathVariable Long id,
-            @RequestParam("file") MultipartFile file
-    ) throws IOException {
-        System.out.println("UPLOAD RECEIVED → id=" + id + ", size=" + file.getSize());
-        service.saveImage(id, file);
+            @RequestBody Wartungsprotokoll updated
+    ) {
+        return ResponseEntity.ok(service.update(id, updated));
     }
 
-
-    @GetMapping("/{id}/bilder")
-    public List<Map<String, Object>> getImages(@PathVariable Long id) {
-
-        Wartungsprotokoll p = service.findById(id);
-
-        return p.getBilder().stream().map(b -> {
-            Map<String, Object> m = new HashMap<>();
-            m.put("id", b.getId());
-            m.put("filename", b.getFilename());
-            return m;
-        }).toList();
+    // DELETE
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
     }
-
-
 }
