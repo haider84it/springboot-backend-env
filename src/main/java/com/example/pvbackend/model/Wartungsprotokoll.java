@@ -65,9 +65,9 @@ public class Wartungsprotokoll {
     private Boolean kennlinienmessungen;
 
 
-    private Boolean erstErsatzPunkt;
-    private Boolean zweitErsatzPunkt;
-    private Boolean drittErsatzPunkt;
+    private String erstErsatzPunkt;
+    private String zweitErsatzPunkt;
+    private String drittErsatzPunkt;
 
 
 
