@@ -72,6 +72,25 @@ public class Wartungsprotokoll {
     private String drittErsatzPunkt;
 
 
+    // Seite 2
+    private Boolean zugangsschluesselVorhanden;
+    private String zugangsschluesselAnmerkung;
+
+    private Boolean thermoKameraVorhanden;
+    private String thermoKameraAnmerkung;
+
+    private Boolean vorAbfahrtUnterlagenStand;
+    private String vorAbfahrtUnterlagenAnmerkung;
+
+    private Boolean vorAbfahrtBetreiberKontaktiertStand;
+    private String vorAbfahrtBetreiberKontaktiertAnmerkung;
+
+    private Boolean vorAbfahrtEigentuemerKontaktiertStand;
+    private String vorAbfahrtEigentuemerKontaktiertAnmerkung;
+
+    private String elektrofachkraftName;
+
+
 
     @OneToMany(mappedBy = "wartungsprotokoll", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Arbeitszeit> arbeitszeiten = new ArrayList<>();
