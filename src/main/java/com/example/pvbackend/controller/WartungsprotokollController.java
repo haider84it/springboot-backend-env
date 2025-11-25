@@ -21,7 +21,7 @@ public class WartungsprotokollController {
     // CREATE
     @PostMapping
     public ResponseEntity<Wartungsprotokoll> create(@RequestBody Wartungsprotokoll protokoll) {
-        return ResponseEntity.ok(service.create(protokoll));
+        return ResponseEntity.ok(service.saveProtokoll(protokoll));
     }
 
     // GET ALL

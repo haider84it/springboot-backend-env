@@ -1,5 +1,6 @@
 package com.example.pvbackend.service;
 
+import com.example.pvbackend.model.Arbeitszeit;
 import com.example.pvbackend.model.Wartungsprotokoll;
 import com.example.pvbackend.repository.WartungsprotokollRepository;
 import org.springframework.stereotype.Service;
@@ -75,6 +76,19 @@ public class WartungsprotokollService {
                 })
                 .orElseThrow(() -> new RuntimeException("Wartungsprotokoll not found"));
     }
+
+    public Wartungsprotokoll saveProtokoll(Wartungsprotokoll protokoll) {
+
+        if (protokoll.getArbeitszeiten() != null) {
+            for (Arbeitszeit a : protokoll.getArbeitszeiten()) {
+                a.setWartungsprotokoll(protokoll);
+            }
+        }
+
+        return repository.save(protokoll);
+    }
+
+
 
     // DELETE
     public void delete(Long id) {
