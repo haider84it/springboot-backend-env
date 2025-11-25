@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -68,6 +70,11 @@ public class Wartungsprotokoll {
     private String erstErsatzPunkt;
     private String zweitErsatzPunkt;
     private String drittErsatzPunkt;
+
+
+
+    @OneToMany(mappedBy = "wartungsprotokoll", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Arbeitszeit> arbeitszeiten = new ArrayList<>();
 
 
 
