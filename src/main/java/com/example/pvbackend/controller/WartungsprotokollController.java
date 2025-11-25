@@ -9,7 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/wartungsprotokoll")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "https://envaris.cloudaxes.de")
 public class WartungsprotokollController {
 
     private final WartungsprotokollService service;
