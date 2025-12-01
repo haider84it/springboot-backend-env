@@ -40,6 +40,16 @@ public class Wartungsprotokoll {
 
 
 
+    // Seite 3  ✅ ADD THIS
+    @Embedded
+    private WartungsprotokollSeite3 seite3 = new WartungsprotokollSeite3();
+
+    // Seite 4  ✅ ADDed THIS
+    @Embedded
+    private WartungsprotokollSeite4 seite4 = new WartungsprotokollSeite4();
+
+
+
     @OneToMany(mappedBy = "wartungsprotokoll", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Arbeitszeit> arbeitszeiten = new ArrayList<>();
 

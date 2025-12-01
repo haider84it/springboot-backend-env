@@ -41,6 +41,8 @@ public class WartungsprotokollService {
                     // Replace embedded pages completely
                     existing.setSeite1(updated.getSeite1());
                     existing.setSeite2(updated.getSeite2());
+                    existing.setSeite3(updated.getSeite3()); // ✅ ADD THIS
+                    existing.setSeite4(updated.getSeite4()); // ✅ ADD THIS
 
                     // Arbeitszeiten (reset relationship)
                     existing.getArbeitszeiten().clear();
