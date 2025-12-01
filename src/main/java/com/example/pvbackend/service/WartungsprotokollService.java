@@ -37,40 +37,26 @@ public class WartungsprotokollService {
         return repository.findById(id)
                 .map(existing -> {
 
-                    existing.setVorgang(updated.getVorgang());
-                    existing.setAnlagenbezeichnung(updated.getAnlagenbezeichnung());
-                    existing.setAuftraggeber(updated.getAuftraggeber());
-                    existing.setWartungspaket(updated.getWartungspaket());
+                    // ⭐ NEW: replace whole Seite 1 in one step
+                    existing.setSeite1(updated.getSeite1());
 
-                    existing.setDcMessungen(updated.getDcMessungen());
-                    existing.setDcNurBeiUnregelmaessigkeiten(updated.getDcNurBeiUnregelmaessigkeiten());
-                    existing.setDcVollstaendigOderBereich(updated.getDcVollstaendigOderBereich());
-                    existing.setVollstaendigGemaessDin(updated.getVollstaendigGemaessDin());
+                    // ⭐ Seite 2 fields (still in main entity)
+                    existing.setZugangsschluesselVorhanden(updated.getZugangsschluesselVorhanden());
+                    existing.setZugangsschluesselAnmerkung(updated.getZugangsschluesselAnmerkung());
 
-                    existing.setAcMessungen(updated.getAcMessungen());
-                    existing.setAcNurBeiUnregelmaessigkeiten(updated.getAcNurBeiUnregelmaessigkeiten());
-                    existing.setAcVollstaendigOderBereich(updated.getAcVollstaendigOderBereich());
+                    existing.setThermoKameraVorhanden(updated.getThermoKameraVorhanden());
+                    existing.setThermoKameraAnmerkung(updated.getThermoKameraAnmerkung());
 
-                    existing.setZentralwechselrichter(updated.getZentralwechselrichter());
-                    existing.setMittelspannungsanlagenErweitert(updated.getMittelspannungsanlagenErweitert());
-                    existing.setErdungsmessungenStationen(updated.getErdungsmessungenStationen());
-                    existing.setSichtpruefungMittelspannungsanlagen(updated.getSichtpruefungMittelspannungsanlagen());
+                    existing.setVorAbfahrtUnterlagenStand(updated.getVorAbfahrtUnterlagenStand());
+                    existing.setVorAbfahrtUnterlagenAnmerkung(updated.getVorAbfahrtUnterlagenAnmerkung());
 
-                    existing.setReinigung(updated.getReinigung());
-                    existing.setReinigungWr(updated.getReinigungWr());
-                    existing.setReinigungGak(updated.getReinigungGak());
-                    existing.setReinigungModule(updated.getReinigungModule());
+                    existing.setVorAbfahrtBetreiberKontaktiertStand(updated.getVorAbfahrtBetreiberKontaktiertStand());
+                    existing.setVorAbfahrtBetreiberKontaktiertAnmerkung(updated.getVorAbfahrtBetreiberKontaktiertAnmerkung());
 
-                    existing.setThermografie(updated.getThermografie());
-                    existing.setThermografieVerteiler(updated.getThermografieVerteiler());
-                    existing.setThermografieModule(updated.getThermografieModule());
-                    existing.setThermografieMspAnlagen(updated.getThermografieMspAnlagen());
+                    existing.setVorAbfahrtEigentuemerKontaktiertStand(updated.getVorAbfahrtEigentuemerKontaktiertStand());
+                    existing.setVorAbfahrtEigentuemerKontaktiertAnmerkung(updated.getVorAbfahrtEigentuemerKontaktiertAnmerkung());
 
-                    existing.setKennlinienmessungen(updated.getKennlinienmessungen());
-
-                    existing.setErstErsatzPunkt(updated.getErstErsatzPunkt());
-                    existing.setZweitErsatzPunkt(updated.getZweitErsatzPunkt());
-                    existing.setDrittErsatzPunkt(updated.getDrittErsatzPunkt());
+                    existing.setElektrofachkraftName(updated.getElektrofachkraftName());
 
                     return repository.save(existing);
                 })
