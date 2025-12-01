@@ -33,30 +33,21 @@ public class WartungsprotokollService {
     }
 
     // UPDATE
+    // UPDATE
     public Wartungsprotokoll update(Long id, Wartungsprotokoll updated) {
         return repository.findById(id)
                 .map(existing -> {
 
-                    // ⭐ NEW: replace whole Seite 1 in one step
+                    // Replace embedded pages completely
                     existing.setSeite1(updated.getSeite1());
+                    existing.setSeite2(updated.getSeite2());
 
-                    // ⭐ Seite 2 fields (still in main entity)
-                    existing.setZugangsschluesselVorhanden(updated.getZugangsschluesselVorhanden());
-                    existing.setZugangsschluesselAnmerkung(updated.getZugangsschluesselAnmerkung());
-
-                    existing.setThermoKameraVorhanden(updated.getThermoKameraVorhanden());
-                    existing.setThermoKameraAnmerkung(updated.getThermoKameraAnmerkung());
-
-                    existing.setVorAbfahrtUnterlagenStand(updated.getVorAbfahrtUnterlagenStand());
-                    existing.setVorAbfahrtUnterlagenAnmerkung(updated.getVorAbfahrtUnterlagenAnmerkung());
-
-                    existing.setVorAbfahrtBetreiberKontaktiertStand(updated.getVorAbfahrtBetreiberKontaktiertStand());
-                    existing.setVorAbfahrtBetreiberKontaktiertAnmerkung(updated.getVorAbfahrtBetreiberKontaktiertAnmerkung());
-
-                    existing.setVorAbfahrtEigentuemerKontaktiertStand(updated.getVorAbfahrtEigentuemerKontaktiertStand());
-                    existing.setVorAbfahrtEigentuemerKontaktiertAnmerkung(updated.getVorAbfahrtEigentuemerKontaktiertAnmerkung());
-
-                    existing.setElektrofachkraftName(updated.getElektrofachkraftName());
+                    // Arbeitszeiten (reset relationship)
+                    existing.getArbeitszeiten().clear();
+                    if (updated.getArbeitszeiten() != null) {
+                        updated.getArbeitszeiten().forEach(a -> a.setWartungsprotokoll(existing));
+                        existing.getArbeitszeiten().addAll(updated.getArbeitszeiten());
+                    }
 
                     return repository.save(existing);
                 })

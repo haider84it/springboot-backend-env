@@ -34,23 +34,9 @@ public class Wartungsprotokoll {
     // ---------------------------------------
 
 
-    // Seite 2
-    private Boolean zugangsschluesselVorhanden;
-    private String zugangsschluesselAnmerkung;
-
-    private Boolean thermoKameraVorhanden;
-    private String thermoKameraAnmerkung;
-
-    private Boolean vorAbfahrtUnterlagenStand;
-    private String vorAbfahrtUnterlagenAnmerkung;
-
-    private Boolean vorAbfahrtBetreiberKontaktiertStand;
-    private String vorAbfahrtBetreiberKontaktiertAnmerkung;
-
-    private Boolean vorAbfahrtEigentuemerKontaktiertStand;
-    private String vorAbfahrtEigentuemerKontaktiertAnmerkung;
-
-    private String elektrofachkraftName;
+    // Seite 2   ✅ NEW
+    @Embedded
+    private WartungsprotokollSeite2 seite2 = new WartungsprotokollSeite2();
 
 
 
