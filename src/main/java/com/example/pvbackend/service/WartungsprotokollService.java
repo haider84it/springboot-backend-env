@@ -44,6 +44,14 @@ public class WartungsprotokollService {
                     existing.setSeite3(updated.getSeite3()); // ✅ ADD THIS
                     existing.setSeite4(updated.getSeite4()); // ✅ ADD THIS
                     existing.setSeite5(updated.getSeite5()); // ✅ ADD THIS
+                    existing.setSeite6(updated.getSeite6()); // ✅ ADD THIS
+                    existing.setSeite7(updated.getSeite7()); // ✅ ADD THIS
+                    existing.setSeite8(updated.getSeite8()); // ✅ ADD THIS Seite 8
+                    existing.setSeite9(updated.getSeite9()); // ✅ ADD THIS Seite 9
+                    existing.setSeite10(updated.getSeite10()); // ✅ ADD THIS Seite 10
+                    existing.setSeite11(updated.getSeite11()); // ✅ ADD THIS Seite 11
+                    existing.setSeite11b(updated.getSeite11b()); // ✅ ADD THIS Seite 11b
+                    existing.setSeite12(updated.getSeite12()); // ✅ ADD THIS Seite 12
 
                     // Arbeitszeiten (reset relationship)
                     existing.getArbeitszeiten().clear();

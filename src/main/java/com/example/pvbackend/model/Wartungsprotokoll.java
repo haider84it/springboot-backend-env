@@ -1,5 +1,6 @@
 package com.example.pvbackend.model;
 
+import com.example.pvbackend.service.WartungsprotokollSeite11;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -52,6 +53,40 @@ public class Wartungsprotokoll {
     // Seite 5  ✅ ADDed THIS
     @Embedded
     private WartungsprotokollSeite5 seite5 = new WartungsprotokollSeite5();
+
+    // Seite 6  ✅ ADDed THIS
+    @Embedded
+    private WartungsprotokollSeite6 seite6 = new WartungsprotokollSeite6();
+
+    // Seite 7  ✅ ADDed THIS
+    @Embedded
+    private WartungsprotokollSeite7 seite7 = new WartungsprotokollSeite7();
+
+    // Seite 8  ✅ ADDed THIS
+    @Embedded
+    private WartungsprotokollSeite8 seite8 = new WartungsprotokollSeite8();
+
+    // Seite 9  ✅ ADDed THIS
+    @Embedded
+    private WartungsprotokollSeite9 seite9 = new WartungsprotokollSeite9();
+
+
+    // Seite 10  ✅ ADDed THIS
+    @Embedded
+    private WartungsprotokollSeite10 seite10 = new WartungsprotokollSeite10();
+
+    // Seite 11  ✅ ADDed THIS
+    @Embedded
+    private WartungsprotokollSeite11 seite11 = new WartungsprotokollSeite11();
+
+    // Seite 11b  ✅ ADDed THIS
+    @Embedded
+    private WartungsprotokollSeite11b seite11b = new WartungsprotokollSeite11b();
+
+    // Seite 12  ✅ ADDed THIS
+    @Embedded
+    private WartungsprotokollSeite12 seite12 = new WartungsprotokollSeite12();
+
 
 
     @OneToMany(mappedBy = "wartungsprotokoll", cascade = CascadeType.ALL, orphanRemoval = true)
