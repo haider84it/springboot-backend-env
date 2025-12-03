@@ -1,6 +1,7 @@
 package com.example.pvbackend.model;
 
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +17,7 @@ public class WartungsprotokollSeite6 {
     // ========================
     // SECTION 7 – Prüfung WR
     // ========================
+    @ElementCollection
     private List<RowWR> pruefungWR = new ArrayList<>();
 
     @Embeddable
@@ -27,12 +29,14 @@ public class WartungsprotokollSeite6 {
     }
 
     // Zusatz-Tabelle WR (5 rows)
+    @ElementCollection
     private List<ZusatzRow> zusatzWR = new ArrayList<>();
 
 
     // ============================
     // SECTION 8 – Prüfung AC-Verteiler
     // ============================
+    @ElementCollection
     private List<RowAC> pruefungAC = new ArrayList<>();
 
     @Embeddable
@@ -46,6 +50,7 @@ public class WartungsprotokollSeite6 {
     }
 
     // Zusatz-Tabelle AC (5 rows)
+    @ElementCollection
     private List<ZusatzRow> zusatzAC = new ArrayList<>();
 
 

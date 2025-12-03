@@ -1,5 +1,6 @@
 package com.example.pvbackend.model;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import java.util.List;
 public class WartungsprotokollSeite12 {
 
     // 10 empty recommendation rows (zunr, empfehlung, 3 checkboxes, kosten)
+    @ElementCollection
     private List<EmpfehlungRow> empfehlungen = new ArrayList<>();
 
     @Embeddable

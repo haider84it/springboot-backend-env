@@ -1,5 +1,6 @@
 package com.example.pvbackend.model;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,6 +27,7 @@ public class WartungsprotokollSeite9 {
     }
 
     // 13.1 – 13.23  → 23 rows
+    @ElementCollection
     private List<ZentralWRRow> pruefungWRZentral = new ArrayList<>();
 
 
@@ -50,6 +52,8 @@ public class WartungsprotokollSeite9 {
         private Boolean nbeh;
     }
 
+
+    @ElementCollection
     private List<ZusatzWRZentralRow> zusatzWRZentral = new ArrayList<>();
 
 }

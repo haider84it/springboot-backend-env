@@ -1,5 +1,6 @@
 package com.example.pvbackend.model;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,6 +27,7 @@ public class WartungsprotokollSeite8 {
     }
 
     // 11.1 – 11.9 (9 rows)
+    @ElementCollection
     private List<AussenRow> pruefungAussen = new ArrayList<>();
 
 
@@ -49,6 +51,7 @@ public class WartungsprotokollSeite8 {
         private Boolean nbeh;
     }
 
+    @ElementCollection
     private List<ZusatzAussenRow> zusatzAussen = new ArrayList<>();
 
 
@@ -67,6 +70,7 @@ public class WartungsprotokollSeite8 {
     }
 
     // 12.1 – 12.5 (5 rows)
+    @ElementCollection
     private List<DiebstahlRow> pruefungDiebstahl = new ArrayList<>();
 
 
@@ -90,6 +94,7 @@ public class WartungsprotokollSeite8 {
         private Boolean nbeh;
     }
 
+    @ElementCollection
     private List<ZusatzDiebstahlRow> zusatzDiebstahl = new ArrayList<>();
 
 }
