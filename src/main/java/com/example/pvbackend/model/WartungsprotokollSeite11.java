@@ -1,4 +1,4 @@
-package com.example.pvbackend.service;
+package com.example.pvbackend.model;
 
 import jakarta.persistence.Embeddable;
 import lombok.Getter;

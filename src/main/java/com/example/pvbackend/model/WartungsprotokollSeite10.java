@@ -1,5 +1,6 @@
 package com.example.pvbackend.model;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,7 +27,11 @@ public class WartungsprotokollSeite10 {
     }
 
     // 14.1 – 14.29
+    @ElementCollection
     private List<MSPRow> pruefungMSP = new ArrayList<>();
+
+    @ElementCollection
+    private List<ZusatzMSPRow> zusatzMSP = new ArrayList<>();
 
 
     // ============================================================
@@ -48,5 +53,5 @@ public class WartungsprotokollSeite10 {
         private Boolean nbeh;
     }
 
-    private List<ZusatzMSPRow> zusatzMSP = new ArrayList<>();
+
 }

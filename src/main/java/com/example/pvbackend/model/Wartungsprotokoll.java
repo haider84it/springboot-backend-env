@@ -1,6 +1,5 @@
 package com.example.pvbackend.model;
 
-import com.example.pvbackend.service.WartungsprotokollSeite11;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
