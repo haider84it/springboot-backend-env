@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/wartungsprotokoll")
@@ -24,8 +25,9 @@ public class WartungsprotokollController {
 
     // CREATE
     @PostMapping
-    public ResponseEntity<Wartungsprotokoll> create(@RequestBody Wartungsprotokoll protokoll) {
-        return ResponseEntity.ok(service.saveProtokoll(protokoll));
+    public ResponseEntity<Map<String, Long>> create(@RequestBody Wartungsprotokoll protokoll) {
+        Wartungsprotokoll saved = service.saveProtokoll(protokoll);
+        return ResponseEntity.ok(Map.of("id", saved.getId()));
     }
 
     // GET ALL
