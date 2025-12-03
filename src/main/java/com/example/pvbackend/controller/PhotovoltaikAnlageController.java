@@ -74,15 +74,5 @@ public class PhotovoltaikAnlageController {
         return Map.of("exists", exists);
     }
 
-    @GetMapping("/{id}/pdf")
-    public ResponseEntity<byte[]> getPdf(@PathVariable Long id) {
-        byte[] pdf = pdfService.generateAnlagePdf(id);
-
-        return ResponseEntity.ok()
-                .header("Content-Type", "application/pdf")
-                .header("Content-Disposition", "inline; filename=anlage.pdf")
-                .body(pdf);
-    }
-
 
 }

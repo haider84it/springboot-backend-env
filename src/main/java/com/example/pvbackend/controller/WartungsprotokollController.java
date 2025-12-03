@@ -1,6 +1,7 @@
 package com.example.pvbackend.controller;
 
 import com.example.pvbackend.model.Wartungsprotokoll;
+import com.example.pvbackend.pdf.PdfService;
 import com.example.pvbackend.service.WartungsprotokollService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +14,12 @@ import java.util.List;
 public class WartungsprotokollController {
 
     private final WartungsprotokollService service;
+    private final PdfService pdfService;
 
-    public WartungsprotokollController(WartungsprotokollService service) {
+
+    public WartungsprotokollController(WartungsprotokollService service, PdfService pdfService) {
         this.service = service;
+        this.pdfService = pdfService;
     }
 
     // CREATE
@@ -53,4 +57,17 @@ public class WartungsprotokollController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+
+    @GetMapping("/{id}/pdf")
+    public ResponseEntity<byte[]> pdf(@PathVariable Long id) {
+        byte[] bytes = pdfService.generate(id);
+
+        return ResponseEntity
+                .ok()
+                .header("Content-Type", "application/pdf")
+                .header("Content-Disposition", "attachment; filename=wartungsprotokoll.pdf")
+                .body(bytes);
+    }
+
 }
