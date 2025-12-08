@@ -1,8 +1,12 @@
 package com.example.pvbackend.model;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -26,4 +30,21 @@ public class WartungsprotokollSeite2 {
 
     // Elektrofachkraft Name
     private String elektrofachkraftName;
+
+
+    @ElementCollection
+    private List<ArbeitszeitRow> arbeitszeiten = new ArrayList<>();
+
+    @Embeddable
+    @Getter
+    @Setter
+    public static class ArbeitszeitRow {
+        private String datum;
+        private String name;
+        private String beginn;
+        private String ende;
+        private String stunden;
+        private String wetter;
+        private String temperatur;
+    }
 }

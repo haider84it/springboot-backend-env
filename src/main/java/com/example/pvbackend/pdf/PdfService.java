@@ -14,8 +14,7 @@ import java.io.IOException;
 import java.util.List;
 
 import static com.example.pvbackend.util.PdfRenderUtils.*;
-import static io.micrometer.common.util.StringUtils.isBlank;
-import static org.springframework.util.ObjectUtils.isEmpty;
+
 
 @Service
 @RequiredArgsConstructor
@@ -151,6 +150,25 @@ public class PdfService {
 
         text(cs, "Elektrofachkraft Name: " + s.getElektrofachkraftName(), 40, y, 10);
         y -= 25;
+
+        text(cs, "Arbeitszeiten:", 40, y, 11);
+        y -= 20;
+
+        for (WartungsprotokollSeite2.ArbeitszeitRow r : s.getArbeitszeiten()) {
+            text(cs,
+                    safe(r.getDatum()) + "  " +
+                            safe(r.getName()) + "  " +
+                            "Beginn: " + safe(r.getBeginn()) + "  " +
+                            "Ende: " + safe(r.getEnde()) + "  " +
+                            "Std: " + safe(r.getStunden()) + "  " +
+                            "Wetter: " + safe(r.getWetter()) + "  " +
+                            "Temp: " + safe(r.getTemperatur()),
+                    40, y, 9
+            );
+            y -= 15;
+        }
+
+
 
         cs.close();
     }
