@@ -23,6 +23,14 @@ public class Wartungsprotokoll {
     // Seite 1
     // ---------------------------
     @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "anlagenbezeichnung", column = @Column(name = "anlagenbezeichnung")),
+            @AttributeOverride(name = "auftraggeber", column = @Column(name = "auftraggeber")),
+            @AttributeOverride(name = "vorgang", column = @Column(name = "vorgang")),
+            @AttributeOverride(name = "wartungspaket", column = @Column(name = "wartungspaket")),
+            @AttributeOverride(name = "dcMessungen", column = @Column(name = "dc_messungen")),
+            @AttributeOverride(name = "acMessungen", column = @Column(name = "ac_messungen"))
+    })
     private WartungsprotokollSeite1 seite1 = new WartungsprotokollSeite1();
 
 
