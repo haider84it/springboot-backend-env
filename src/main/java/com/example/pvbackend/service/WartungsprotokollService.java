@@ -67,15 +67,25 @@ public class WartungsprotokollService {
 
     public Wartungsprotokoll saveProtokoll(Wartungsprotokoll protokoll) {
 
+        String name = protokoll.getSeite1().getAnlagenbezeichnung();
+
+        Optional<Wartungsprotokoll> existingOpt =
+                repository.findBySeite1_Anlagenbezeichnung(name);
+
+        if (existingOpt.isPresent()) {
+            Wartungsprotokoll existing = existingOpt.get();
+
+            protokoll.setId(existing.getId()); // 🔥 force UPDATE instead of INSERT
+        }
+
+        // Fix Arbeitszeiten relationships
         if (protokoll.getArbeitszeiten() != null) {
-            for (Arbeitszeit a : protokoll.getArbeitszeiten()) {
-                a.setWartungsprotokoll(protokoll);
-            }
+            protokoll.getArbeitszeiten()
+                    .forEach(a -> a.setWartungsprotokoll(protokoll));
         }
 
         return repository.save(protokoll);
     }
-
 
 
     // DELETE
