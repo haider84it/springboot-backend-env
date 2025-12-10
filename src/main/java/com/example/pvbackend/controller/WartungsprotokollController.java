@@ -33,7 +33,20 @@ public class WartungsprotokollController {
     // GET ALL
     @GetMapping
     public ResponseEntity<List<Wartungsprotokoll>> getAll() {
-        return ResponseEntity.ok(service.findAll());
+        List<Wartungsprotokoll> all = service.findAll();
+
+        // DEBUG:
+        System.out.println("DEBUG: Returning protocols:");
+        all.forEach(p -> {
+            System.out.println("ID: " + p.getId());
+            if (p.getSeite1() != null) {
+                System.out.println("  anlagenbezeichnung = " + p.getSeite1().getAnlagenbezeichnung());
+            } else {
+                System.out.println("  seite1 is NULL");
+            }
+        });
+
+        return ResponseEntity.ok(all);
     }
 
     // GET BY ID
