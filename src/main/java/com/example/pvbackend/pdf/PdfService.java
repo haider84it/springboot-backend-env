@@ -240,11 +240,16 @@ public class PdfService {
         text(cs, "Ziel und Vorgehensweise der Wartungsarbeiten", 40, y, 9);
         y -= 14;
         text(cs,
-                "Die Wartungsarbeiten erfolgen unter Beachtung der anerkannten Regeln der Technik und der",
+                "Die Wartungsarbeiten erfolgen unter Beachtung der anerkannten Regeln",
                 40, y, 8);
         y -= 10;
         text(cs,
-                "zutreffenden Bestimmungen und Vorschriften für Arbeitssicherheit.",
+                "der Technik und zutreffenden Bestimmungen und Vorschriften für Arbeitssicherheit.",
+                40, y, 8);
+
+        y -= 6;
+        text(cs,
+                "Seite 9 & 10 - nur vorhanden wenn beauftragt",
                 40, y, 8);
 
         // right info block
