@@ -247,7 +247,7 @@ public class PdfService {
                 "der Technik und zutreffenden Bestimmungen und Vorschriften",
                 40, y, 8);
 
-        y -= 4;
+        y -= 8;
         text(cs,
                 "für Arbeitssicherheit. - Seite 9 & 10 - nur vorhanden wenn beauftragt",
                 40, y, 8);
