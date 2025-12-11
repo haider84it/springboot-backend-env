@@ -244,12 +244,12 @@ public class PdfService {
                 40, y, 8);
         y -= 10;
         text(cs,
-                "der Technik und zutreffenden Bestimmungen und Vorschriften für Arbeitssicherheit.",
+                "der Technik und zutreffenden Bestimmungen und Vorschriften",
                 40, y, 8);
 
-        y -= 6;
+        y -= 4;
         text(cs,
-                "Seite 9 & 10 - nur vorhanden wenn beauftragt",
+                "für Arbeitssicherheit. - Seite 9 & 10 - nur vorhanden wenn beauftragt",
                 40, y, 8);
 
         // right info block
