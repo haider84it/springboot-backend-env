@@ -2,6 +2,8 @@ package com.example.pvbackend.model;
 
 
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,7 +15,9 @@ public class WartungsprotokollSeite1 {
     private String anlagenbezeichnung;
     private String vorgang;
     private String auftraggeber;
-    private String wartungspaket;
+
+    @Enumerated(EnumType.STRING)
+    private Wartungspaket wartungspaket;
 
     // DC-Messungen
     private Boolean dcMessungen;
