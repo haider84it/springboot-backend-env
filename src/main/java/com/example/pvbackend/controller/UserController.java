@@ -3,6 +3,7 @@ package com.example.pvbackend.controller;
 import com.example.pvbackend.model.User;
 import com.example.pvbackend.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -146,6 +147,16 @@ public class UserController {
             userRepo.save(user);
             return ResponseEntity.ok(user);
         }).orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping
+    public ResponseEntity<?> createUser(@RequestBody User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setEnabled(true);
+        userRepo.save(user);
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("User created");
     }
 }
 
