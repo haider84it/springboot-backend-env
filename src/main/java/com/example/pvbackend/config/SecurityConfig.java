@@ -69,6 +69,10 @@ public class SecurityConfig {
 
                         // ✅ Admin Dashboard APIs
                         .requestMatchers("/api/users/**").hasRole("ADMIN")
+
+
+                        // ⬇️ ADD THIS LINE
+                        .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
         System.out.println("✅ SecurityFilterChain configured successfully");

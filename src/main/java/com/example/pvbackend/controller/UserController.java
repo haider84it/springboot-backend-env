@@ -66,7 +66,7 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    // ✅ Make admin (Only haider84it@gmail.com)
+    // ✅ Make admin (Only haider@envaris.de)
     @PatchMapping("/make-admin/{id}")
     public ResponseEntity<String> makeAdmin(@PathVariable Long id, Authentication auth) {
         String currentEmail = auth.getName();

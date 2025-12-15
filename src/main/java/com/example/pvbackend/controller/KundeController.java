@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RestController
 @RequestMapping("/api/kunden")
 @CrossOrigin(origins = "https://envaris.cloudaxes.de") // Allow React frontend
