@@ -61,7 +61,7 @@ public class PdfService {
 
     private PDPageContentStream startPage(PDDocument doc, String title) throws IOException {
 
-        PDPage page = new PDPage(PDRectangle.A4);
+        PDPage page = new PDPage(new PDRectangle(PDRectangle.A4.getHeight(), PDRectangle.A4.getWidth()));
         doc.addPage(page);
 
         PDPageContentStream cs = new PDPageContentStream(doc, page);
