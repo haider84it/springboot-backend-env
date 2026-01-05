@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
 import org.springframework.stereotype.Service;
 
@@ -59,7 +60,8 @@ public class PdfService {
     // ===============================================================
 
     private PDPageContentStream startPage(PDDocument doc, String title) throws IOException {
-        PDPage page = new PDPage();
+
+        PDPage page = new PDPage(PDRectangle.A4);
         doc.addPage(page);
 
         PDPageContentStream cs = new PDPageContentStream(doc, page);
