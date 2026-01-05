@@ -254,29 +254,20 @@ public class PdfService {
                 "für Arbeitssicherheit. - Seite 9 & 10 - nur vorhanden wenn beauftragt",
                 40, y, 8);
 
-        // right info block
-        float yRight = y + 24;
-        text(cs, "Information zur Kontrollliste", 330, yRight, 9);
-        yRight -= 14;
-        text(cs,
-                "Kurze Bemerkungen sind in die unter den Bereichen stehenden Kästen einzutragen.",
-                330, yRight, 8);
-        yRight -= 10;
-        text(cs,
-                "Zusätzliche Mängelbeschreibungen sind auf einem zusätzlichen Blatt zu beschreiben.",
-                330, yRight, 8);
-        yRight -= 14;
-        text(cs,
-                "Optionale Leistungen – Nur auszuführen wenn angekreuzt.",
-                330, yRight, 8);
-        yRight -= 14;
-        text(cs,
-                "Seiten 10 und 11 nur ausführen, wenn die Leistungen beauftragt / angekreuzt wurden.",
-                330, yRight, 8);
-        yRight -= 10;
-        text(cs,
-                "Vorgefundene Auffälligkeiten immer fotografieren und Standort festhalten!",
-                330, yRight, 8);
+        // put "Information zur Kontrollliste" BELOW the left block
+        y -= 30;                // add some vertical space after the left block
+        float x = 40;           // same left margin
+        text(cs, "Information zur Kontrollliste", x, y, 9);
+        y -= 14;
+        text(cs, "Kurze Bemerkungen sind in die unter den Bereichen stehenden Kästen einzutragen.", x, y, 8);
+        y -= 10;
+        text(cs, "Zusätzliche Mängelbeschreibungen sind auf einem zusätzlichen Blatt zu beschreiben.", x, y, 8);
+        y -= 14;
+        text(cs, "Optionale Leistungen – Nur auszuführen wenn angekreuzt.", x, y, 8);
+        y -= 14;
+        text(cs, "Seiten 10 und 11 nur ausführen, wenn die Leistungen beauftragt / angekreuzt wurden.", x, y, 8);
+        y -= 10;
+        text(cs, "Vorgefundene Auffälligkeiten immer fotografieren und Standort festhalten!", x, y, 8);
 
         cs.close();
     }
