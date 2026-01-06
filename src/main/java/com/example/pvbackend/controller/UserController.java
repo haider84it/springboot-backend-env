@@ -182,5 +182,13 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body("User created");
     }
+
+    @GetMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+        return userRepo.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 }
 
