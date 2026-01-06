@@ -5,6 +5,7 @@ import com.example.pvbackend.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -124,6 +125,27 @@ public class UserController {
         user.setPassword(passwordEncoder.encode(req.newPassword()));
         userRepo.save(user);
         return ResponseEntity.ok("Password updated");
+    }
+
+
+    @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<User> updateUser(
+            @PathVariable Long id,
+            @RequestBody User updatedUser
+    ) {
+        return userRepo.findById(id).map(user -> {
+            user.setFirstName(updatedUser.getFirstName());
+            user.setLastName(updatedUser.getLastName());
+            user.setEmail(updatedUser.getEmail());
+
+            if (updatedUser.getPassword() != null && !updatedUser.getPassword().isBlank()) {
+                user.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
+            }
+
+            userRepo.save(user);
+            return ResponseEntity.ok(user);
+        }).orElse(ResponseEntity.notFound().build());
     }
 
 
