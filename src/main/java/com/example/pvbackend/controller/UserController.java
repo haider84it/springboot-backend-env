@@ -28,6 +28,8 @@ public class UserController {
     // ✅ Get all users (Admin Dashboard)
     @GetMapping
     public List<User> getAllUsers() {
+
+        System.out.println("✅ /api/users HIT");
         return userRepo.findAll();
     }
 
