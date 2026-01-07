@@ -13,7 +13,7 @@ import java.util.List;
 @Embeddable
 public class WartungsprotokollSeite2 {
 
-    // Zugangsschlüssel
+    // - Zugangsschlüssel
     private Boolean zugangsschluesselVorhanden;
     private String zugangsschluesselAnmerkung;
 
