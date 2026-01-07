@@ -86,4 +86,21 @@ public class WartungsprotokollSeite11 {
         private Boolean nbeh;
     }
 
+
+
+    public boolean hasContent() {
+        return hasListContent(pruefungMSsicht)
+                || hasListContent(zusatzMSsicht)
+                || hasListContent(sonstiges)
+                || hasListContent(zusatzSonstiges);
+    }
+
+    private boolean hasListContent(List<?> list) {
+        return list != null && !list.isEmpty();
+    }
+
+
+
+
+
 }

@@ -28,4 +28,28 @@ public class WartungsprotokollSeite12 {
         private Boolean erhaltung;
         private String kosten;
     }
+
+    public boolean hasContent() {
+        if (empfehlungen == null) return false;
+
+        for (EmpfehlungRow r : empfehlungen) {
+            if (r == null) continue;
+
+            if (notEmpty(r.getZunr())
+                    || notEmpty(r.getEmpfehlung())
+                    || r.getSicherheit() != null
+                    || r.getErtrag() != null
+                    || r.getErhaltung() != null
+                    || notEmpty(r.getKosten())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean notEmpty(String s) {
+        return s != null && !s.trim().isEmpty();
+    }
+
+
 }

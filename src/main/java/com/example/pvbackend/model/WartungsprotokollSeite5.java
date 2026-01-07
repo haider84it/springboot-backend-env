@@ -192,4 +192,68 @@ public class WartungsprotokollSeite5 {
     private String zt6BildNr5;
     private Boolean zt6Beh5;
     private Boolean zt6NichtBeh5;
+
+
+    public boolean hasContent() {
+        return anyBooleanNotNull(
+                messungModultragendeGemessen,
+                messungModultragendeNein,
+                messungModultragendeNichtZutreffend,
+                messungAlleModulstraengeGemessen,
+                messungAlleModulstraengeNein,
+                messungAlleModulstraengeNichtZutreffend,
+                messungErdungswiderstandGemessen,
+                messungErdungswiderstandNein,
+                messungErdungswiderstandNichtZutreffend,
+                messungErdungDurchgefuehrt,
+                messungErdungDurchgefuehrtNein,
+                messungErdungDurchgefuehrtNichtZutreffend,
+                messungNachDin62446,
+                messungNachDin62446Nein,
+                messungNachDin62446NichtZutreffend,
+
+                gakZugaenglich, gakZugaenglichNein, gakZugaenglichNz, gakZugaenglichSbm, gakZugaenglichBeiblatt,
+                gakStrangsicherungen, gakStrangsicherungenNein, gakStrangsicherungenNz, gakStrangsicherungenSbm, gakStrangsicherungenBeiblatt,
+                gakUssEinrichtungen, gakUssEinrichtungenNein, gakUssEinrichtungenNz, gakUssEinrichtungenSbm, gakUssEinrichtungenBeiblatt,
+                gakSchalter, gakSchalterNein, gakSchalterNz, gakSchalterSbm, gakSchalterBeiblatt,
+                gakFreiVonSchaeden, gakFreiVonSchaedenNein, gakFreiVonSchaedenNz, gakFreiVonSchaedenSbm, gakFreiVonSchaedenBeiblatt,
+                gakFreiVonFeuchtigkeit, gakFreiVonFeuchtigkeitNein, gakFreiVonFeuchtigkeitNz, gakFreiVonFeuchtigkeitSbm, gakFreiVonFeuchtigkeitBeiblatt,
+                gakInnererZustand, gakInnererZustandNein, gakInnererZustandNz, gakInnererZustandSbm, gakInnererZustandBeiblatt,
+                gakErdungOk, gakErdungOkNein, gakErdungOkNz, gakErdungOkSbm, gakErdungOkBeiblatt,
+                gakBeschriftungOk, gakBeschriftungOkNein, gakBeschriftungOkNz, gakBeschriftungOkSbm, gakBeschriftungOkBeiblatt,
+                gakKabelVerschraubungen, gakKabelVerschraubungenNein, gakKabelVerschraubungenNz, gakKabelVerschraubungenSbm, gakKabelVerschraubungenBeiblatt,
+                gakAnzugsmomente, gakAnzugsmomenteNein, gakAnzugsmomenteNz, gakAnzugsmomenteSbm, gakAnzugsmomenteBeiblatt,
+                gakGereinigt, gakGereinigtNein, gakGereinigtNz, gakGereinigtSbm, gakGereinigtBeiblatt,
+                gakKeineAuffaelligkeiten, gakKeineAuffaelligkeitenNein, gakKeineAuffaelligkeitenNz, gakKeineAuffaelligkeitenSbm, gakKeineAuffaelligkeitenBeiblatt
+        )
+                || anyStringNotEmpty(
+                zt5Punkt1, zt5Bemerkung1, zt5Standort1, zt5BildNr1,
+                zt5Punkt2, zt5Bemerkung2, zt5Standort2, zt5BildNr2,
+                zt5Punkt3, zt5Bemerkung3, zt5Standort3, zt5BildNr3,
+                zt5Punkt4, zt5Bemerkung4, zt5Standort4, zt5BildNr4,
+                zt5Punkt5, zt5Bemerkung5, zt5Standort5, zt5BildNr5,
+                zt6Punkt1, zt6Bemerkung1, zt6Standort1, zt6BildNr1,
+                zt6Punkt2, zt6Bemerkung2, zt6Standort2, zt6BildNr2,
+                zt6Punkt3, zt6Bemerkung3, zt6Standort3, zt6BildNr3,
+                zt6Punkt4, zt6Bemerkung4, zt6Standort4, zt6BildNr4,
+                zt6Punkt5, zt6Bemerkung5, zt6Standort5, zt6BildNr5
+        );
+    }
+
+    private boolean anyBooleanNotNull(Boolean... values) {
+        for (Boolean b : values) {
+            if (b != null) return true;
+        }
+        return false;
+    }
+
+    private boolean anyStringNotEmpty(String... values) {
+        for (String s : values) {
+            if (s != null && !s.trim().isEmpty()) return true;
+        }
+        return false;
+    }
+
+
+
 }

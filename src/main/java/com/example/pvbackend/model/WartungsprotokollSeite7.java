@@ -95,4 +95,16 @@ public class WartungsprotokollSeite7 {
     @ElementCollection
     private List<ZusatzUeberwachungRow> zusatzUeberwachung = new ArrayList<>();
 
+
+    public boolean hasContent() {
+        return hasListContent(pruefungZaehler)
+                || hasListContent(zusatzZaehler)
+                || hasListContent(pruefungUeberwachung)
+                || hasListContent(zusatzUeberwachung);
+    }
+
+    private boolean hasListContent(List<?> list) {
+        return list != null && !list.isEmpty();
+    }
+
 }

@@ -97,4 +97,18 @@ public class WartungsprotokollSeite8 {
     @ElementCollection
     private List<ZusatzDiebstahlRow> zusatzDiebstahl = new ArrayList<>();
 
+
+
+    public boolean hasContent() {
+        return hasListContent(pruefungAussen)
+                || hasListContent(zusatzAussen)
+                || hasListContent(pruefungDiebstahl)
+                || hasListContent(zusatzDiebstahl);
+    }
+
+    private boolean hasListContent(List<?> list) {
+        return list != null && !list.isEmpty();
+    }
+
+
 }

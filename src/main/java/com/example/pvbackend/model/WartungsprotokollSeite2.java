@@ -47,4 +47,38 @@ public class WartungsprotokollSeite2 {
         private String wetter;
         private String temperatur;
     }
+
+    public boolean hasContent() {
+        return zugangsschluesselVorhanden != null
+                || thermoKameraVorhanden != null
+                || betreiberKontaktiert != null
+                || eigentuemerKontaktiert != null
+                || notEmpty(zugangsschluesselAnmerkung)
+                || notEmpty(thermoKameraAnmerkung)
+                || notEmpty(betreiberAnmerkung)
+                || notEmpty(eigentuemerAnmerkung)
+                || notEmpty(elektrofachkraftName)
+                || hasArbeitszeitContent();
+    }
+
+    private boolean hasArbeitszeitContent() {
+        if (arbeitszeiten == null) return false;
+        for (ArbeitszeitRow r : arbeitszeiten) {
+            if (r == null) continue;
+            if (notEmpty(r.getDatum())
+                    || notEmpty(r.getName())
+                    || notEmpty(r.getBeginn())
+                    || notEmpty(r.getEnde())
+                    || notEmpty(r.getStunden())
+                    || notEmpty(r.getWetter())
+                    || notEmpty(r.getTemperatur())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean notEmpty(String s) {
+        return s != null && !s.trim().isEmpty();
+    }
 }

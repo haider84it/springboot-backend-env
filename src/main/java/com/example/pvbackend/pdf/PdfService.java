@@ -32,19 +32,19 @@ public class PdfService {
 
         try (PDDocument doc = new PDDocument()) {
 
-            if (p.getSeite1() != null) addSeite1(doc, p.getSeite1());
-            if (p.getSeite2() != null) addSeite2(doc, p.getSeite2());
-            if (p.getSeite3() != null) addSeite3(doc, p.getSeite3());
-            if (p.getSeite4() != null) addSeite4(doc, p.getSeite4());
-            if (p.getSeite5() != null) addSeite5(doc, p.getSeite5());
-            if (p.getSeite6() != null) addSeite6(doc, p.getSeite6());
-            if (p.getSeite7() != null) addSeite7(doc, p.getSeite7());
-            if (p.getSeite8() != null) addSeite8(doc, p.getSeite8());
-            if (p.getSeite9() != null) addSeite9(doc, p.getSeite9());
-            if (p.getSeite10() != null) addSeite10(doc, p.getSeite10());
-            if (p.getSeite11() != null) addSeite11(doc, p.getSeite11());
-            if (p.getSeite11b() != null) addSeite11b(doc, p.getSeite11b());
-            if (p.getSeite12() != null) addSeite12(doc, p.getSeite12());
+            if (p.getSeite1() != null && p.getSeite1().hasContent()) addSeite1(doc, p.getSeite1());
+            if (p.getSeite2() != null && p.getSeite2().hasContent()) addSeite2(doc, p.getSeite2());
+            if (p.getSeite3() != null && p.getSeite3().hasContent()) addSeite3(doc, p.getSeite3());
+            if (p.getSeite4() != null && p.getSeite4().hasContent()) addSeite4(doc, p.getSeite4());
+            if (p.getSeite5() != null && p.getSeite5().hasContent()) addSeite5(doc, p.getSeite5());
+            if (p.getSeite6() != null && p.getSeite6().hasContent()) addSeite6(doc, p.getSeite6());
+            if (p.getSeite7() != null && p.getSeite7().hasContent()) addSeite7(doc, p.getSeite7());
+            if (p.getSeite8() != null && p.getSeite8().hasContent()) addSeite8(doc, p.getSeite8());
+            if (p.getSeite9() != null && p.getSeite9().hasContent()) addSeite9(doc, p.getSeite9());
+            if (p.getSeite10() != null && p.getSeite10().hasContent()) addSeite10(doc, p.getSeite10());
+            if (p.getSeite11() != null && p.getSeite11().hasContent()) addSeite11(doc, p.getSeite11());
+            if (p.getSeite11b() != null && p.getSeite11b().hasContent()) addSeite11b(doc, p.getSeite11b());
+            if (p.getSeite12() != null && p.getSeite12().hasContent()) addSeite12(doc, p.getSeite12());
 
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             doc.save(baos);
@@ -959,6 +959,7 @@ public class PdfService {
 
         cs.close();
     }
+
 
 
 }

@@ -79,4 +79,21 @@ public class WartungsprotokollSeite4 {
         private Boolean beh;
         private Boolean nbeh;
     }
+
+
+
+    public boolean hasContent() {
+        return hasListContent(pruefungMontage)
+                || hasListContent(zusatz1)
+                || hasListContent(sichtkontrolle)
+                || hasListContent(zusatz2);
+    }
+
+    private boolean hasListContent(List<?> list) {
+        return list != null && !list.isEmpty();
+    }
+
+
+
+
 }

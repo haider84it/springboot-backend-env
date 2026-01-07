@@ -28,7 +28,7 @@ public class WartungsprotokollSeite9 {
 
     // 13.1 – 13.23  → 23 rows
     @ElementCollection
-    private List<ZentralWRRow> pruefungWRZentral = new ArrayList<>();
+    private List<y> pruefungWRZentral = new ArrayList<>();
 
 
 
@@ -55,5 +55,19 @@ public class WartungsprotokollSeite9 {
 
     @ElementCollection
     private List<ZusatzWRZentralRow> zusatzWRZentral = new ArrayList<>();
+
+
+    public boolean hasContent() {
+        return hasListContent(pruefungWRZentral)
+                || hasListContent(zusatzWRZentral);
+    }
+
+    private boolean hasListContent(List<?> list) {
+        return list != null && !list.isEmpty();
+    }
+
+
+
+
 
 }

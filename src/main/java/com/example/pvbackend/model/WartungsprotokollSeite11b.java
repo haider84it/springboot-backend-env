@@ -34,4 +34,37 @@ public class WartungsprotokollSeite11b {
 
     // signature field
     private String unterschrift;
+
+
+    private boolean hasStringListContent(List<String> list) {
+        if (list == null) return false;
+        for (String s : list) {
+            if (s != null && !s.trim().isEmpty()) return true;
+        }
+        return false;
+    }
+
+    private boolean notEmpty(String s) {
+        return s != null && !s.trim().isEmpty();
+    }
+
+
+
+    public boolean hasContent() {
+        return hasBooleanListContent(noten)
+                || hasBooleanListContent(abschluss)
+                || hasStringListContent(anmerkungen)
+                || allesErledigt != null
+                || notEmpty(datum)
+                || notEmpty(unterschrift);
+    }
+
+    private boolean hasBooleanListContent(List<Boolean> list) {
+        if (list == null) return false;
+        for (Boolean b : list) {
+            if (b != null) return true;
+        }
+        return false;
+    }
+
 }

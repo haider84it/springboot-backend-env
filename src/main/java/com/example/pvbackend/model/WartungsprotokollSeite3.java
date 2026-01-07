@@ -81,4 +81,24 @@ public class WartungsprotokollSeite3 {
         private Boolean sbm;
         private Boolean sbeiblatt;
     }
+
+
+    public boolean hasContent() {
+        return hasListContent(moduleZustand)
+                || hasListContent(zusatz1)
+                || hasListContent(anlageZustand)
+                || verschmutzungLeicht != null
+                || verschmutzungMittel != null
+                || verschmutzungStark != null
+                || verschmutzungPartiell != null
+                || verschmutzungFlaechig != null
+                || verschmutzungRand != null
+                || reinigungEmpfohlenJa != null
+                || reinigungEmpfohlenNein != null
+                || hasListContent(zusatz2);
+    }
+
+    private boolean hasListContent(List<?> list) {
+        return list != null && !list.isEmpty();
+    }
 }

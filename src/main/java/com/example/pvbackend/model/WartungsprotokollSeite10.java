@@ -53,5 +53,15 @@ public class WartungsprotokollSeite10 {
         private Boolean nbeh;
     }
 
+    public boolean hasContent() {
+        return hasListContent(pruefungMSP)
+                || hasListContent(zusatzMSP);
+    }
+
+    private boolean hasListContent(List<?> list) {
+        return list != null && !list.isEmpty();
+    }
+
+
 
 }

@@ -54,4 +54,39 @@ public class WartungsprotokollSeite1 {
     private String ersatzpunkt1;
     private String ersatzpunkt2;
     private String ersatzpunkt3;
+
+
+    public boolean hasContent() {
+        return notEmpty(anlagenbezeichnung)
+                || notEmpty(vorgang)
+                || notEmpty(auftraggeber)
+                || wartungspaket != null
+                || dcMessungen != null
+                || dcNurBeiUnregelmaessigkeiten != null
+                || notEmpty(dcVollstaendigOderBereich)
+                || vollstaendigGemaessDin != null
+                || acMessungen != null
+                || acNurBeiUnregelmaessigkeiten != null
+                || notEmpty(acVollstaendigOderBereich)
+                || zentralwechselrichter != null
+                || mittelspannungsanlagenErweitert != null
+                || erdungsmessungenStationen != null
+                || sichtpruefungMittelspannungsanlagen != null
+                || reinigung != null
+                || reinigungWr != null
+                || reinigungGak != null
+                || reinigungModule != null
+                || thermografie != null
+                || thermografieVerteiler != null
+                || thermografieModule != null
+                || thermografieMspAnlagen != null
+                || kennlinienmessungen != null
+                || notEmpty(ersatzpunkt1)
+                || notEmpty(ersatzpunkt2)
+                || notEmpty(ersatzpunkt3);
+    }
+
+    private boolean notEmpty(String s) {
+        return s != null && !s.trim().isEmpty();
+    }
 }

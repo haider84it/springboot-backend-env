@@ -66,4 +66,19 @@ public class WartungsprotokollSeite6 {
         private Boolean beh;
         private Boolean nbeh;
     }
+
+
+    public boolean hasContent() {
+        return hasListContent(pruefungWR)
+                || hasListContent(zusatzWR)
+                || hasListContent(pruefungAC)
+                || hasListContent(zusatzAC);
+    }
+
+    private boolean hasListContent(List<?> list) {
+        return list != null && !list.isEmpty();
+    }
+
+
+
 }
