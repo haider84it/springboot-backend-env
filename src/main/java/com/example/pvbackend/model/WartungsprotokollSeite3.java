@@ -84,21 +84,50 @@ public class WartungsprotokollSeite3 {
 
 
     public boolean hasContent() {
-        return hasListContent(moduleZustand)
-                || hasListContent(zusatz1)
-                || hasListContent(anlageZustand)
-                || verschmutzungLeicht != null
-                || verschmutzungMittel != null
-                || verschmutzungStark != null
-                || verschmutzungPartiell != null
-                || verschmutzungFlaechig != null
-                || verschmutzungRand != null
-                || reinigungEmpfohlenJa != null
-                || reinigungEmpfohlenNein != null
-                || hasListContent(zusatz2);
+        return hasCheckRow3(moduleZustand)
+                || hasZusatz(zusatz1)
+                || hasCheckRow5(anlageZustand)
+                || Boolean.TRUE.equals(verschmutzungLeicht)
+                || Boolean.TRUE.equals(verschmutzungMittel)
+                || Boolean.TRUE.equals(verschmutzungStark)
+                || Boolean.TRUE.equals(verschmutzungPartiell)
+                || Boolean.TRUE.equals(verschmutzungFlaechig)
+                || Boolean.TRUE.equals(verschmutzungRand)
+                || Boolean.TRUE.equals(reinigungEmpfohlenJa)
+                || Boolean.TRUE.equals(reinigungEmpfohlenNein)
+                || hasZusatz(zusatz2);
     }
 
-    private boolean hasListContent(List<?> list) {
-        return list != null && !list.isEmpty();
+    private boolean hasCheckRow3(List<CheckRow3> list) {
+        return list != null && list.stream().anyMatch(r ->
+                Boolean.TRUE.equals(r.getJa()) ||
+                        Boolean.TRUE.equals(r.getNein()) ||
+                        Boolean.TRUE.equals(r.getNz())
+        );
     }
+
+
+    private boolean hasCheckRow5(List<CheckRow5State3> list) {
+        return list != null && list.stream().anyMatch(r ->
+                Boolean.TRUE.equals(r.getJa()) ||
+                        Boolean.TRUE.equals(r.getNein()) ||
+                        Boolean.TRUE.equals(r.getNz()) ||
+                        Boolean.TRUE.equals(r.getSbm()) ||
+                        Boolean.TRUE.equals(r.getSbeiblatt())
+        );
+    }
+
+    private boolean hasZusatz(List<ZusatzEintrag3> list) {
+        return list != null && list.stream().anyMatch(r ->
+                (r.getZupunkt() != null && !r.getZupunkt().isBlank()) ||
+                        (r.getBemerkung() != null && !r.getBemerkung().isBlank()) ||
+                        (r.getStandort() != null && !r.getStandort().isBlank()) ||
+                        Boolean.TRUE.equals(r.getPlan()) ||
+                        (r.getBildnr() != null && !r.getBildnr().isBlank()) ||
+                        Boolean.TRUE.equals(r.getBeh()) ||
+                        Boolean.TRUE.equals(r.getNbeh())
+        );
+    }
+
+
 }

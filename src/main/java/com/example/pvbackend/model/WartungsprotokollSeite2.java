@@ -49,10 +49,10 @@ public class WartungsprotokollSeite2 {
     }
 
     public boolean hasContent() {
-        return zugangsschluesselVorhanden != null
-                || thermoKameraVorhanden != null
-                || betreiberKontaktiert != null
-                || eigentuemerKontaktiert != null
+        return Boolean.TRUE.equals(zugangsschluesselVorhanden)
+                || Boolean.TRUE.equals(thermoKameraVorhanden)
+                || Boolean.TRUE.equals(betreiberKontaktiert)
+                || Boolean.TRUE.equals(eigentuemerKontaktiert)
                 || notEmpty(zugangsschluesselAnmerkung)
                 || notEmpty(thermoKameraAnmerkung)
                 || notEmpty(betreiberAnmerkung)
