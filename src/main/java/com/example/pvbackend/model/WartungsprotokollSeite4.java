@@ -62,6 +62,7 @@ public class WartungsprotokollSeite4 {
         private Boolean ja;
         private Boolean nein;
         private Boolean nz;
+        private Boolean sbm; // s.B./M.
     }
 
     /**
