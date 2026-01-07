@@ -68,17 +68,43 @@ public class WartungsprotokollSeite6 {
     }
 
 
+    private boolean hasPruefungWR() {
+        return pruefungWR != null && pruefungWR.stream().anyMatch(r ->
+                Boolean.TRUE.equals(r.getJa()) ||
+                        Boolean.TRUE.equals(r.getNein()) ||
+                        Boolean.TRUE.equals(r.getNz())
+        );
+    }
+
+    private boolean hasPruefungAC() {
+        return pruefungAC != null && pruefungAC.stream().anyMatch(r ->
+                Boolean.TRUE.equals(r.getJa()) ||
+                        Boolean.TRUE.equals(r.getNein()) ||
+                        Boolean.TRUE.equals(r.getNz()) ||
+                        Boolean.TRUE.equals(r.getSbm()) ||
+                        Boolean.TRUE.equals(r.getSbeiblatt())
+        );
+    }
+
+    private boolean hasZusatz(List<ZusatzRow> list) {
+        return list != null && list.stream().anyMatch(r ->
+                (r.getZupunkt() != null && !r.getZupunkt().isBlank()) ||
+                        (r.getBemerkung() != null && !r.getBemerkung().isBlank()) ||
+                        (r.getStandort() != null && !r.getStandort().isBlank()) ||
+                        Boolean.TRUE.equals(r.getPlan()) ||
+                        (r.getBildnr() != null && !r.getBildnr().isBlank()) ||
+                        Boolean.TRUE.equals(r.getBeh()) ||
+                        Boolean.TRUE.equals(r.getNbeh())
+        );
+    }
+
+
     public boolean hasContent() {
-        return hasListContent(pruefungWR)
-                || hasListContent(zusatzWR)
-                || hasListContent(pruefungAC)
-                || hasListContent(zusatzAC);
+        return hasPruefungWR()
+                || hasZusatz(zusatzWR)
+                || hasPruefungAC()
+                || hasZusatz(zusatzAC);
     }
-
-    private boolean hasListContent(List<?> list) {
-        return list != null && !list.isEmpty();
-    }
-
 
 
 }
