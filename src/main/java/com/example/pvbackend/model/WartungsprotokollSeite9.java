@@ -28,7 +28,7 @@ public class WartungsprotokollSeite9 {
 
     // 13.1 – 13.23  → 23 rows
     @ElementCollection
-    private List<y> pruefungWRZentral = new ArrayList<>();
+    private List<ZentralWRRow> pruefungWRZentral = new ArrayList<>();
 
 
 

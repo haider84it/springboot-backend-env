@@ -727,8 +727,7 @@ public class PdfService {
         y -= 20;
 
         int nr = 1;
-        for (WartungsprotokollSeite9.ZentralWRRow row : s.getPruefungWRZentral()) {
-            text(cs,
+        for (WartungsprotokollSeite9.ZentralWRRow row : s.getPruefungWRZentral()) {            text(cs,
                     "13." + nr + "  " +
                             threeChecks(row.getJa(), row.getNein(), row.getNz()),
                     40, y, 9);
