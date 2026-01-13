@@ -20,6 +20,8 @@ public class Seite3PdfRenderer {
 
         try (PDPageContentStream cs = new PDPageContentStream(doc, page)) {
 
+            System.out.println("ModuleZustand size = " + s.getModuleZustand().size());
+
             cs.setFont(PDType1Font.HELVETICA_BOLD, 14);
             cs.beginText();
             cs.newLineAtOffset(40, 780);
