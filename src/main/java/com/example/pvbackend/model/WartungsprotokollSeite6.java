@@ -14,9 +14,8 @@ import java.util.List;
 @Setter
 public class WartungsprotokollSeite6 {
 
-    // ========================
+
     // SECTION 7 – Prüfung WR
-    // ========================
     @ElementCollection
     private List<RowWR> pruefungWR = new ArrayList<>();
 
@@ -33,9 +32,7 @@ public class WartungsprotokollSeite6 {
     private List<ZusatzRow> zusatzWR = new ArrayList<>();
 
 
-    // ============================
     // SECTION 8 – Prüfung AC-Verteiler
-    // ============================
     @ElementCollection
     private List<RowAC> pruefungAC = new ArrayList<>();
 
