@@ -76,80 +76,67 @@ public class WartungsprotokollSeite5 {
     private Boolean gakZugaenglich;
     private Boolean gakZugaenglichNein;
     private Boolean gakZugaenglichNz;
-    private Boolean gakZugaenglichSbm;
-    private Boolean gakZugaenglichBeiblatt;
+
 
     private Boolean gakStrangsicherungen;
     private Boolean gakStrangsicherungenNein;
     private Boolean gakStrangsicherungenNz;
-    private Boolean gakStrangsicherungenSbm;
-    private Boolean gakStrangsicherungenBeiblatt;
+
 
     private Boolean gakUssEinrichtungen;
     private Boolean gakUssEinrichtungenNein;
     private Boolean gakUssEinrichtungenNz;
-    private Boolean gakUssEinrichtungenSbm;
-    private Boolean gakUssEinrichtungenBeiblatt;
+
 
     private Boolean gakSchalter;
     private Boolean gakSchalterNein;
     private Boolean gakSchalterNz;
-    private Boolean gakSchalterSbm;
-    private Boolean gakSchalterBeiblatt;
+
 
     private Boolean gakFreiVonSchaeden;
     private Boolean gakFreiVonSchaedenNein;
     private Boolean gakFreiVonSchaedenNz;
-    private Boolean gakFreiVonSchaedenSbm;
-    private Boolean gakFreiVonSchaedenBeiblatt;
+
 
     private Boolean gakFreiVonFeuchtigkeit;
     private Boolean gakFreiVonFeuchtigkeitNein;
     private Boolean gakFreiVonFeuchtigkeitNz;
-    private Boolean gakFreiVonFeuchtigkeitSbm;
-    private Boolean gakFreiVonFeuchtigkeitBeiblatt;
+
 
     private Boolean gakInnererZustand;
     private Boolean gakInnererZustandNein;
     private Boolean gakInnererZustandNz;
-    private Boolean gakInnererZustandSbm;
-    private Boolean gakInnererZustandBeiblatt;
+
 
     private Boolean gakErdungOk;
     private Boolean gakErdungOkNein;
     private Boolean gakErdungOkNz;
-    private Boolean gakErdungOkSbm;
-    private Boolean gakErdungOkBeiblatt;
+
 
     private Boolean gakBeschriftungOk;
     private Boolean gakBeschriftungOkNein;
     private Boolean gakBeschriftungOkNz;
-    private Boolean gakBeschriftungOkSbm;
-    private Boolean gakBeschriftungOkBeiblatt;
+
 
     private Boolean gakKabelVerschraubungen;
     private Boolean gakKabelVerschraubungenNein;
     private Boolean gakKabelVerschraubungenNz;
-    private Boolean gakKabelVerschraubungenSbm;
-    private Boolean gakKabelVerschraubungenBeiblatt;
+
 
     private Boolean gakAnzugsmomente;
     private Boolean gakAnzugsmomenteNein;
     private Boolean gakAnzugsmomenteNz;
-    private Boolean gakAnzugsmomenteSbm;
-    private Boolean gakAnzugsmomenteBeiblatt;
+
 
     private Boolean gakGereinigt;
     private Boolean gakGereinigtNein;
     private Boolean gakGereinigtNz;
-    private Boolean gakGereinigtSbm;
-    private Boolean gakGereinigtBeiblatt;
+
 
     private Boolean gakKeineAuffaelligkeiten;
     private Boolean gakKeineAuffaelligkeitenNein;
     private Boolean gakKeineAuffaelligkeitenNz;
-    private Boolean gakKeineAuffaelligkeitenSbm;
-    private Boolean gakKeineAuffaelligkeitenBeiblatt;
+
 
 
     // Zusatz-Tabelle #2 (5 rows)
@@ -212,19 +199,19 @@ public class WartungsprotokollSeite5 {
                 messungNachDin62446Nein,
                 messungNachDin62446NichtZutreffend,
 
-                gakZugaenglich, gakZugaenglichNein, gakZugaenglichNz, gakZugaenglichSbm, gakZugaenglichBeiblatt,
-                gakStrangsicherungen, gakStrangsicherungenNein, gakStrangsicherungenNz, gakStrangsicherungenSbm, gakStrangsicherungenBeiblatt,
-                gakUssEinrichtungen, gakUssEinrichtungenNein, gakUssEinrichtungenNz, gakUssEinrichtungenSbm, gakUssEinrichtungenBeiblatt,
-                gakSchalter, gakSchalterNein, gakSchalterNz, gakSchalterSbm, gakSchalterBeiblatt,
-                gakFreiVonSchaeden, gakFreiVonSchaedenNein, gakFreiVonSchaedenNz, gakFreiVonSchaedenSbm, gakFreiVonSchaedenBeiblatt,
-                gakFreiVonFeuchtigkeit, gakFreiVonFeuchtigkeitNein, gakFreiVonFeuchtigkeitNz, gakFreiVonFeuchtigkeitSbm, gakFreiVonFeuchtigkeitBeiblatt,
-                gakInnererZustand, gakInnererZustandNein, gakInnererZustandNz, gakInnererZustandSbm, gakInnererZustandBeiblatt,
-                gakErdungOk, gakErdungOkNein, gakErdungOkNz, gakErdungOkSbm, gakErdungOkBeiblatt,
-                gakBeschriftungOk, gakBeschriftungOkNein, gakBeschriftungOkNz, gakBeschriftungOkSbm, gakBeschriftungOkBeiblatt,
-                gakKabelVerschraubungen, gakKabelVerschraubungenNein, gakKabelVerschraubungenNz, gakKabelVerschraubungenSbm, gakKabelVerschraubungenBeiblatt,
-                gakAnzugsmomente, gakAnzugsmomenteNein, gakAnzugsmomenteNz, gakAnzugsmomenteSbm, gakAnzugsmomenteBeiblatt,
-                gakGereinigt, gakGereinigtNein, gakGereinigtNz, gakGereinigtSbm, gakGereinigtBeiblatt,
-                gakKeineAuffaelligkeiten, gakKeineAuffaelligkeitenNein, gakKeineAuffaelligkeitenNz, gakKeineAuffaelligkeitenSbm, gakKeineAuffaelligkeitenBeiblatt
+                gakZugaenglich, gakZugaenglichNein, gakZugaenglichNz,
+                gakStrangsicherungen, gakStrangsicherungenNein, gakStrangsicherungenNz,
+                gakUssEinrichtungen, gakUssEinrichtungenNein, gakUssEinrichtungenNz,
+                gakSchalter, gakSchalterNein, gakSchalterNz,
+                gakFreiVonSchaeden, gakFreiVonSchaedenNein, gakFreiVonSchaedenNz,
+                gakFreiVonFeuchtigkeit, gakFreiVonFeuchtigkeitNein, gakFreiVonFeuchtigkeitNz,
+                gakInnererZustand, gakInnererZustandNein, gakInnererZustandNz,
+                gakErdungOk, gakErdungOkNein, gakErdungOkNz,
+                gakBeschriftungOk, gakBeschriftungOkNein, gakBeschriftungOkNz,
+                gakKabelVerschraubungen, gakKabelVerschraubungenNein, gakKabelVerschraubungenNz,
+                gakAnzugsmomente, gakAnzugsmomenteNein, gakAnzugsmomenteNz,
+                gakGereinigt, gakGereinigtNein, gakGereinigtNz,
+                gakKeineAuffaelligkeiten, gakKeineAuffaelligkeitenNein, gakKeineAuffaelligkeitenNz
         )
                 || anyStringNotEmpty(
                 zt5Punkt1, zt5Bemerkung1, zt5Standort1, zt5BildNr1,

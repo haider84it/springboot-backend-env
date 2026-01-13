@@ -78,8 +78,6 @@ public class WartungsprotokollSeite3 {
         private Boolean ja;
         private Boolean nein;
         private Boolean nz;
-        private Boolean sbm;
-        private Boolean sbeiblatt;
     }
 
 
@@ -111,9 +109,7 @@ public class WartungsprotokollSeite3 {
         return list != null && list.stream().anyMatch(r ->
                 Boolean.TRUE.equals(r.getJa()) ||
                         Boolean.TRUE.equals(r.getNein()) ||
-                        Boolean.TRUE.equals(r.getNz()) ||
-                        Boolean.TRUE.equals(r.getSbm()) ||
-                        Boolean.TRUE.equals(r.getSbeiblatt())
+                        Boolean.TRUE.equals(r.getNz())
         );
     }
 

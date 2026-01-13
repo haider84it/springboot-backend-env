@@ -45,8 +45,6 @@ public class WartungsprotokollSeite6 {
         private Boolean ja;
         private Boolean nein;
         private Boolean nz;
-        private Boolean sbm;       // s.B./M.
-        private Boolean sbeiblatt; // s.Beiblatt Nr.
     }
 
     // Zusatz-Tabelle AC (5 rows)
@@ -80,9 +78,7 @@ public class WartungsprotokollSeite6 {
         return pruefungAC != null && pruefungAC.stream().anyMatch(r ->
                 Boolean.TRUE.equals(r.getJa()) ||
                         Boolean.TRUE.equals(r.getNein()) ||
-                        Boolean.TRUE.equals(r.getNz()) ||
-                        Boolean.TRUE.equals(r.getSbm()) ||
-                        Boolean.TRUE.equals(r.getSbeiblatt())
+                        Boolean.TRUE.equals(r.getNz())
         );
     }
 
