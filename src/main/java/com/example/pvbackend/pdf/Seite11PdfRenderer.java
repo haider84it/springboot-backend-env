@@ -19,7 +19,7 @@ public class Seite11PdfRenderer {
 
     public void render(PDDocument doc, WartungsprotokollSeite11 s) throws IOException {
 
-        PDPage page = new PDPage(new PDRectangle(PDRectangle.A4.getHeight(), PDRectangle.A4.getWidth()));
+        PDPage page = new PDPage(PDRectangle.A4);
         doc.addPage(page);
 
         try (PDPageContentStream cs = new PDPageContentStream(doc, page)) {
