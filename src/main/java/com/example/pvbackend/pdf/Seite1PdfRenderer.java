@@ -35,6 +35,8 @@ public class Seite1PdfRenderer {
             cs.setFont(PDType1Font.HELVETICA, 9);
             float y = 745;
 
+            y -= 30; // move down by 10 points
+
             // ---------- Top fields ----------
             // left column
             text(cs, "Anlagenbezeichnung / ID", 40, y, 9);
