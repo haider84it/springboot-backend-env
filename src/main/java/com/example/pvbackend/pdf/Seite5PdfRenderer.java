@@ -82,9 +82,8 @@ public class Seite5PdfRenderer {
             text(cs, "SECTION 6 – Prüfung GAKs", 40, y, 11);
             y -= 20;
 
-            y = drawCheckFive(cs, "6.1 GAK zugänglich",
-                    s.getGakZugaenglich(), s.getGakZugaenglichNein(), s.getGakZugaenglichNz(),
-                    s.getGakZugaenglichSbm(), s.getGakZugaenglichBeiblatt(), y);
+            y = drawCheckThree(cs, "6.1 GAK zugänglich",
+                    s.getGakZugaenglich(), s.getGakZugaenglichNein(), s.getGakZugaenglichNz(), y );
 
             // … remaining drawCheckFive calls unchanged …
 

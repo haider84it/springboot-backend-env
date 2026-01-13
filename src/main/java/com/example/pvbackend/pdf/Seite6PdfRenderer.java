@@ -60,9 +60,7 @@ public class Seite6PdfRenderer {
             for (WartungsprotokollSeite6.RowAC row : s.getPruefungAC()) {
                 text(cs,
                         "8." + nr
-                                + threeChecks(row.getJa(), row.getNein(), row.getNz())
-                                + "  s.B/M:" + checkbox(Boolean.TRUE.equals(row.getSbm()))
-                                + "  s.Beiblatt:" + checkbox(Boolean.TRUE.equals(row.getSbeiblatt())),
+                                + threeChecks(row.getJa(), row.getNein(), row.getNz()),
                         40, y, 9);
                 y -= 15;
                 nr++;

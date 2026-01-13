@@ -67,8 +67,7 @@ public class Seite4PdfRenderer {
                         "4." + nr +
                                 "  Ja:" + checkbox(Boolean.TRUE.equals(row.getJa())) +
                                 "  Nein:" + checkbox(Boolean.TRUE.equals(row.getNein())) +
-                                "  n.z:" + checkbox(Boolean.TRUE.equals(row.getNz())) +
-                                "  s.B/M:" + checkbox(Boolean.TRUE.equals(row.getSbm())),
+                                "  n.z:" + checkbox(Boolean.TRUE.equals(row.getNz())) ,
                         40, y, 9);
                 y -= 15;
                 nr++;

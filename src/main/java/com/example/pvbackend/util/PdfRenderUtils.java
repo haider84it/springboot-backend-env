@@ -89,27 +89,23 @@ public class PdfRenderUtils {
         return y - 15;
     }
 
-    public static float drawCheckFive(
+    public static float drawCheckThree(
             PDPageContentStream cs,
             String label,
             Boolean ja,
             Boolean nein,
             Boolean nz,
-            Boolean sbm,
-            Boolean beiblatt,
             float y
     ) throws IOException {
 
-        if (ja == null && nein == null && nz == null && sbm == null && beiblatt == null)
+        if (ja == null && nein == null && nz == null)
             return y;
 
         text(cs,
                 label
                         + "   Ja:" + checkbox(Boolean.TRUE.equals(ja))
                         + "   Nein:" + checkbox(Boolean.TRUE.equals(nein))
-                        + "   n.z:" + checkbox(Boolean.TRUE.equals(nz))
-                        + "   s.B/M:" + checkbox(Boolean.TRUE.equals(sbm))
-                        + "   Beiblatt:" + checkbox(Boolean.TRUE.equals(beiblatt)),
+                        + "   n.z:" + checkbox(Boolean.TRUE.equals(nz)),
                 40, y, 9);
 
         return y - 15;
