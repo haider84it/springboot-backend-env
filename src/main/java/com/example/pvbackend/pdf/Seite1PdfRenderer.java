@@ -6,11 +6,13 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
 import static com.example.pvbackend.util.PdfRenderUtils.safe;
 
+@Component
 public class Seite1PdfRenderer {
 
 

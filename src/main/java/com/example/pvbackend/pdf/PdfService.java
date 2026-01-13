@@ -14,8 +14,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 
-import static com.example.pvbackend.util.PdfRenderUtils.*;
-
 
 @Service
 @RequiredArgsConstructor
@@ -36,9 +34,8 @@ public class PdfService {
     private final Seite11bPdfRenderer seite11bPdfRenderer;
     private final Seite12PdfRenderer seite12PdfRenderer;
 
-    // ---------------------------------------------------------------
     // PUBLIC: Generate PDF for one Protokoll
-    // ---------------------------------------------------------------
+
     public byte[] generate(Long id) {
         Wartungsprotokoll p = wartungsprotokollService.findById(id)
                 .orElseThrow(() -> new RuntimeException("Protokoll not found"));
@@ -68,10 +65,7 @@ public class PdfService {
         }
     }
 
-    // ===============================================================
     // PAGE HELPERS
-    // ===============================================================
-
     private PDPageContentStream startPage(PDDocument doc, String title) throws IOException {
 
         PDPage page = new PDPage(new PDRectangle(PDRectangle.A4.getHeight(), PDRectangle.A4.getWidth()));
@@ -94,12 +88,6 @@ public class PdfService {
     }
 
 
-
-
-
-
-
-
     private void text(PDPageContentStream cs, String txt, float x, float y, int size) throws IOException {
         cs.setFont(PDType1Font.HELVETICA, size);
         cs.beginText();
@@ -109,13 +97,10 @@ public class PdfService {
     }
 
 
-
-
     // Convert boolean → checkbox symbol
     private String checkbox(boolean b) {
         return b ? "[X]" : "[ ]";
     }
-
 
 
 }
