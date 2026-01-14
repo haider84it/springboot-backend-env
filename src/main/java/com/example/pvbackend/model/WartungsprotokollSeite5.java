@@ -182,7 +182,49 @@ public class WartungsprotokollSeite5 {
 
 
     public boolean hasContent() {
-        return true;
+        return anyBooleanNotNull(
+                messungModultragendeGemessen,
+                messungModultragendeNein,
+                messungModultragendeNichtZutreffend,
+                messungAlleModulstraengeGemessen,
+                messungAlleModulstraengeNein,
+                messungAlleModulstraengeNichtZutreffend,
+                messungErdungswiderstandGemessen,
+                messungErdungswiderstandNein,
+                messungErdungswiderstandNichtZutreffend,
+                messungErdungDurchgefuehrt,
+                messungErdungDurchgefuehrtNein,
+                messungErdungDurchgefuehrtNichtZutreffend,
+                messungNachDin62446,
+                messungNachDin62446Nein,
+                messungNachDin62446NichtZutreffend,
+
+                gakZugaenglich, gakZugaenglichNein, gakZugaenglichNz,
+                gakStrangsicherungen, gakStrangsicherungenNein, gakStrangsicherungenNz,
+                gakUssEinrichtungen, gakUssEinrichtungenNein, gakUssEinrichtungenNz,
+                gakSchalter, gakSchalterNein, gakSchalterNz,
+                gakFreiVonSchaeden, gakFreiVonSchaedenNein, gakFreiVonSchaedenNz,
+                gakFreiVonFeuchtigkeit, gakFreiVonFeuchtigkeitNein, gakFreiVonFeuchtigkeitNz,
+                gakInnererZustand, gakInnererZustandNein, gakInnererZustandNz,
+                gakErdungOk, gakErdungOkNein, gakErdungOkNz,
+                gakBeschriftungOk, gakBeschriftungOkNein, gakBeschriftungOkNz,
+                gakKabelVerschraubungen, gakKabelVerschraubungenNein, gakKabelVerschraubungenNz,
+                gakAnzugsmomente, gakAnzugsmomenteNein, gakAnzugsmomenteNz,
+                gakGereinigt, gakGereinigtNein, gakGereinigtNz,
+                gakKeineAuffaelligkeiten, gakKeineAuffaelligkeitenNein, gakKeineAuffaelligkeitenNz
+        )
+                || anyStringNotEmpty(
+                zt5Punkt1, zt5Bemerkung1, zt5Standort1, zt5BildNr1,
+                zt5Punkt2, zt5Bemerkung2, zt5Standort2, zt5BildNr2,
+                zt5Punkt3, zt5Bemerkung3, zt5Standort3, zt5BildNr3,
+                zt5Punkt4, zt5Bemerkung4, zt5Standort4, zt5BildNr4,
+                zt5Punkt5, zt5Bemerkung5, zt5Standort5, zt5BildNr5,
+                zt6Punkt1, zt6Bemerkung1, zt6Standort1, zt6BildNr1,
+                zt6Punkt2, zt6Bemerkung2, zt6Standort2, zt6BildNr2,
+                zt6Punkt3, zt6Bemerkung3, zt6Standort3, zt6BildNr3,
+                zt6Punkt4, zt6Bemerkung4, zt6Standort4, zt6BildNr4,
+                zt6Punkt5, zt6Bemerkung5, zt6Standort5, zt6BildNr5
+        );
     }
 
     private boolean anyBooleanNotNull(Boolean... values) {
