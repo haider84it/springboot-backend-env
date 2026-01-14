@@ -1,5 +1,7 @@
 package com.example.pvbackend.service;
 
+import com.example.pvbackend.dto.WartungsprotokollSeite5Dto;
+import com.example.pvbackend.mapper.WartungsprotokollSeite5Mapper;
 import com.example.pvbackend.model.Arbeitszeit;
 import com.example.pvbackend.model.Wartungsprotokoll;
 import com.example.pvbackend.repository.WartungsprotokollRepository;
@@ -87,6 +89,16 @@ public class WartungsprotokollService {
         return repository.save(protokoll);
     }
 
+    public Wartungsprotokoll updateSeite5(Long id, WartungsprotokollSeite5Dto dto) {
+        return repository.findById(id)
+                .map(existing -> {
+                    existing.setSeite5(
+                            WartungsprotokollSeite5Mapper.toEntity(dto)
+                    );
+                    return repository.save(existing);
+                })
+                .orElseThrow(() -> new RuntimeException("Wartungsprotokoll not found"));
+    }
 
     // DELETE
     public void delete(Long id) {

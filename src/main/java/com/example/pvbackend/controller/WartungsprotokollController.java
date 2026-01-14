@@ -1,5 +1,6 @@
 package com.example.pvbackend.controller;
 
+import com.example.pvbackend.dto.WartungsprotokollSeite5Dto;
 import com.example.pvbackend.model.Wartungsprotokoll;
 import com.example.pvbackend.pdf.PdfService;
 import com.example.pvbackend.service.WartungsprotokollService;
@@ -83,6 +84,15 @@ public class WartungsprotokollController {
                 .header("Content-Type", "application/pdf")
                 .header("Content-Disposition", "attachment; filename=wartungsprotokoll.pdf")
                 .body(bytes);
+    }
+
+    @PutMapping("/{id}/seite5")
+    public ResponseEntity<Void> updateSeite5(
+            @PathVariable Long id,
+            @RequestBody WartungsprotokollSeite5Dto dto
+    ) {
+        service.updateSeite5(id, dto);
+        return ResponseEntity.ok().build();
     }
 
 }
