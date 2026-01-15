@@ -86,13 +86,5 @@ public class WartungsprotokollController {
                 .body(bytes);
     }
 
-    @PutMapping("/{id}/seite5")
-    public ResponseEntity<Void> updateSeite5(
-            @PathVariable Long id,
-            @RequestBody WartungsprotokollSeite5Dto dto
-    ) {
-        service.updateSeite5(id, dto);
-        return ResponseEntity.ok().build();
-    }
 
 }
