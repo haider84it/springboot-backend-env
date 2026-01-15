@@ -57,6 +57,15 @@ public class Seite3PdfRenderer {
 
             float y = 740;
 
+            // before using the lists
+            while (s.getVerschattung().size() < VERSCHATTUNG_LABELS.length) {
+                s.getVerschattung().add(new WartungsprotokollSeite3.CheckRow3());
+            }
+
+            while (s.getAnlageZustand().size() < MODULZUSTAND_LABELS.length) {
+                s.getAnlageZustand().add(new WartungsprotokollSeite3.CheckRow5State3());
+            }
+
             // 1. Kontrolle der Anlage auf Verschattung
             text(cs, "1 Kontrolle der Anlage auf Verschattung", 40, y, 11);
             y -= 20;
