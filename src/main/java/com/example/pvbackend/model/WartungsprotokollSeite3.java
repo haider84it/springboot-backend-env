@@ -16,8 +16,7 @@ public class WartungsprotokollSeite3 {
     // ---------- SECTION 1 (1.1–1.3) ----------
     // each row: Ja / Nein / NZ
     @ElementCollection
-    private List<CheckRow3> moduleZustand = new ArrayList<>();
-
+    private List<CheckRow3> verschattung = new ArrayList<>();
 
     // ---------- ZUSATZ-TABELLE #1 ----------
     @ElementCollection
@@ -82,7 +81,7 @@ public class WartungsprotokollSeite3 {
 
 
     public boolean hasContent() {
-        return hasCheckRow3(moduleZustand)
+        return hasCheckRow3(verschattung)
                 || hasZusatz(zusatz1)
                 || hasCheckRow5(anlageZustand)
                 || Boolean.TRUE.equals(verschmutzungLeicht)
