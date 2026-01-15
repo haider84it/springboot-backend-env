@@ -15,6 +15,15 @@ import static com.example.pvbackend.util.PdfRenderUtils.safe;
 @Component
 public class Seite1PdfRenderer {
 
+    private static final float MARGIN_LEFT = 40;
+    private static final float MARGIN_RIGHT = 550;
+    private static final float START_Y = 750;
+    private static final float ROW_HEIGHT = 14;
+
+    private static final int FONT_TITLE = 14;
+    private static final int FONT_HEADER = 9;
+    private static final int FONT_BODY = 8;
+
 
 
     public void render(PDDocument doc, WartungsprotokollSeite1 s) throws IOException {
@@ -57,8 +66,13 @@ public class Seite1PdfRenderer {
             boolean isStandard = s.getWartungspaket() == Wartungspaket.STANDARD;
             boolean isDguvV3 = s.getWartungspaket() == Wartungspaket.DGUV_V3;
 
-            text(cs, "Standard " + checkbox(isStandard), 340, y - 47, 9);
-            text(cs, "DGUV V3 " + checkbox(isDguvV3), 430, y - 47, 9);
+            // Standard
+            drawCheckbox(cs, 340, y - 47, isStandard);
+            text(cs, "Standard", 352, y - 47, FONT_HEADER);
+
+            // DGUV V3
+            drawCheckbox(cs, 430, y - 47, isDguvV3);
+            text(cs, "DGUV V3", 442, y - 47, FONT_HEADER);
 
             y -= 80;
 
@@ -68,103 +82,182 @@ public class Seite1PdfRenderer {
             y -= 20;
 
             // DC-Messungen block
-            text(cs,
-                    checkbox(Boolean.TRUE.equals(s.getDcMessungen())) +
-                            " DC-Messungen (erforderlich wenn kein Überwachungssystem vorhanden, oder bei Unregelmäßigkeiten)",
-                    60, y, 8);
+            checkboxRow(cs, 60, y, Boolean.TRUE.equals(s.getDcMessungen()),
+                    "DC-Messungen (erforderlich wenn kein Überwachungssystem vorhanden, oder bei Unregelmäßigkeiten)");
+
+
             y -= 14;
 
-            text(cs,
-                    checkbox(Boolean.TRUE.equals(s.getDcNurBeiUnregelmaessigkeiten())) +
-                            " nur bei erkennbaren Unregelmäßigkeiten / Auffälligkeiten bei der Wartung vor Ort",
-                    80, y, 8);
+
+            checkboxRow(
+                    cs,
+                    80,
+                    y,
+                    Boolean.TRUE.equals(s.getDcNurBeiUnregelmaessigkeiten()),
+                    "nur bei erkennbaren Unregelmäßigkeiten / Auffälligkeiten bei der Wartung vor Ort"
+            );
+
+
             y -= 14;
 
             text(cs, "vollständig oder im folgenden Bereich:", 80, y, 8);
             text(cs, safe(s.getDcVollstaendigOderBereich()), 260, y, 8);
             drawLine(cs, 260, y - 2, 540, y - 2);
+
+
             y -= 14;
 
-            text(cs,
-                    checkbox(Boolean.TRUE.equals(s.getVollstaendigGemaessDin())) +
-                            " vollständige Messungen gem. DIN EN 62446",
-                    80, y, 8);
+
+
+            drawCheckbox(cs, 80, y, Boolean.TRUE.equals(s.getVollstaendigGemaessDin()));
+            text(
+                    cs,
+                    "vollständige Messungen gem. DIN EN 62446",
+                    92, y,
+                    FONT_BODY
+            );
+
+
+
             y -= 22;
 
             // AC-Messungen block
-            text(cs,
-                    checkbox(Boolean.TRUE.equals(s.getAcMessungen())) + " AC-Messungen",
-                    60, y, 8);
+            checkboxRow(cs, 60, y, Boolean.TRUE.equals(s.getAcMessungen()), "AC-Messungen");
+
             y -= 14;
 
-            text(cs,
-                    checkbox(Boolean.TRUE.equals(s.getAcNurBeiUnregelmaessigkeiten())) +
-                            " nur bei erkennbaren Unregelmäßigkeiten / Auffälligkeiten bei der Wartung vor Ort",
-                    80, y, 8);
+
+
+
+            checkboxRow(
+                    cs,
+                    80,
+                    y,
+                    Boolean.TRUE.equals(s.getAcNurBeiUnregelmaessigkeiten()),
+                    "nur bei erkennbaren Unregelmäßigkeiten / Auffälligkeiten bei der Wartung vor Ort"
+            );
+
+
             y -= 14;
+
+
 
             text(cs, "vollständig oder im folgenden Bereich:", 80, y, 8);
             text(cs, safe(s.getAcVollstaendigOderBereich()), 260, y, 8);
             drawLine(cs, 260, y - 2, 540, y - 2);
             y -= 22;
 
+
             // Weitere Optionen (einzelne Checkboxes)
-            text(cs,
-                    checkbox(Boolean.TRUE.equals(s.getZentralwechselrichter())) +
-                            " Wartung Zentralwechselrichter",
-                    60, y, 8);
+            checkboxRow(cs, 60, y, Boolean.TRUE.equals(s.getZentralwechselrichter()),
+                    "Wartung Zentralwechselrichter");
+
+
+
             y -= 12;
 
-            text(cs,
-                    checkbox(Boolean.TRUE.equals(s.getMittelspannungsanlagenErweitert())) +
-                            " Wartung Mittelspannungsanlagen erweitert",
-                    60, y, 8);
+            checkboxRow(
+                    cs,
+                    60,
+                    y,
+                    Boolean.TRUE.equals(s.getMittelspannungsanlagenErweitert()),
+                    "Wartung Mittelspannungsanlagen erweitert"
+            );
+
+
+
             y -= 12;
 
-            text(cs,
-                    checkbox(Boolean.TRUE.equals(s.getErdungsmessungenStationen())) +
-                            " Erdungsmessungen Stationen",
-                    60, y, 8);
+
+
+            checkboxRow(
+                    cs,
+                    60,
+                    y,
+                    Boolean.TRUE.equals(s.getErdungsmessungenStationen()),
+                    "Erdungsmessungen Stationen"
+            );
+
+
+
             y -= 12;
 
-            text(cs,
-                    checkbox(Boolean.TRUE.equals(s.getSichtpruefungMittelspannungsanlagen())) +
-                            " Sichtprüfung Mittelspannungsanlagen (Trafo- und Übergabestationen)",
-                    60, y, 8);
+
+            checkboxRow(
+                    cs,
+                    60,
+                    y,
+                    Boolean.TRUE.equals(s.getSichtpruefungMittelspannungsanlagen()),
+                    "Sichtprüfung Mittelspannungsanlagen (Trafo- und Übergabestationen)"
+            );
+
+
+
+
             y -= 12;
+
 
             // Reinigung + Unterpunkte
-            text(cs,
-                    checkbox(Boolean.TRUE.equals(s.getReinigung())) +
-                            " Reinigung (sofern verschmutzt bzw. notwendig)",
-                    60, y, 8);
+            checkboxRow(
+                    cs,
+                    60,
+                    y,
+                    Boolean.TRUE.equals(s.getReinigung()),
+                    "Reinigung (sofern verschmutzt bzw. notwendig)"
+            );
+
+
+
+
+
             y -= 12;
 
-            text(cs,
-                    checkbox(Boolean.TRUE.equals(s.getReinigungWr())) + " WR   " +
-                            checkbox(Boolean.TRUE.equals(s.getReinigungGak())) + " GAK   " +
-                            checkbox(Boolean.TRUE.equals(s.getReinigungModule())) + " Module",
-                    80, y, 8);
+
+
+            checkboxRow(cs, 80, y, Boolean.TRUE.equals(s.getReinigungWr()), "WR");
+            checkboxRow(cs, 120, y, Boolean.TRUE.equals(s.getReinigungGak()), "GAK");
+            checkboxRow(cs, 170, y, Boolean.TRUE.equals(s.getReinigungModule()), "Module");
+
+
+
             y -= 14;
+
+
 
             // Thermografie + Unterpunkte
-            text(cs,
-                    checkbox(Boolean.TRUE.equals(s.getThermografie())) +
-                            " Thermografieuntersuchung der folgenden Komponenten",
-                    60, y, 8);
+            checkboxRow(
+                    cs,
+                    60,
+                    y,
+                    Boolean.TRUE.equals(s.getThermografie()),
+                    "Thermografieuntersuchung der folgenden Komponenten"
+            );
+
+
             y -= 12;
 
-            text(cs,
-                    checkbox(Boolean.TRUE.equals(s.getThermografieVerteiler())) + " Verteiler   " +
-                            checkbox(Boolean.TRUE.equals(s.getThermografieModule())) + " Module   " +
-                            checkbox(Boolean.TRUE.equals(s.getThermografieMspAnlagen())) + " MSP-Anlagen",
-                    80, y, 8);
+
+
+            checkboxRow(cs, 80, y, Boolean.TRUE.equals(s.getThermografieVerteiler()), "Verteiler");
+            checkboxRow(cs, 150, y, Boolean.TRUE.equals(s.getThermografieModule()), "Module");
+            checkboxRow(cs, 210, y, Boolean.TRUE.equals(s.getThermografieMspAnlagen()), "MSP-Anlagen");
+
+
+
             y -= 14;
 
-            text(cs,
-                    checkbox(Boolean.TRUE.equals(s.getKennlinienmessungen())) +
-                            " Kennlinienmessungen",
-                    60, y, 8);
+
+
+            checkboxRow(
+                    cs,
+                    60,
+                    y,
+                    Boolean.TRUE.equals(s.getKennlinienmessungen()),
+                    "Kennlinienmessungen"
+            );
+
+
+
             y -= 30;
 
             // ---------- Bottom text blocks ----------
@@ -216,9 +309,28 @@ public class Seite1PdfRenderer {
         cs.lineTo(x2, y2);
         cs.stroke();
     }
-    // Convert boolean → checkbox symbol
-    private String checkbox(boolean b) {
-        return b ? "[X]" : "[ ]";
+
+    private void drawCheckbox(PDPageContentStream cs, float x, float y, boolean checked) throws IOException {
+        float size = 8;
+
+        // box
+        cs.addRect(x, y - size, size, size);
+        cs.stroke();
+
+        // X if checked
+        if (checked) {
+            cs.moveTo(x + 1, y - 1);
+            cs.lineTo(x + size - 1, y - size + 1);
+            cs.moveTo(x + 1, y - size + 1);
+            cs.lineTo(x + size - 1, y - 1);
+            cs.stroke();
+        }
+    }
+
+    private void checkboxRow(PDPageContentStream cs, float x, float y, boolean checked, String label)
+            throws IOException {
+        drawCheckbox(cs, x, y, checked);
+        text(cs, label, x + 12, y, FONT_BODY);
     }
 
 }
