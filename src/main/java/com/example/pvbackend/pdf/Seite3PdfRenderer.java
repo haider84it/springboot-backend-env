@@ -144,14 +144,16 @@ public class Seite3PdfRenderer {
 
         text(cs, label, x, y, 9);
 
-        drawCheckbox(cs, x + 280, y, ja);
-        text(cs, "Ja", x + 292, y, 9);
+        float col = x + 340; // ← move checkboxes right
 
-        drawCheckbox(cs, x + 330, y, nein);
-        text(cs, "Nein", x + 342, y, 9);
+        drawCheckbox(cs, col, y, ja);
+        text(cs, "Ja", col + 12, y, 9);
 
-        drawCheckbox(cs, x + 380, y, nz);
-        text(cs, "n.z.", x + 392, y, 9);
+        drawCheckbox(cs, col + 50, y, nein);
+        text(cs, "Nein", col + 62, y, 9);
+
+        drawCheckbox(cs, col + 100, y, nz);
+        text(cs, "n.z.", col + 112, y, 9);
     }
 
 
