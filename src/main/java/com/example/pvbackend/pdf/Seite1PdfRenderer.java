@@ -313,16 +313,17 @@ public class Seite1PdfRenderer {
     private void drawCheckbox(PDPageContentStream cs, float x, float y, boolean checked) throws IOException {
         float size = 8;
 
+        float yOffset = 2; // ← adjust this (try 1–2)
+
         // box
-        cs.addRect(x, y - size, size, size);
+        cs.addRect(x, y - size + yOffset, size, size);
         cs.stroke();
 
-        // X if checked
         if (checked) {
-            cs.moveTo(x + 1, y - 1);
-            cs.lineTo(x + size - 1, y - size + 1);
-            cs.moveTo(x + 1, y - size + 1);
-            cs.lineTo(x + size - 1, y - 1);
+            cs.moveTo(x + 1, y - 1 + yOffset);
+            cs.lineTo(x + size - 1, y - size + 1 + yOffset);
+            cs.moveTo(x + 1, y - size + 1 + yOffset);
+            cs.lineTo(x + size - 1, y - 1 + yOffset);
             cs.stroke();
         }
     }
