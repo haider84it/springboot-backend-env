@@ -1,6 +1,5 @@
 package com.example.pvbackend.pdf;
 
-import com.example.pvbackend.model.WartungsprotokollSeite4;
 import com.example.pvbackend.model.WartungsprotokollSeite5;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -41,40 +40,47 @@ public class Seite5PdfRenderer {
             y -= 20;
 
             y = drawCheckTriple(cs, "5.1 Modultragende Teile gemessen",
-                    s.getMessungModultragendeGemessen(),
-                    s.getMessungModultragendeNein(),
-                    s.getMessungModultragendeNichtZutreffend(), y);
+                    s.getMessungenPV().get(0).getJa(),
+                    s.getMessungenPV().get(0).getNein(),
+                    s.getMessungenPV().get(0).getNz(), y);
 
             y = drawCheckTriple(cs, "5.2 Alle Modulstränge gemessen",
-                    s.getMessungAlleModulstraengeGemessen(),
-                    s.getMessungAlleModulstraengeNein(),
-                    s.getMessungAlleModulstraengeNichtZutreffend(), y);
+                    s.getMessungenPV().get(1).getJa(),
+                    s.getMessungenPV().get(1).getNein(),
+                    s.getMessungenPV().get(1).getNz(), y);
 
             y = drawCheckTriple(cs, "5.3 Erdungswiderstand gemessen",
-                    s.getMessungErdungswiderstandGemessen(),
-                    s.getMessungErdungswiderstandNein(),
-                    s.getMessungErdungswiderstandNichtZutreffend(), y);
+                    s.getMessungenPV().get(2).getJa(),
+                    s.getMessungenPV().get(2).getNein(),
+                    s.getMessungenPV().get(2).getNz(), y);
 
-            y = drawCheckTriple(cs, "5.4 Erdung durchgeführt",
-                    s.getMessungErdungDurchgefuehrt(),
-                    s.getMessungErdungDurchgefuehrtNein(),
-                    s.getMessungErdungDurchgefuehrtNichtZutreffend(), y);
+            y = drawCheckTriple(
+                    cs,
+                    "5.4 Erdung durchgeführt",
+                    s.getMessungenPV().get(3).getJa(),
+                    s.getMessungenPV().get(3).getNein(),
+                    s.getMessungenPV().get(3).getNz(),
+                    y
+            );
 
-            y = drawCheckTriple(cs, "5.5 Nach DIN 62446 geprüft",
-                    s.getMessungNachDin62446(),
-                    s.getMessungNachDin62446Nein(),
-                    s.getMessungNachDin62446NichtZutreffend(), y);
+            y = drawCheckTriple(
+                    cs,
+                    "5.5 Nach DIN 62446 geprüft",
+                    s.getMessungenPV().get(4).getJa(),
+                    s.getMessungenPV().get(4).getNein(),
+                    s.getMessungenPV().get(4).getNz(),
+                    y
+            );
 
             y -= 10;
 
             // Zusatz-Tabelle #1
-            y = drawZusatzTabelle(cs, List.of(
-                    newRow(s.getZt5Punkt1(), s.getZt5Bemerkung1(), s.getZt5Standort1(), s.getZt5Plan1(), s.getZt5BildNr1(), s.getZt5Beh1(), s.getZt5NichtBeh1()),
-                    newRow(s.getZt5Punkt2(), s.getZt5Bemerkung2(), s.getZt5Standort2(), s.getZt5Plan2(), s.getZt5BildNr2(), s.getZt5Beh2(), s.getZt5NichtBeh2()),
-                    newRow(s.getZt5Punkt3(), s.getZt5Bemerkung3(), s.getZt5Standort3(), s.getZt5Plan3(), s.getZt5BildNr3(), s.getZt5Beh3(), s.getZt5NichtBeh3()),
-                    newRow(s.getZt5Punkt4(), s.getZt5Bemerkung4(), s.getZt5Standort4(), s.getZt5Plan4(), s.getZt5BildNr4(), s.getZt5Beh4(), s.getZt5NichtBeh4()),
-                    newRow(s.getZt5Punkt5(), s.getZt5Bemerkung5(), s.getZt5Standort5(), s.getZt5Plan5(), s.getZt5BildNr5(), s.getZt5Beh5(), s.getZt5NichtBeh5())
-            ), "Zusatz-Tabelle #1", y);
+            y = drawZusatzTabelle(
+                    cs,
+                    s.getZusatz1(),
+                    "Zusatz-Tabelle #1",
+                    y
+            );
 
             y -= 10;
 
@@ -82,18 +88,23 @@ public class Seite5PdfRenderer {
             text(cs, "SECTION 6 – Prüfung GAKs", 40, y, 11);
             y -= 20;
 
-            y = drawCheckThree(cs, "6.1 GAK zugänglich",
-                    s.getGakZugaenglich(), s.getGakZugaenglichNein(), s.getGakZugaenglichNz(), y );
+            y = drawCheckThree(
+                    cs,
+                    "6.1 GAK zugänglich",
+                    s.getPruefungGAKs().get(0).getJa(),
+                    s.getPruefungGAKs().get(0).getNein(),
+                    s.getPruefungGAKs().get(0).getNz(),
+                    y
+            );
 
             // … remaining drawCheckFive calls unchanged …
 
-            drawZusatzTabelle(cs, List.of(
-                    newRow(s.getZt6Punkt1(), s.getZt6Bemerkung1(), s.getZt6Standort1(), s.getZt6Plan1(), s.getZt6BildNr1(), s.getZt6Beh1(), s.getZt6NichtBeh1()),
-                    newRow(s.getZt6Punkt2(), s.getZt6Bemerkung2(), s.getZt6Standort2(), s.getZt6Plan2(), s.getZt6BildNr2(), s.getZt6Beh2(), s.getZt6NichtBeh2()),
-                    newRow(s.getZt6Punkt3(), s.getZt6Bemerkung3(), s.getZt6Standort3(), s.getZt6Plan3(), s.getZt6BildNr3(), s.getZt6Beh3(), s.getZt6NichtBeh3()),
-                    newRow(s.getZt6Punkt4(), s.getZt6Bemerkung4(), s.getZt6Standort4(), s.getZt6Plan4(), s.getZt6BildNr4(), s.getZt6Beh4(), s.getZt6NichtBeh4()),
-                    newRow(s.getZt6Punkt5(), s.getZt6Bemerkung5(), s.getZt6Standort5(), s.getZt6Plan5(), s.getZt6BildNr5(), s.getZt6Beh5(), s.getZt6NichtBeh5())
-            ), "Zusatz-Tabelle #2", y);
+            drawZusatzTabelle(
+                    cs,
+                    s.getZusatz2(),
+                    "Zusatz-Tabelle #2",
+                    y
+            );
         }
     }
 
@@ -116,7 +127,7 @@ public class Seite5PdfRenderer {
         y -= 20;
 
         for (Object o : list) {
-            if (!(o instanceof WartungsprotokollSeite4.ZusatzRow z)) continue;
+            if (!(o instanceof WartungsprotokollSeite5.ZusatzRow z)) continue;
 
             if (isEmpty(z)) continue;
 
@@ -168,25 +179,5 @@ public class Seite5PdfRenderer {
     }
 
 
-
-    public static WartungsprotokollSeite4.ZusatzRow newRow(
-            String punkt,
-            String bemerkung,
-            String standort,
-            Boolean plan,
-            String bildnr,
-            Boolean beh,
-            Boolean nbeh
-    ) {
-        WartungsprotokollSeite4.ZusatzRow r = new WartungsprotokollSeite4.ZusatzRow();
-        r.setZupunkt(punkt);
-        r.setBemerkung(bemerkung);
-        r.setStandort(standort);
-        r.setPlan(plan);
-        r.setBildnr(bildnr);
-        r.setBeh(beh);
-        r.setNbeh(nbeh);
-        return r;
-    }
 
 }

@@ -1,8 +1,5 @@
 package com.example.pvbackend.service;
 
-import com.example.pvbackend.dto.WartungsprotokollSeite5Dto;
-import com.example.pvbackend.mapper.WartungsprotokollSeite5Mapper;
-import com.example.pvbackend.model.Arbeitszeit;
 import com.example.pvbackend.model.Wartungsprotokoll;
 import com.example.pvbackend.repository.WartungsprotokollRepository;
 import org.springframework.stereotype.Service;

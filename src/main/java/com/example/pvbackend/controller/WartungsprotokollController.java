@@ -1,6 +1,5 @@
 package com.example.pvbackend.controller;
 
-import com.example.pvbackend.dto.WartungsprotokollSeite5Dto;
 import com.example.pvbackend.model.Wartungsprotokoll;
 import com.example.pvbackend.pdf.PdfService;
 import com.example.pvbackend.service.WartungsprotokollService;
