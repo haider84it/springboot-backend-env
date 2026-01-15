@@ -41,12 +41,13 @@ public class Seite4PdfRenderer {
 
             int nr = 1;
             for (WartungsprotokollSeite4.RowCheckSimple row : s.getPruefungMontage()) {
-                text(cs,
-                        "3." + nr + " " + MONTAGE_LABELS[nr - 1] +
-                                "  Ja:" + checkbox(Boolean.TRUE.equals(row.getJa())) +
-                                "  Nein:" + checkbox(Boolean.TRUE.equals(row.getNein())) +
-                                "  n.z:" + checkbox(Boolean.TRUE.equals(row.getNz())),
-                        40, y, 9);
+
+                text(cs, "3." + nr + " " + MONTAGE_LABELS[nr - 1], 40, y, 9);
+
+                drawCheckbox(cs, 420, y, Boolean.TRUE.equals(row.getJa()));
+                drawCheckbox(cs, 470, y, Boolean.TRUE.equals(row.getNein()));
+                drawCheckbox(cs, 520, y, Boolean.TRUE.equals(row.getNz()));
+
                 y -= 15;
                 nr++;
             }
@@ -63,12 +64,11 @@ public class Seite4PdfRenderer {
 
             nr = 1;
             for (WartungsprotokollSeite4.RowCheckExtended row : s.getSichtkontrolle()) {
-                text(cs,
-                        "4." + nr + " " + SICHTKONTROLLE_LABELS[nr - 1] +
-                                "  Ja:" + checkbox(Boolean.TRUE.equals(row.getJa())) +
-                                "  Nein:" + checkbox(Boolean.TRUE.equals(row.getNein())) +
-                                "  n.z:" + checkbox(Boolean.TRUE.equals(row.getNz())),
-                        40, y, 9);
+                text(cs, "4." + nr + " " + SICHTKONTROLLE_LABELS[nr - 1], 40, y, 9);
+
+                drawCheckbox(cs, 420, y, Boolean.TRUE.equals(row.getJa()));
+                drawCheckbox(cs, 470, y, Boolean.TRUE.equals(row.getNein()));
+                drawCheckbox(cs, 520, y, Boolean.TRUE.equals(row.getNz()));
                 y -= 15;
                 nr++;
             }
@@ -167,6 +167,20 @@ public class Seite4PdfRenderer {
             "Die Verbindungsstellen sind frei von Beschädigungen (Steckverbindungen usw.)",
             "Die Kabelverlegung ist ordnungsgemäß"
     };
+
+
+    private static void drawCheckbox(PDPageContentStream cs, float x, float y, boolean checked) throws IOException {
+        cs.addRect(x, y - 8, 8, 8);
+        cs.stroke();
+
+        if (checked) {
+            cs.beginText();
+            cs.setFont(PDType1Font.HELVETICA_BOLD, 8);
+            cs.newLineAtOffset(x + 1.5f, y - 7);
+            cs.showText("X");
+            cs.endText();
+        }
+    }
 
 
 
