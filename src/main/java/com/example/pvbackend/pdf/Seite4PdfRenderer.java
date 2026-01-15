@@ -42,7 +42,7 @@ public class Seite4PdfRenderer {
             int nr = 1;
             for (WartungsprotokollSeite4.RowCheckSimple row : s.getPruefungMontage()) {
                 text(cs,
-                        "3." + nr +
+                        "3." + nr + " " + MONTAGE_LABELS[nr - 1] +
                                 "  Ja:" + checkbox(Boolean.TRUE.equals(row.getJa())) +
                                 "  Nein:" + checkbox(Boolean.TRUE.equals(row.getNein())) +
                                 "  n.z:" + checkbox(Boolean.TRUE.equals(row.getNz())),
@@ -64,10 +64,10 @@ public class Seite4PdfRenderer {
             nr = 1;
             for (WartungsprotokollSeite4.RowCheckExtended row : s.getSichtkontrolle()) {
                 text(cs,
-                        "4." + nr +
+                        "4." + nr + " " + SICHTKONTROLLE_LABELS[nr - 1] +
                                 "  Ja:" + checkbox(Boolean.TRUE.equals(row.getJa())) +
                                 "  Nein:" + checkbox(Boolean.TRUE.equals(row.getNein())) +
-                                "  n.z:" + checkbox(Boolean.TRUE.equals(row.getNz())) ,
+                                "  n.z:" + checkbox(Boolean.TRUE.equals(row.getNz())),
                         40, y, 9);
                 y -= 15;
                 nr++;
@@ -144,5 +144,30 @@ public class Seite4PdfRenderer {
 
         return y;
     }
+
+
+    private static final String[] MONTAGE_LABELS = {
+            "Das Montagestell ist frei von Beschädigungen",
+            "Das Montagestell ist frei von Roststellen",
+            "Das Montagestell ist richtig montiert",
+            "Die Anzugsmomente der Gestellverschraubungen sind richtig (33–56 Nm)",
+            "Die Modulklemmen sind frei von Beschädigungen",
+            "Die Modulklemmen sind richtig montiert",
+            "Die Anzugsmomente der Modulklemmen sind richtig (10 Nm) — Mindestens 500 Stellen prüfen",
+            "Der Potentialausgleich ist frei von Beschädigungen",
+            "Die Beschriftung der Modulreihen ist in Ordnung",
+            "Der Diebstahlschutz der Module ist vorhanden und frei von Schäden"
+    };
+
+
+
+    private static final String[] SICHTKONTROLLE_LABELS = {
+            "Die Strangleitungen sind frei von Beschädigungen",
+            "Die Strangleitungen sind frei von Schmorspuren",
+            "Die Verbindungsstellen sind frei von Beschädigungen (Steckverbindungen usw.)",
+            "Die Kabelverlegung ist ordnungsgemäß"
+    };
+
+
 
 }
