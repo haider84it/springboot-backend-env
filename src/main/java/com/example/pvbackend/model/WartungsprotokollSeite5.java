@@ -1,5 +1,6 @@
 package com.example.pvbackend.model;
 
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
@@ -12,7 +13,6 @@ import java.util.List;
 @Setter
 @Embeddable
 public class WartungsprotokollSeite5 {
-
 
     // SECTION 5 – Messungen PV-Anlage (5 rows)
     @ElementCollection
@@ -28,6 +28,7 @@ public class WartungsprotokollSeite5 {
 
     // Zusatz-Tabelle #1 (5 rows)
     @ElementCollection
+    @CollectionTable(name = "wartungsprotokoll_seite5_zusatz1")
     private List<ZusatzRow> zusatz1 = new ArrayList<>();
 
     // SECTION 6 – Prüfung GAKs (13 rows)
@@ -46,6 +47,7 @@ public class WartungsprotokollSeite5 {
 
     // Zusatz-Tabelle #2 (5 rows)
     @ElementCollection
+    @CollectionTable(name = "wartungsprotokoll_seite5_zusatz2")
     private List<ZusatzRow> zusatz2 = new ArrayList<>();
 
     // shared Zusatz row
@@ -60,7 +62,6 @@ public class WartungsprotokollSeite5 {
         private Boolean beh;
         private Boolean nbeh;
     }
-
 
     public boolean hasContent() {
         return hasRows(messungenPV)
@@ -84,6 +85,4 @@ public class WartungsprotokollSeite5 {
                         Boolean.TRUE.equals(r.getNbeh())
         );
     }
-
-
 }

@@ -78,11 +78,10 @@ public class WartungsprotokollSeite3 {
     }
 
     @ElementCollection
-    @CollectionTable(name = "wartungsprotokoll_zusatz1")
+    @CollectionTable(name = "wartungsprotokoll_seite3_zusatz1")
     private List<Zusatz1Row> zusatz1 = new ArrayList<>();
-
     @ElementCollection
-    @CollectionTable(name = "wartungsprotokoll_zusatz2")
+    @CollectionTable(name = "wartungsprotokoll_seite3_zusatz2")
     private List<Zusatz2Row> zusatz2 = new ArrayList<>();
 
     // --------------------------------------------------------
