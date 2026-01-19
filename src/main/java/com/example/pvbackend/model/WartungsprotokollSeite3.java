@@ -1,7 +1,9 @@
 package com.example.pvbackend.model;
 
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embeddable;
+import jakarta.persistence.OrderColumn;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,6 +22,8 @@ public class WartungsprotokollSeite3 {
 
     // ---------- ZUSATZ-TABELLE #1 ----------
     @ElementCollection
+    @CollectionTable(name = "wartungsprotokoll_zusatz1")
+    @OrderColumn(name = "idx")
     private List<ZusatzEintrag3> zusatz1 = new ArrayList<>();
 
 
@@ -44,6 +48,8 @@ public class WartungsprotokollSeite3 {
 
     // ---------- ZUSATZ-TABELLE #2 ----------
     @ElementCollection
+    @CollectionTable(name = "wartungsprotokoll_zusatz2")
+    @OrderColumn(name = "idx")
     private List<ZusatzEintrag3> zusatz2 = new ArrayList<>();
 
 
