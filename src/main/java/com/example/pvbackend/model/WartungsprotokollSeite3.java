@@ -21,10 +21,10 @@ public class WartungsprotokollSeite3 {
     private List<CheckRow3> verschattung = new ArrayList<>();
 
     // ---------- ZUSATZ-TABELLE #1 ----------
-    @ElementCollection
+    /*@ElementCollection
     @CollectionTable(name = "wartungsprotokoll_zusatz1")
     @OrderColumn(name = "idx")
-    private List<ZusatzEintrag3> zusatz1 = new ArrayList<>();
+    private List<ZusatzEintrag3> zusatz1 = new ArrayList<>();*/
 
 
     // ---------- SECTION 2 (2.1–2.9) ----------
@@ -47,11 +47,44 @@ public class WartungsprotokollSeite3 {
 
 
     // ---------- ZUSATZ-TABELLE #2 ----------
-    @ElementCollection
+    /*@ElementCollection
     @CollectionTable(name = "wartungsprotokoll_zusatz2")
     @OrderColumn(name = "idx")
-    private List<ZusatzEintrag3> zusatz2 = new ArrayList<>();
+    private List<ZusatzEintrag3> zusatz2 = new ArrayList<>();*/
 
+
+
+    @Embeddable
+    @Getter @Setter
+    public static class Zusatz1Row {
+        private String zupunkt;
+        private String bemerkung;
+        private String standort;
+        private Boolean plan;
+        private String bildnr;
+        private Boolean beh;
+        private Boolean nbeh;
+    }
+
+    @Embeddable
+    @Getter @Setter
+    public static class Zusatz2Row {
+        private String zupunkt;
+        private String bemerkung;
+        private String standort;
+        private Boolean plan;
+        private String bildnr;
+        private Boolean beh;
+        private Boolean nbeh;
+    }
+
+    @ElementCollection
+    @CollectionTable(name = "wartungsprotokoll_zusatz1")
+    private List<Zusatz1Row> zusatz1 = new ArrayList<>();
+
+    @ElementCollection
+    @CollectionTable(name = "wartungsprotokoll_zusatz2")
+    private List<Zusatz2Row> zusatz2 = new ArrayList<>();
 
     // --------------------------------------------------------
     // SUB-STRUCTURES
