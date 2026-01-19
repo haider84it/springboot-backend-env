@@ -3,7 +3,6 @@ package com.example.pvbackend.model;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embeddable;
-import jakarta.persistence.OrderColumn;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -98,17 +97,6 @@ public class WartungsprotokollSeite3 {
         private Boolean nz;
     }
 
-    @Embeddable
-    @Getter @Setter
-    public static class ZusatzEintrag3 {
-        private String zupunkt;
-        private String bemerkung;
-        private String standort;
-        private Boolean plan;
-        private String bildnr;
-        private Boolean beh;
-        private Boolean nbeh;
-    }
 
     @Embeddable
     @Getter @Setter
@@ -151,7 +139,7 @@ public class WartungsprotokollSeite3 {
         );
     }
 
-    private boolean hasZusatz(List<ZusatzEintrag3> list) {
+    /*private boolean hasZusatz(List<ZusatzEintrag3> list) {
         return list != null && list.stream().anyMatch(r ->
                 (r.getZupunkt() != null && !r.getZupunkt().isBlank()) ||
                         (r.getBemerkung() != null && !r.getBemerkung().isBlank()) ||
@@ -161,6 +149,10 @@ public class WartungsprotokollSeite3 {
                         Boolean.TRUE.equals(r.getBeh()) ||
                         Boolean.TRUE.equals(r.getNbeh())
         );
+    }*/
+
+    private boolean hasZusatz(List<?> list) {
+        return list != null && !list.isEmpty();
     }
 
 
