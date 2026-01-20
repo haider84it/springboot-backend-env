@@ -46,8 +46,14 @@ public class Seite4PdfRenderer {
                 text(cs, "3." + nr + " " + MONTAGE_LABELS[nr - 1], 40, y, 9);
 
                 drawCheckbox(cs, 420, y, Boolean.TRUE.equals(row.getJa()));
+                text(cs, "Ja", 432, y, 9);
+
                 drawCheckbox(cs, 470, y, Boolean.TRUE.equals(row.getNein()));
+                text(cs, "Nein", 482, y, 9);
+
                 drawCheckbox(cs, 520, y, Boolean.TRUE.equals(row.getNz()));
+                text(cs, "n.z.", 532, y, 9);
+
 
                 y -= 15;
                 y -= 12;   // extra space
@@ -70,8 +76,16 @@ public class Seite4PdfRenderer {
                 text(cs, "4." + nr + " " + SICHTKONTROLLE_LABELS[nr - 1], 40, y, 9);
 
                 drawCheckbox(cs, 420, y, Boolean.TRUE.equals(row.getJa()));
+                text(cs, "Ja", 432, y, 9);
+
                 drawCheckbox(cs, 470, y, Boolean.TRUE.equals(row.getNein()));
+                text(cs, "Nein", 482, y, 9);
+
                 drawCheckbox(cs, 520, y, Boolean.TRUE.equals(row.getNz()));
+                text(cs, "n.z.", 532, y, 9);
+
+
+
                 y -= 15;
                 y -= 12;   // extra space
                 nr++;
