@@ -81,6 +81,7 @@ public class Seite3PdfRenderer {
                         Boolean.TRUE.equals(row.getNein()),
                         Boolean.TRUE.equals(row.getNz())
                 );
+                y -= 5;
 
             }
 
@@ -102,6 +103,7 @@ public class Seite3PdfRenderer {
                         Boolean.TRUE.equals(row.getNein()),
                         Boolean.TRUE.equals(row.getNz())
                 );
+                y -= 5;
 
             }
         }
