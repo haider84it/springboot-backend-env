@@ -16,6 +16,7 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 
 import static com.example.pvbackend.util.PdfRenderUtils.safe;
 
+
 @Component
 public class Seite4PdfRenderer {
 
@@ -49,6 +50,8 @@ public class Seite4PdfRenderer {
                 drawCheckbox(cs, 520, y, Boolean.TRUE.equals(row.getNz()));
 
                 y -= 15;
+                y -= 12;   // extra space
+
                 nr++;
             }
 
@@ -70,6 +73,7 @@ public class Seite4PdfRenderer {
                 drawCheckbox(cs, 470, y, Boolean.TRUE.equals(row.getNein()));
                 drawCheckbox(cs, 520, y, Boolean.TRUE.equals(row.getNz()));
                 y -= 15;
+                y -= 12;   // extra space
                 nr++;
             }
 
@@ -153,7 +157,7 @@ public class Seite4PdfRenderer {
             "Die Anzugsmomente der Gestellverschraubungen sind richtig (33–56 Nm)",
             "Die Modulklemmen sind frei von Beschädigungen",
             "Die Modulklemmen sind richtig montiert",
-            "Die Anzugsmomente der Modulklemmen sind richtig (10 Nm) — Mindestens 500 Stellen prüfen",
+            "Die Anzugsmomente der Modulklemmen sind richtig (10 Nm)",
             "Der Potentialausgleich ist frei von Beschädigungen",
             "Die Beschriftung der Modulreihen ist in Ordnung",
             "Der Diebstahlschutz der Module ist vorhanden und frei von Schäden"
