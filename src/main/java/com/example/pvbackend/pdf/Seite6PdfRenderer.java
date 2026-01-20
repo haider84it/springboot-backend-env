@@ -33,6 +33,12 @@ public class Seite6PdfRenderer {
 
             float y = 740;
 
+            while (s.getPruefungWR().size() < WR_LABELS.length) {
+                s.getPruefungWR().add(new WartungsprotokollSeite6.RowWR());
+            }
+            while (s.getPruefungAC().size() < AC_LABELS.length) {
+                s.getPruefungAC().add(new WartungsprotokollSeite6.RowAC());
+            }
             // SECTION 7 – Prüfung WR
             text(cs, "SECTION 7 – Prüfung Wechselrichter (7.1 – 7.x)", 40, y, 11);
             y -= 20;
