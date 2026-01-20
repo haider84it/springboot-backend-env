@@ -111,43 +111,62 @@ public class PdfRenderUtils {
         y -= 20;
 
         for (Object o : list) {
+
+            String zupunkt;
+            String bemerkung;
+            String standort;
+            Boolean plan;
+            String bildnr;
+            Boolean beh;
+            Boolean nbeh;
+
             if (o instanceof WartungsprotokollSeite4.ZusatzRow z) {
-                // keep current code
+                zupunkt = z.getZupunkt();
+                bemerkung = z.getBemerkung();
+                standort = z.getStandort();
+                plan = z.getPlan();
+                bildnr = z.getBildnr();
+                beh = z.getBeh();
+                nbeh = z.getNbeh();
             } else if (o instanceof WartungsprotokollSeite5.ZusatzRow z) {
-                // same code (copy/paste)
+                zupunkt = z.getZupunkt();
+                bemerkung = z.getBemerkung();
+                standort = z.getStandort();
+                plan = z.getPlan();
+                bildnr = z.getBildnr();
+                beh = z.getBeh();
+                nbeh = z.getNbeh();
             } else {
                 continue;
             }
 
-            if (isEmpty(z)) continue;
-
-            if (!isBlank(z.getZupunkt())) {
-                text(cs, "• Zu Punkt: " + z.getZupunkt(), 40, y, 9);
+            if (!isBlank(zupunkt)) {
+                text(cs, "• Zu Punkt: " + zupunkt, 40, y, 9);
                 y -= 12;
             }
 
-            if (!isBlank(z.getBemerkung())) {
-                text(cs, "  Bemerkung: " + z.getBemerkung(), 40, y, 9);
+            if (!isBlank(bemerkung)) {
+                text(cs, "  Bemerkung: " + bemerkung, 40, y, 9);
                 y -= 12;
             }
 
-            if (!isBlank(z.getStandort())) {
-                text(cs, "  Standort: " + z.getStandort(), 40, y, 9);
+            if (!isBlank(standort)) {
+                text(cs, "  Standort: " + standort, 40, y, 9);
                 y -= 12;
             }
 
             boolean hasBottom =
-                    Boolean.TRUE.equals(z.getPlan()) ||
-                            !isBlank(z.getBildnr()) ||
-                            Boolean.TRUE.equals(z.getBeh()) ||
-                            Boolean.TRUE.equals(z.getNbeh());
+                    Boolean.TRUE.equals(plan) ||
+                            !isBlank(bildnr) ||
+                            Boolean.TRUE.equals(beh) ||
+                            Boolean.TRUE.equals(nbeh);
 
             if (hasBottom) {
                 text(cs,
-                        "  Plan:" + checkbox(Boolean.TRUE.equals(z.getPlan())) +
-                                "  Bild-Nr: " + safe(z.getBildnr()) +
-                                "  Beh:" + checkbox(Boolean.TRUE.equals(z.getBeh())) +
-                                "  n.Beh:" + checkbox(Boolean.TRUE.equals(z.getNbeh())),
+                        "  Plan:" + checkbox(Boolean.TRUE.equals(plan)) +
+                                "  Bild-Nr: " + safe(bildnr) +
+                                "  Beh:" + checkbox(Boolean.TRUE.equals(beh)) +
+                                "  n.Beh:" + checkbox(Boolean.TRUE.equals(nbeh)),
                         40, y, 9);
                 y -= 18;
             }
