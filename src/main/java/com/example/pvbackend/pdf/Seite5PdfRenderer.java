@@ -73,10 +73,75 @@ public class Seite5PdfRenderer {
             text(cs, "SECTION 6 – Prüfung GAKs", 40, y, 11);
             y -= 20;
 
-            y = drawCheckThree(cs, "6.1 GAK zugänglich",
+            y = drawCheckThree(cs, "6.1  Alle GAKs sind frei und zugänglich",
                     s.getPruefungGAKs().get(0).getJa(),
                     s.getPruefungGAKs().get(0).getNein(),
                     s.getPruefungGAKs().get(0).getNz(), y);
+
+            y = drawCheckThree(cs, "6.2 Die Strangsicherungen sind funktionsfähig",
+                    s.getPruefungGAKs().get(1).getJa(),
+                    s.getPruefungGAKs().get(1).getNein(),
+                    s.getPruefungGAKs().get(1).getNz(), y);
+
+            y = drawCheckThree(cs, "6.3 Die ÜSS-Einrichtungen sind funktionsfähig",
+                    s.getPruefungGAKs().get(2).getJa(),
+                    s.getPruefungGAKs().get(2).getNein(),
+                    s.getPruefungGAKs().get(2).getNz(), y);
+
+            y = drawCheckThree(cs, "6.4 Die Schalter sind funktionsfähig",
+                    s.getPruefungGAKs().get(3).getJa(),
+                    s.getPruefungGAKs().get(3).getNein(),
+                    s.getPruefungGAKs().get(3).getNz(), y);
+
+            y = drawCheckThree(cs, "6.5 Die GAKs sind frei von Schäden",
+                    s.getPruefungGAKs().get(4).getJa(),
+                    s.getPruefungGAKs().get(4).getNein(),
+                    s.getPruefungGAKs().get(4).getNz(), y);
+
+            y = drawCheckThree(cs, "6.6 Die GAKs sind frei von Feuchtigkeit",
+                    s.getPruefungGAKs().get(5).getJa(),
+                    s.getPruefungGAKs().get(5).getNein(),
+                    s.getPruefungGAKs().get(5).getNz(), y);
+
+            y = drawCheckThree(cs, "6.7 Der innere Zustand der GAKs ist in Ordnung",
+                    s.getPruefungGAKs().get(6).getJa(),
+                    s.getPruefungGAKs().get(6).getNein(),
+                    s.getPruefungGAKs().get(6).getNz(), y);
+
+            y = drawCheckThree(cs, "6.8 Die Erdung der Verteiler ist frei von Schäden und richtig montiert",
+                    s.getPruefungGAKs().get(7).getJa(),
+                    s.getPruefungGAKs().get(7).getNein(),
+                    s.getPruefungGAKs().get(7).getNz(), y);
+
+
+            y = drawCheckThree(cs, "6.9 Die Beschriftung ist vollständig und i.O.",
+                    s.getPruefungGAKs().get(8).getJa(),
+                    s.getPruefungGAKs().get(8).getNein(),
+                    s.getPruefungGAKs().get(8).getNz(), y);
+
+
+            y = drawCheckThree(cs, "6.10 Die Kabelverschraubungen sind fest und dicht",
+                    s.getPruefungGAKs().get(9).getJa(),
+                    s.getPruefungGAKs().get(9).getNein(),
+                    s.getPruefungGAKs().get(9).getNz(), y);
+
+
+            y = drawCheckThree(cs, "6.11 Die Anzugsmomente aller Schrauben sind korrekt",
+                    s.getPruefungGAKs().get(10).getJa(),
+                    s.getPruefungGAKs().get(10).getNein(),
+                    s.getPruefungGAKs().get(10).getNz(), y);
+
+            y = drawCheckThree(cs, "6.12 Die GAKs wurden gereinigt",
+                    s.getPruefungGAKs().get(11).getJa(),
+                    s.getPruefungGAKs().get(11).getNein(),
+                    s.getPruefungGAKs().get(11).getNz(), y);
+
+
+            y = drawCheckThree(cs, "6.13 Keine Auffälligkeiten aus Thermografieuntersuchung",
+                    s.getPruefungGAKs().get(12).getJa(),
+                    s.getPruefungGAKs().get(12).getNein(),
+                    s.getPruefungGAKs().get(12).getNz(), y);
+
 
             // … remaining drawCheckFive calls unchanged …
 
