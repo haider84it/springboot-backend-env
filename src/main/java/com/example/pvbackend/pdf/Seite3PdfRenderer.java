@@ -17,22 +17,22 @@ public class Seite3PdfRenderer {
 
 
     private static final String[] VERSCHATTUNG_LABELS = {
-            "1.1 Die Anlage ist frei von dauerhafter Umgebungsverschattung (zB Aufbauten)",
-            "1.2 Die Anlage ist frei von temporärer Umgebungsverschattung (zB Bewuchs)",
-            "1.3 Die Anlage ist frei von eigener Verschattung"
+            "1.1 Die Anlage ist frei von dauerhafter Umgebungsverschattung (zB Aufbauten) \\n\\n",
+            "1.2 Die Anlage ist frei von temporärer Umgebungsverschattung (zB Bewuchs) \\n\\n",
+            "1.3 Die Anlage ist frei von eigener Verschattung \\n\\n"
     };
 
 
     private static final String[] MODULZUSTAND_LABELS = {
-            "2.1 Die Oberfläche der Module ist frei von Beschädigungen",
-            "2.2 Die Rahmen der Module sind frei von Beschädigungen",
-            "2.3 Die Glasoberfläche der Module ist frei von Verschmutzung (Foto!)",
-            "2.4 Die Zellen in den Modulen sind frei von Auffälligkeiten",
-            "2.5 Die Einbettungsfolie ist frei von Auffälligkeiten",
-            "2.6 Die Rückseitenfolie der Module ist frei von Beschädigungen",
-            "2.7 Die Modulanschlussdosen sind frei von Auffälligkeiten",
-            "2.8 Die Typenschilder und SN-Aufkleber sind frei von Auffälligkeiten",
-            "2.9 Die Module wurden gereinigt"
+            "2.1 Die Oberfläche der Module ist frei von Beschädigungen  \\n\\n",
+            "2.2 Die Rahmen der Module sind frei von Beschädigungen  \\n\\n",
+            "2.3 Die Glasoberfläche der Module ist frei von Verschmutzung (Foto!)  \\n\\n",
+            "2.4 Die Zellen in den Modulen sind frei von Auffälligkeiten  \\n\\n",
+            "2.5 Die Einbettungsfolie ist frei von Auffälligkeiten  \\n\\n",
+            "2.6 Die Rückseitenfolie der Module ist frei von Beschädigungen  \\n\\n",
+            "2.7 Die Modulanschlussdosen sind frei von Auffälligkeiten  \\n\\n",
+            "2.8 Die Typenschilder und SN-Aufkleber sind frei von Auffälligkeiten  \\n\\n",
+            "2.9 Die Module wurden gereinigt  \\n\\n"
     };
 
 
@@ -107,12 +107,23 @@ public class Seite3PdfRenderer {
         }
     }
 
-    private void text(PDPageContentStream cs, String txt, float x, float y, int size) throws IOException {
+
+    private float text(PDPageContentStream cs, String txt, float x, float y, int size) throws IOException {
         cs.setFont(PDType1Font.HELVETICA, size);
-        cs.beginText();
-        cs.newLineAtOffset(x, y);
-        cs.showText(txt == null ? "" : txt);
-        cs.endText();
+
+        float lineHeight = size + 2; // spacing between lines
+
+        String[] lines = (txt == null ? "" : txt).split("\\n");
+
+        for (String line : lines) {
+            cs.beginText();
+            cs.newLineAtOffset(x, y);
+            cs.showText(line);
+            cs.endText();
+            y -= lineHeight;
+        }
+
+        return y; // return new y after drawing all lines
     }
 
 
@@ -142,18 +153,21 @@ public class Seite3PdfRenderer {
             boolean nz
     ) throws IOException {
 
-        text(cs, label, x, y, 9);
+        float startY = y;
 
-        float col = x + 340; // ← move checkboxes right
+        // draw multiline label
+        float newY = text(cs, label, x, y, 9);
 
-        drawCheckbox(cs, col, y, ja);
-        text(cs, "Ja", col + 12, y, 9);
+        float col = x + 340;
 
-        drawCheckbox(cs, col + 50, y, nein);
-        text(cs, "Nein", col + 62, y, 9);
+        drawCheckbox(cs, col, startY, ja);
+        text(cs, "Ja", col + 12, startY, 9);
 
-        drawCheckbox(cs, col + 100, y, nz);
-        text(cs, "n.z.", col + 112, y, 9);
+        drawCheckbox(cs, col + 50, startY, nein);
+        text(cs, "Nein", col + 62, startY, 9);
+
+        drawCheckbox(cs, col + 100, startY, nz);
+        text(cs, "n.z.", col + 112, startY, 9);
     }
 
 
