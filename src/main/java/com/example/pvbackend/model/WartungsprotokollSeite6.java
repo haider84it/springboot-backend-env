@@ -1,7 +1,6 @@
 package com.example.pvbackend.model;
 
 
-import jakarta.persistence.CollectionTable;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embeddable;
 import lombok.Getter;
@@ -30,7 +29,6 @@ public class WartungsprotokollSeite6 {
 
     // Zusatz-Tabelle WR (5 rows)
     @ElementCollection
-    @CollectionTable(name = "wartungsprotokoll_seite6_zusatz_wr")
     private List<ZusatzRow> zusatzWR = new ArrayList<>();
 
 
@@ -48,7 +46,6 @@ public class WartungsprotokollSeite6 {
 
     // Zusatz-Tabelle AC (5 rows)
     @ElementCollection
-    @CollectionTable(name = "wartungsprotokoll_seite6_zusatz_ac")
     private List<ZusatzRow> zusatzAC = new ArrayList<>();
 
 
