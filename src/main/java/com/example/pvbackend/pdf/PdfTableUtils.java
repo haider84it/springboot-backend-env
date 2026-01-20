@@ -83,9 +83,8 @@ public class PdfTableUtils {
     }
 
     private static String checkbox(boolean checked) {
-        return checked ? " ☒" : " ☐";
+        return checked ? " [X]" : " [ ]";
     }
-
     private static boolean isEmpty(ZusatzBase z) {
         return z == null ||
                 isBlank(z.getZupunkt()) &&
