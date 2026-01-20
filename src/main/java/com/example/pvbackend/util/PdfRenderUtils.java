@@ -1,6 +1,7 @@
 package com.example.pvbackend.util;
 
 import com.example.pvbackend.model.WartungsprotokollSeite4;
+import com.example.pvbackend.model.WartungsprotokollSeite5;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -110,7 +111,13 @@ public class PdfRenderUtils {
         y -= 20;
 
         for (Object o : list) {
-            if (!(o instanceof WartungsprotokollSeite4.ZusatzRow z)) continue;
+            if (o instanceof WartungsprotokollSeite4.ZusatzRow z) {
+                // keep current code
+            } else if (o instanceof WartungsprotokollSeite5.ZusatzRow z) {
+                // same code (copy/paste)
+            } else {
+                continue;
+            }
 
             if (isEmpty(z)) continue;
 
