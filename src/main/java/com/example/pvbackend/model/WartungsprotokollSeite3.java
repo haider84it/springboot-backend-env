@@ -1,5 +1,6 @@
 package com.example.pvbackend.model;
 
+import com.example.pvbackend.pdf.ZusatzBase;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embeddable;
@@ -55,7 +56,7 @@ public class WartungsprotokollSeite3 {
 
     @Embeddable
     @Getter @Setter
-    public static class Zusatz1Row {
+    public static class Zusatz1Row implements ZusatzBase {
         private String zupunkt;
         private String bemerkung;
         private String standort;
@@ -67,7 +68,7 @@ public class WartungsprotokollSeite3 {
 
     @Embeddable
     @Getter @Setter
-    public static class Zusatz2Row {
+    public static class Zusatz2Row implements ZusatzBase {
         private String zupunkt;
         private String bemerkung;
         private String standort;

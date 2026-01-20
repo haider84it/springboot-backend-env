@@ -136,7 +136,7 @@ public class Seite3PdfRenderer {
     public static PDPageContentStream drawZusatzTabelle(
             PDDocument doc,
             PDPageContentStream cs,
-            List<? extends Object> list,
+            List<? extends ZusatzBase> list,
             String title,
             float[] y
     ) throws IOException {
@@ -144,11 +144,9 @@ public class Seite3PdfRenderer {
         text(cs, title, 40, y[0], 11);
         y[0] -= 20;
 
+        for (ZusatzBase z : list) {
 
-
-        for (Object o : list) {
-
-            // ✅ PAGE BREAK CHECK (put here)
+            // PAGE BREAK
             if (y[0] < 120) {
                 cs.close();
 
@@ -157,14 +155,10 @@ public class Seite3PdfRenderer {
 
                 cs = new PDPageContentStream(doc, newPage);
 
-                y[0] = 740; // reset top
-                text(cs, title, 40, y[0], 11); // optional: redraw table title
+                y[0] = 740;
+                text(cs, title, 40, y[0], 11);
                 y[0] -= 20;
             }
-
-
-
-            if (!(o instanceof WartungsprotokollSeite3.Zusatz1Row z)) continue;
 
             if (isEmpty(z)) continue;
 
@@ -198,9 +192,6 @@ public class Seite3PdfRenderer {
                         40, y[0], 9);
                 y[0] -= 18;
             }
-
-
-
 
             y[0] -= 6;
         }
