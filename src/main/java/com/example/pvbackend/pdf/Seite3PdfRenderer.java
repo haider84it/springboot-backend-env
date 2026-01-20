@@ -101,6 +101,8 @@ public class Seite3PdfRenderer {
             y = yRef[0];
             y -= 10;
 
+
+
 // 2. Sichtkontrolle der Module
             text(cs, "2 Sichtkontrolle der Module auf Beschädigung und Verschmutzung", 40, y, 11);
             y -= 20;
@@ -119,6 +121,8 @@ public class Seite3PdfRenderer {
                 y -= 27;
 
             }
+
+        y = drawVerschmutzungUndReinigung(cs, s, y);
 
 
             y -= 10;
@@ -197,6 +201,40 @@ public class Seite3PdfRenderer {
         }
 
         return cs;
+    }
+
+
+    private float drawVerschmutzungUndReinigung(PDPageContentStream cs, WartungsprotokollSeite3 s, float y) throws IOException {
+
+        y -= 10;
+
+        // VERSCHMUTZUNGSGRAD
+        text(cs, "VERSCHMUTZUNGSGRAD", 40, y, 10);
+        y -= 15;
+
+        text(cs,
+                checkbox(Boolean.TRUE.equals(s.getVerschmutzungLeicht())) + " leicht   " +
+                        checkbox(Boolean.TRUE.equals(s.getVerschmutzungMittel())) + " mittel   " +
+                        checkbox(Boolean.TRUE.equals(s.getVerschmutzungStark())) + " stark   " +
+                        checkbox(Boolean.TRUE.equals(s.getVerschmutzungPartiell())) + " partiell   " +
+                        checkbox(Boolean.TRUE.equals(s.getVerschmutzungFlaechig())) + " flächig   " +
+                        checkbox(Boolean.TRUE.equals(s.getVerschmutzungRand())) + " Rand",
+                40, y, 9
+        );
+        y -= 20;
+
+        // REINIGUNG EMPFOHLEN
+        text(cs, "REINIGUNG EMPFOHLEN", 40, y, 10);
+        y -= 15;
+
+        text(cs,
+                checkbox(Boolean.TRUE.equals(s.getReinigungEmpfohlenJa())) + " Ja   " +
+                        checkbox(Boolean.TRUE.equals(s.getReinigungEmpfohlenNein())) + " Nein",
+                40, y, 9
+        );
+        y -= 20;
+
+        return y;
     }
 
 
