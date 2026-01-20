@@ -47,8 +47,9 @@ public class Seite3PdfRenderer {
         PDPage page = new PDPage(PDRectangle.A4);
         doc.addPage(page);
 
-        try (PDPageContentStream cs = new PDPageContentStream(doc, page)) {
 
+
+        PDPageContentStream cs = new PDPageContentStream(doc, page);
 
 
             //System.out.println("ModuleZustand size = " + s.getModuleZustand().size());
@@ -92,8 +93,12 @@ public class Seite3PdfRenderer {
 // spacing between sections
             y -= 10;
 
+            float[] yRef = { y };
+
+
             // ZUSATZ-TABELLE #1
-            drawZusatzTabelle(doc, cs, s.getZusatz1(), "Zusatz-Tabelle #2", y);
+            cs =  drawZusatzTabelle(doc, cs, s.getZusatz1(), "Zusatz-Tabelle #1", yRef);
+            y = yRef[0];
             y -= 10;
 
 // 2. Sichtkontrolle der Module
@@ -118,23 +123,33 @@ public class Seite3PdfRenderer {
 
             y -= 10;
 
-            drawZusatzTabelle(doc, cs, s.getZusatz2(), "Zusatz-Tabelle #2", y);
+            float[] yRef2 = { y };
 
+            cs = drawZusatzTabelle(doc, cs, s.getZusatz2(), "Zusatz-Tabelle #2", yRef2);
 
-        }
+            y = yRef2[0];
+
+            cs.close();
+
     }
 
-    public static float drawZusatzTabelle(PDDocument doc, PDPageContentStream cs, List<? extends Object> list, String title, float y) throws IOException {
+    public static PDPageContentStream drawZusatzTabelle(
+            PDDocument doc,
+            PDPageContentStream cs,
+            List<? extends Object> list,
+            String title,
+            float[] y
+    ) throws IOException {
 
-        text(cs, title, 40, y, 11);
-        y -= 20;
+        text(cs, title, 40, y[0], 11);
+        y[0] -= 20;
 
 
 
         for (Object o : list) {
 
             // ✅ PAGE BREAK CHECK (put here)
-            if (y < 120) {
+            if (y[0] < 120) {
                 cs.close();
 
                 PDPage newPage = new PDPage(PDRectangle.A4);
@@ -142,9 +157,9 @@ public class Seite3PdfRenderer {
 
                 cs = new PDPageContentStream(doc, newPage);
 
-                y = 740; // reset top
-                text(cs, title, 40, y, 11); // optional: redraw table title
-                y -= 20;
+                y[0] = 740; // reset top
+                text(cs, title, 40, y[0], 11); // optional: redraw table title
+                y[0] -= 20;
             }
 
 
@@ -154,18 +169,18 @@ public class Seite3PdfRenderer {
             if (isEmpty(z)) continue;
 
             if (!isBlank(z.getZupunkt())) {
-                text(cs, "• Zu Punkt: " + z.getZupunkt(), 40, y, 9);
-                y -= 12;
+                text(cs, "• Zu Punkt: " + z.getZupunkt(), 40, y[0], 9);
+                y[0] -= 12;
             }
 
             if (!isBlank(z.getBemerkung())) {
-                text(cs, "  Bemerkung: " + z.getBemerkung(), 40, y, 9);
-                y -= 12;
+                text(cs, "  Bemerkung: " + z.getBemerkung(), 40, y[0], 9);
+                y[0] -= 12;
             }
 
             if (!isBlank(z.getStandort())) {
-                text(cs, "  Standort: " + z.getStandort(), 40, y, 9);
-                y -= 12;
+                text(cs, "  Standort: " + z.getStandort(), 40, y[0], 9);
+                y[0] -= 12;
             }
 
             boolean hasBottom =
@@ -180,17 +195,17 @@ public class Seite3PdfRenderer {
                                 "  Bild-Nr: " + safe(z.getBildnr()) +
                                 "  Beh:" + checkbox(Boolean.TRUE.equals(z.getBeh())) +
                                 "  n.Beh:" + checkbox(Boolean.TRUE.equals(z.getNbeh())),
-                        40, y, 9);
-                y -= 18;
+                        40, y[0], 9);
+                y[0] -= 18;
             }
 
 
 
 
-            y -= 6;
+            y[0] -= 6;
         }
 
-        return y;
+        return cs;
     }
 
 
