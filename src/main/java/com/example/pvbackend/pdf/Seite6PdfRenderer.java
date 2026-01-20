@@ -1,5 +1,6 @@
 package com.example.pvbackend.pdf;
 
+
 import com.example.pvbackend.model.WartungsprotokollSeite6;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -10,12 +11,11 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-import static com.example.pvbackend.pdf.Seite4PdfRenderer.drawZusatzTabelle;
-
-
 
 @Component
 public class Seite6PdfRenderer {
+
+
 
     public void render(PDDocument doc, WartungsprotokollSeite6 s) throws IOException {
 
@@ -62,7 +62,8 @@ public class Seite6PdfRenderer {
             y -= 10;
 
             // Zusatz-Tabelle WR
-            y = drawZusatzTabelle(cs, s.getZusatzWR(), "Zusatz-Tabelle WR", y);
+            y = PdfTableUtils.drawZusatzTabelle(cs, s.getZusatzWR(), "Zusatz-Tabelle WR", y);
+
             y -= 10;
 
             // SECTION 8 – Prüfung AC-Verteiler
@@ -91,8 +92,7 @@ public class Seite6PdfRenderer {
             y -= 10;
 
             // Zusatz-Tabelle AC
-            drawZusatzTabelle(cs, s.getZusatzAC(), "Zusatz-Tabelle AC-Verteiler", y);
-        }
+            y = PdfTableUtils.drawZusatzTabelle(cs, s.getZusatzAC(), "Zusatz-Tabelle AC-Verteiler", y);        }
     }
 
     private void text(PDPageContentStream cs, String txt, float x, float y, int size) throws IOException {

@@ -1,6 +1,7 @@
 package com.example.pvbackend.model;
 
 
+import com.example.pvbackend.pdf.ZusatzBase;
 import jakarta.persistence.CollectionTable;
 import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Embeddable;
@@ -14,7 +15,6 @@ import java.util.List;
 @Getter
 @Setter
 public class WartungsprotokollSeite6 {
-
 
     // SECTION 7 – Prüfung WR
     @ElementCollection
@@ -55,7 +55,7 @@ public class WartungsprotokollSeite6 {
     // Shared Zusatz-row model
     @Embeddable
     @Getter @Setter
-    public static class ZusatzRow {
+    public static class ZusatzRow implements  ZusatzBase {
         private String zupunkt;
         private String bemerkung;
         private String standort;
