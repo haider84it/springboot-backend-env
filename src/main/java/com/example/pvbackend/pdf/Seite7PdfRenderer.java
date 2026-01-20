@@ -37,11 +37,15 @@ public class Seite7PdfRenderer {
 
             int nr = 1;
             for (WartungsprotokollSeite7.ZaehlerRow row : s.getPruefungZaehler()) {
-                text(cs,
-                        "9." + nr + "  " +
-                                threeChecks(row.getJa(), row.getNein(), row.getNz()),
-                        40, y, 9);
-                y -= 15;
+                y = drawCheckTriple(
+                        cs,
+                        "9." + nr,
+                        row.getJa(),
+                        row.getNein(),
+                        row.getNz(),
+                        y
+                );
+
                 nr++;
             }
 
@@ -57,11 +61,14 @@ public class Seite7PdfRenderer {
 
             nr = 1;
             for (WartungsprotokollSeite7.UeberwachungRow row : s.getPruefungUeberwachung()) {
-                text(cs,
-                        "10." + nr + "  " +
-                                threeChecks(row.getJa(), row.getNein(), row.getNz()),
-                        40, y, 9);
-                y -= 15;
+                y = drawCheckTriple(
+                        cs,
+                        "10." + nr,
+                        row.getJa(),
+                        row.getNein(),
+                        row.getNz(),
+                        y
+                );
                 nr++;
             }
 

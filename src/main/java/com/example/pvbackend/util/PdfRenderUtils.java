@@ -2,6 +2,8 @@ package com.example.pvbackend.util;
 
 import com.example.pvbackend.model.WartungsprotokollSeite4;
 import com.example.pvbackend.model.WartungsprotokollSeite5;
+import com.example.pvbackend.model.WartungsprotokollSeite6;
+import com.example.pvbackend.model.WartungsprotokollSeite7;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -136,7 +138,26 @@ public class PdfRenderUtils {
                 bildnr = z.getBildnr();
                 beh = z.getBeh();
                 nbeh = z.getNbeh();
-            } else {
+            } else if (o instanceof WartungsprotokollSeite6.ZusatzRow z) {
+                zupunkt = z.getZupunkt();
+                bemerkung = z.getBemerkung();
+                standort = z.getStandort();
+                plan = z.getPlan();
+                bildnr = z.getBildnr();
+                beh = z.getBeh();
+                nbeh = z.getNbeh();
+            }  else if (o instanceof WartungsprotokollSeite7.ZusatzZaehlerRow z) {
+                zupunkt = z.getZupunkt();
+                bemerkung = z.getBemerkung();
+                standort = z.getStandort();
+                plan = z.getPlan();
+                bildnr = z.getBildnr();
+                beh = z.getBeh();
+                nbeh = z.getNbeh();
+            }
+
+
+            else {
                 continue;
             }
 
