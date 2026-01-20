@@ -68,47 +68,32 @@ public class PdfRenderUtils {
                         "  n.z:" + checkbox(Boolean.TRUE.equals(nz));
     }
 
-    public static float drawCheckTriple(
-            PDPageContentStream cs,
-            String label,
-            Boolean ja,
-            Boolean nein,
-            Boolean nz,
-            float y
-    ) throws IOException {
+    public static float drawCheckTriple(PDPageContentStream cs, String label,
+                                        Boolean ja, Boolean nein, Boolean nz,
+                                        float y) throws IOException {
 
         if (ja == null && nein == null && nz == null) return y;
 
-        text(cs,
-                label
-                        + "   Ja:" + checkbox(Boolean.TRUE.equals(ja))
-                        + "   Nein:" + checkbox(Boolean.TRUE.equals(nein))
-                        + "   n.z:" + checkbox(Boolean.TRUE.equals(nz)),
-                40, y, 9);
+        text(cs, label, 40, y, 9);
+
+        float col = 420;
+
+        drawCheckbox(cs, col, y, Boolean.TRUE.equals(ja));
+        text(cs, "Ja", col + 12, y, 9);
+
+        drawCheckbox(cs, col + 50, y, Boolean.TRUE.equals(nein));
+        text(cs, "Nein", col + 62, y, 9);
+
+        drawCheckbox(cs, col + 100, y, Boolean.TRUE.equals(nz));
+        text(cs, "n.z.", col + 112, y, 9);
 
         return y - 15;
     }
 
-    public static float drawCheckThree(
-            PDPageContentStream cs,
-            String label,
-            Boolean ja,
-            Boolean nein,
-            Boolean nz,
-            float y
-    ) throws IOException {
-
-        if (ja == null && nein == null && nz == null)
-            return y;
-
-        text(cs,
-                label
-                        + "   Ja:" + checkbox(Boolean.TRUE.equals(ja))
-                        + "   Nein:" + checkbox(Boolean.TRUE.equals(nein))
-                        + "   n.z:" + checkbox(Boolean.TRUE.equals(nz)),
-                40, y, 9);
-
-        return y - 15;
+    public static float drawCheckThree(PDPageContentStream cs, String label,
+                                       Boolean ja, Boolean nein, Boolean nz,
+                                       float y) throws IOException {
+        return drawCheckTriple(cs, label, ja, nein, nz, y);
     }
 
     // ============================================================
