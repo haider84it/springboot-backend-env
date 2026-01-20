@@ -153,6 +153,14 @@ public class PdfRenderUtils {
                 bildnr = z.getBildnr();
                 beh = z.getBeh();
                 nbeh = z.getNbeh();
+            } else if (o instanceof WartungsprotokollSeite7.ZusatzUeberwachungRow z) {
+                zupunkt = z.getZupunkt();
+                bemerkung = z.getBemerkung();
+                standort = z.getStandort();
+                plan = z.getPlan();
+                bildnr = z.getBildnr();
+                beh = z.getBeh();
+                nbeh = z.getNbeh();
             }
 
 
