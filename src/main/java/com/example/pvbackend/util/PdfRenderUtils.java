@@ -13,7 +13,6 @@ import java.io.IOException;
 import java.util.List;
 
 import static io.micrometer.common.util.StringUtils.isBlank;
-import static org.springframework.util.ObjectUtils.isEmpty;
 
 public class PdfRenderUtils {
 
