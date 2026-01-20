@@ -45,13 +45,15 @@ public class Seite4PdfRenderer {
 
                 text(cs, "3." + nr + " " + MONTAGE_LABELS[nr - 1], 40, y, 9);
 
-                drawCheckbox(cs, 420, y, Boolean.TRUE.equals(row.getJa()));
+                float abitUpY = y + 5; // move up (try 2–5)
+
+                drawCheckbox(cs, 420, abitUpY, Boolean.TRUE.equals(row.getJa()));
                 text(cs, "Ja", 432, y, 9);
 
-                drawCheckbox(cs, 470, y, Boolean.TRUE.equals(row.getNein()));
+                drawCheckbox(cs, 470, abitUpY, Boolean.TRUE.equals(row.getNein()));
                 text(cs, "Nein", 482, y, 9);
 
-                drawCheckbox(cs, 520, y, Boolean.TRUE.equals(row.getNz()));
+                drawCheckbox(cs, 520, abitUpY, Boolean.TRUE.equals(row.getNz()));
                 text(cs, "n.z.", 532, y, 9);
 
 
@@ -75,13 +77,14 @@ public class Seite4PdfRenderer {
             for (WartungsprotokollSeite4.RowCheckExtended row : s.getSichtkontrolle()) {
                 text(cs, "4." + nr + " " + SICHTKONTROLLE_LABELS[nr - 1], 40, y, 9);
 
-                drawCheckbox(cs, 420, y, Boolean.TRUE.equals(row.getJa()));
+                float abitUpY = y + 5; // move up (try 2–5)
+                drawCheckbox(cs, 420, abitUpY, Boolean.TRUE.equals(row.getJa()));
                 text(cs, "Ja", 432, y, 9);
 
-                drawCheckbox(cs, 470, y, Boolean.TRUE.equals(row.getNein()));
+                drawCheckbox(cs, 470, abitUpY, Boolean.TRUE.equals(row.getNein()));
                 text(cs, "Nein", 482, y, 9);
 
-                drawCheckbox(cs, 520, y, Boolean.TRUE.equals(row.getNz()));
+                drawCheckbox(cs, 520, abitUpY, Boolean.TRUE.equals(row.getNz()));
                 text(cs, "n.z.", 532, y, 9);
 
 
