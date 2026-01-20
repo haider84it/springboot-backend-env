@@ -17,22 +17,22 @@ public class Seite3PdfRenderer {
 
 
     private static final String[] VERSCHATTUNG_LABELS = {
-            "1.1 Die Anlage ist frei von dauerhafter Umgebungsverschattung (zB Aufbauten) \\n\\n",
-            "1.2 Die Anlage ist frei von temporärer Umgebungsverschattung (zB Bewuchs) \\n\\n",
-            "1.3 Die Anlage ist frei von eigener Verschattung \\n\\n"
+            "1.1 Die Anlage ist frei von dauerhafter Umgebungsverschattung (zB Aufbauten) \n",
+            "1.2 Die Anlage ist frei von temporärer Umgebungsverschattung (zB Bewuchs) \n",
+            "1.3 Die Anlage ist frei von eigener Verschattung \n"
     };
 
 
     private static final String[] MODULZUSTAND_LABELS = {
-            "2.1 Die Oberfläche der Module ist frei von Beschädigungen  \\n\\n",
-            "2.2 Die Rahmen der Module sind frei von Beschädigungen  \\n\\n",
-            "2.3 Die Glasoberfläche der Module ist frei von Verschmutzung (Foto!)  \\n\\n",
-            "2.4 Die Zellen in den Modulen sind frei von Auffälligkeiten  \\n\\n",
-            "2.5 Die Einbettungsfolie ist frei von Auffälligkeiten  \\n\\n",
-            "2.6 Die Rückseitenfolie der Module ist frei von Beschädigungen  \\n\\n",
-            "2.7 Die Modulanschlussdosen sind frei von Auffälligkeiten  \\n\\n",
-            "2.8 Die Typenschilder und SN-Aufkleber sind frei von Auffälligkeiten  \\n\\n",
-            "2.9 Die Module wurden gereinigt  \\n\\n"
+            "2.1 Die Oberfläche der Module ist frei von Beschädigungen \n",
+            "2.2 Die Rahmen der Module sind frei von Beschädigungen  \n",
+            "2.3 Die Glasoberfläche der Module ist frei von Verschmutzung (Foto!) \n",
+            "2.4 Die Zellen in den Modulen sind frei von Auffälligkeiten \n",
+            "2.5 Die Einbettungsfolie ist frei von Auffälligkeiten \n",
+            "2.6 Die Rückseitenfolie der Module ist frei von Beschädigungen \n",
+            "2.7 Die Modulanschlussdosen sind frei von Auffälligkeiten \n",
+            "2.8 Die Typenschilder und SN-Aufkleber sind frei von Auffälligkeiten \n",
+            "2.9 Die Module wurden gereinigt \n"
     };
 
 
@@ -72,7 +72,7 @@ public class Seite3PdfRenderer {
 
             for (int i = 0; i < VERSCHATTUNG_LABELS.length; i++) {
                 var row = s.getVerschattung().get(i);
-                yesNoNzRow(
+                y = yesNoNzRow(
                         cs,
                         40,
                         y,
@@ -81,7 +81,7 @@ public class Seite3PdfRenderer {
                         Boolean.TRUE.equals(row.getNein()),
                         Boolean.TRUE.equals(row.getNz())
                 );
-                y -= 15;
+
             }
 
 // spacing between sections
@@ -93,7 +93,7 @@ public class Seite3PdfRenderer {
 
             for (int i = 0; i < MODULZUSTAND_LABELS.length; i++) {
                 var row = s.getAnlageZustand().get(i);
-                yesNoNzRow(
+                y = yesNoNzRow(
                         cs,
                         40,
                         y,
@@ -102,7 +102,7 @@ public class Seite3PdfRenderer {
                         Boolean.TRUE.equals(row.getNein()),
                         Boolean.TRUE.equals(row.getNz())
                 );
-                y -= 15;
+
             }
         }
     }
@@ -143,7 +143,7 @@ public class Seite3PdfRenderer {
         }
     }
 
-    private void yesNoNzRow(
+    private float yesNoNzRow(
             PDPageContentStream cs,
             float x,
             float y,
@@ -168,6 +168,8 @@ public class Seite3PdfRenderer {
 
         drawCheckbox(cs, col + 100, startY, nz);
         text(cs, "n.z.", col + 112, startY, 9);
+
+        return newY;
     }
 
 
