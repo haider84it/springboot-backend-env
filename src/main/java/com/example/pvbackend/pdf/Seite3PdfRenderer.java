@@ -1,7 +1,6 @@
 package com.example.pvbackend.pdf;
 
 import com.example.pvbackend.model.WartungsprotokollSeite3;
-import com.example.pvbackend.model.WartungsprotokollSeite4;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -94,7 +93,7 @@ public class Seite3PdfRenderer {
             y -= 10;
 
             // ZUSATZ-TABELLE #1
-            y = drawZusatzTabelle(cs, s.getZusatz1(), "Zusatz-Tabelle #1", y);
+            drawZusatzTabelle(doc, cs, s.getZusatz1(), "Zusatz-Tabelle #2", y);
             y -= 10;
 
 // 2. Sichtkontrolle der Module
@@ -119,23 +118,37 @@ public class Seite3PdfRenderer {
 
             y -= 10;
 
-           drawZusatzTabelle(cs, s.getZusatz1(), "Zusatz-Tabelle #2", y);
+            drawZusatzTabelle(doc, cs, s.getZusatz2(), "Zusatz-Tabelle #2", y);
 
 
         }
     }
 
-    public static float drawZusatzTabelle(
-            PDPageContentStream cs,
-            List<? extends Object> list,
-            String title,
-            float y
-    ) throws IOException {
+    public static float drawZusatzTabelle(PDDocument doc, PDPageContentStream cs, List<? extends Object> list, String title, float y) throws IOException {
 
         text(cs, title, 40, y, 11);
         y -= 20;
 
+
+
         for (Object o : list) {
+
+            // ✅ PAGE BREAK CHECK (put here)
+            if (y < 120) {
+                cs.close();
+
+                PDPage newPage = new PDPage(PDRectangle.A4);
+                doc.addPage(newPage);
+
+                cs = new PDPageContentStream(doc, newPage);
+
+                y = 740; // reset top
+                text(cs, title, 40, y, 11); // optional: redraw table title
+                y -= 20;
+            }
+
+
+
             if (!(o instanceof WartungsprotokollSeite3.Zusatz1Row z)) continue;
 
             if (isEmpty(z)) continue;
@@ -170,6 +183,9 @@ public class Seite3PdfRenderer {
                         40, y, 9);
                 y -= 18;
             }
+
+
+
 
             y -= 6;
         }
