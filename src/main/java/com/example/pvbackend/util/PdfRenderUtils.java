@@ -188,4 +188,23 @@ public class PdfRenderUtils {
         r.setNbeh(nbeh);
         return r;
     }
+
+    public static void drawCheckbox(PDPageContentStream cs, float x, float y, boolean checked) throws IOException {
+        float size = 8;
+        float yOffset = 2;
+
+        cs.addRect(x, y - size + yOffset, size, size);
+        cs.stroke();
+
+        if (checked) {
+            cs.moveTo(x + 1, y - 1 + yOffset);
+            cs.lineTo(x + size - 1, y - size + 1 + yOffset);
+
+            cs.moveTo(x + 1, y - size + 1 + yOffset);
+            cs.lineTo(x + size - 1, y - 1 + yOffset);
+
+            cs.stroke();
+        }
+    }
+
 }
