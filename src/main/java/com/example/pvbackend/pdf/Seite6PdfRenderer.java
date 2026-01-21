@@ -56,8 +56,8 @@ public class Seite6PdfRenderer {
                 drawCheckbox(cs, 520, y, Boolean.TRUE.equals(row.getNz()));
 
 
-                cs.moveTo(40, y - 6);
-                cs.lineTo(555, y - 6);
+                cs.moveTo(40, y );
+                cs.lineTo(555, y);
                 cs.stroke();
 
 
@@ -91,8 +91,8 @@ public class Seite6PdfRenderer {
                 drawCheckbox(cs, 470, y, Boolean.TRUE.equals(row.getNein()));
                 drawCheckbox(cs, 520, y, Boolean.TRUE.equals(row.getNz()));
 
-                cs.moveTo(40, y - 6);
-                cs.lineTo(555, y - 6);
+                cs.moveTo(40, y );
+                cs.lineTo(555, y );
                 cs.stroke();
 
                 y -= 15;
