@@ -89,6 +89,9 @@ public class Seite4PdfRenderer {
                 text(cs, "n.z.", 532, y, 9);
 
 
+                cs.moveTo(40, y - 6);
+                cs.lineTo(555, y - 6);
+                cs.stroke();
 
                 y -= 15;
                 y -= 12;   // extra space
