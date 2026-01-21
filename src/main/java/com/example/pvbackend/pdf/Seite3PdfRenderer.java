@@ -87,12 +87,11 @@ public class Seite3PdfRenderer {
                         Boolean.TRUE.equals(row.getNz())
                 );
 
+                y -= 3; // small gap first
 
-                cs.moveTo(40, y - 6);
-                cs.lineTo(555, y - 6);
+                cs.moveTo(40, y);
+                cs.lineTo(555, y );
                 cs.stroke();
-
-                y -= 3;
 
             }
 
@@ -127,11 +126,12 @@ public class Seite3PdfRenderer {
                         Boolean.TRUE.equals(row.getNz())
                 );
 
-                cs.moveTo(40, y - 6);
-                cs.lineTo(555, y - 6);
-                cs.stroke();
 
-                y -= 3;
+                y -= 3; // small gap first
+
+                cs.moveTo(40, y );
+                cs.lineTo(555, y );
+                cs.stroke();
 
             }
 
