@@ -53,10 +53,15 @@ public class Seite10PdfRenderer {
                 y -= 10;
             }
 
-            y -= 10;
 
-            // Zusatz-Tabelle MSP
-            drawZusatzTabelle(cs, s.getZusatzMSP(), "Zusatz-Tabelle MSP", y);
+
+            PDPage newPage = new PDPage(PDRectangle.A4);
+            doc.addPage(newPage);
+
+            try (PDPageContentStream cs2 = new PDPageContentStream(doc, newPage)) {
+                y = 740;
+                drawZusatzTabelle(cs2, s.getZusatzMSP(), "Zusatz-Tabelle MSP", y);
+            }
         }
     }
 
