@@ -43,8 +43,8 @@ public class Seite9PdfRenderer {
                                 threeChecks(row.getJa(), row.getNein(), row.getNz()),
                         40, y, 9);
 
-                cs.moveTo(40, y - 6);
-                cs.lineTo(555, y - 6);
+                cs.moveTo(40, y - 2);
+                cs.lineTo(555, y - 2);
                 cs.stroke();
 
                 y -= 15;
