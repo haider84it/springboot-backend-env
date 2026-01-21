@@ -53,8 +53,8 @@ public class Seite4PdfRenderer {
                 drawCheckbox(cs, 520, abitUpY, Boolean.TRUE.equals(row.getNz()));
                 text(cs, "n.z.", 532, y, 9);
 
-                cs.moveTo(40, y - 2);
-                cs.lineTo(555, y - 2);
+                cs.moveTo(40, y - 6);
+                cs.lineTo(555, y - 6);
                 cs.stroke();
 
 
