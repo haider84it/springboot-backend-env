@@ -42,7 +42,13 @@ public class Seite11PdfRenderer {
                 text(cs, "15." + (i + 1) + " " + MS_SICHT_LABELS[i] + "  " +
                         threeChecks(row.getJa(), row.getNein(), row.getNz()), 40, y, 9);
                 y -= 15;
+
+                cs.moveTo(40, y - 6);
+                cs.lineTo(555, y - 6);
+                cs.stroke();
             }
+
+
 
             y -= 10;
 
@@ -60,7 +66,13 @@ public class Seite11PdfRenderer {
                 text(cs, "16." + (i + 1) + " " + SONSTIGES_LABELS[i] + "  " +
                         threeChecks(row.getJa(), row.getNein(), row.getNz()), 40, y, 9);
                 y -= 15;
+
+                cs.moveTo(40, y - 6);
+                cs.lineTo(555, y - 6);
+                cs.stroke();
             }
+
+
 
             y -= 10;
 

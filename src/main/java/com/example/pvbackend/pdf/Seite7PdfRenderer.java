@@ -47,6 +47,10 @@ public class Seite7PdfRenderer {
                         row.getNz(),
                         y
                 );
+
+                cs.moveTo(40, y - 6);
+                cs.lineTo(555, y - 6);
+                cs.stroke();
             }
 
             y -= 10;
@@ -71,6 +75,10 @@ public class Seite7PdfRenderer {
                         row.getNz(),
                         y
                 );
+
+                cs.moveTo(40, y - 6);
+                cs.lineTo(555, y - 6);
+                cs.stroke();
             }
 
             y -= 10;
