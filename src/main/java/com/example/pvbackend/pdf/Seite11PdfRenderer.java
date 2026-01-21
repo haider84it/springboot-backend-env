@@ -39,8 +39,11 @@ public class Seite11PdfRenderer {
 
             for (int i = 0; i < MS_SICHT_LABELS.length; i++) {
                 var row = s.getPruefungMSsicht().get(i);
-                text(cs, "15." + (i + 1) + " " + MS_SICHT_LABELS[i] + "  " +
-                        threeChecks(row.getJa(), row.getNein(), row.getNz()), 40, y, 9);
+                y = drawCheckTriple(cs,
+                        "15." + (i + 1) + " " + MS_SICHT_LABELS[i],
+                        row.getJa(), row.getNein(), row.getNz(),
+                        y
+                );
 
                 y -= 14; // more space under the text
 
@@ -70,11 +73,11 @@ public class Seite11PdfRenderer {
 
             for (int i = 0; i < SONSTIGES_LABELS.length; i++) {
                 var row = s.getSonstiges().get(i);
-                text(cs, "16." + (i + 1) + " " + SONSTIGES_LABELS[i] + "  " +
-                        threeChecks(row.getJa(), row.getNein(), row.getNz()), 40, y, 9);
-
-
-                y -= 14; // more space under the text
+                y = drawCheckTriple(cs,
+                        "16." + (i + 1) + " " + SONSTIGES_LABELS[i],
+                        row.getJa(), row.getNein(), row.getNz(),
+                        y
+                ); // more space under the text
 
                 cs.moveTo(40, y);
                 cs.lineTo(555, y);
