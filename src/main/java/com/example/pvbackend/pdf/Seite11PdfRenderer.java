@@ -42,14 +42,15 @@ public class Seite11PdfRenderer {
                 text(cs, "15." + (i + 1) + " " + MS_SICHT_LABELS[i] + "  " +
                         threeChecks(row.getJa(), row.getNein(), row.getNz()), 40, y, 9);
 
-                y -= 7;
+                y -= 14; // more space under the text
+
 
                 cs.moveTo(40, y );
                 cs.lineTo(555, y );
                 cs.stroke();
 
 
-                y -= 3;
+                y -= 6; // space after the line
 
 
             }
@@ -73,13 +74,13 @@ public class Seite11PdfRenderer {
                         threeChecks(row.getJa(), row.getNein(), row.getNz()), 40, y, 9);
 
 
-                y -= 7;
+                y -= 14; // more space under the text
 
                 cs.moveTo(40, y);
                 cs.lineTo(555, y);
                 cs.stroke();
 
-                y -= 3;
+                y -= 6; // space after the line
             }
 
 
