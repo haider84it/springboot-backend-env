@@ -45,11 +45,11 @@ public class Seite9PdfRenderer {
                         y
                 );
 
-                cs.moveTo(40, y - 2);
-                cs.lineTo(555, y - 2);
+                cs.moveTo(40, y + 3);
+                cs.lineTo(555, y + 3);
                 cs.stroke();
 
-                y -= 15;
+                y -= 10;
             }
 
             y -= 10;

@@ -46,11 +46,11 @@ public class Seite10PdfRenderer {
                 );
 
 
-                cs.moveTo(40, y - 2);
-                cs.lineTo(555, y - 2);
+                cs.moveTo(40, y + 4);
+                cs.lineTo(555, y + 4);
                 cs.stroke();
 
-                y -= 15;
+                y -= 10;
             }
 
             y -= 10;
