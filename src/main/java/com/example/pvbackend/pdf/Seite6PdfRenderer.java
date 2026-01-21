@@ -51,9 +51,9 @@ public class Seite6PdfRenderer {
             for (WartungsprotokollSeite6.RowWR row : s.getPruefungWR()) {
                 text(cs, "7." + nr + " " + WR_LABELS[nr - 1], 40, y, 9);
 
-                drawCheckbox(cs, 420, y, Boolean.TRUE.equals(row.getJa()));
-                drawCheckbox(cs, 470, y, Boolean.TRUE.equals(row.getNein()));
-                drawCheckbox(cs, 520, y, Boolean.TRUE.equals(row.getNz()));
+                drawCheckbox(cs, 420, y + 6, Boolean.TRUE.equals(row.getJa()));
+                drawCheckbox(cs, 470, y + 6, Boolean.TRUE.equals(row.getNein()));
+                drawCheckbox(cs, 520, y + 6, Boolean.TRUE.equals(row.getNz()));
 
 
                 cs.moveTo(40, y - 2 );
@@ -87,9 +87,9 @@ public class Seite6PdfRenderer {
 
                 text(cs, "8." + nr + " " + AC_LABELS[nr - 1], 40, y, 9);
 
-                drawCheckbox(cs, 420, y, Boolean.TRUE.equals(row.getJa()));
-                drawCheckbox(cs, 470, y, Boolean.TRUE.equals(row.getNein()));
-                drawCheckbox(cs, 520, y, Boolean.TRUE.equals(row.getNz()));
+                drawCheckbox(cs, 420, y + 6, Boolean.TRUE.equals(row.getJa()));
+                drawCheckbox(cs, 470, y + 6, Boolean.TRUE.equals(row.getNein()));
+                drawCheckbox(cs, 520, y + 6, Boolean.TRUE.equals(row.getNz()));
 
                 cs.moveTo(40, y - 2 );
                 cs.lineTo(555, y - 2 );
