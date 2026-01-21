@@ -269,6 +269,56 @@ public class PdfRenderUtils {
                 nbeh = z.getNbeh();
             }
 
+            else if (o instanceof WartungsprotokollSeite9.ZusatzWRZentralRow z) {
+                zupunkt = z.getZupunkt();
+                bemerkung = z.getBemerkung();
+                standort = z.getStandort();
+                plan = z.getPlan();
+                bildnr = z.getBildnr();
+                beh = z.getBeh();
+                nbeh = z.getNbeh();
+            }
+
+            else if (o instanceof WartungsprotokollSeite9.ZusatzWRZentralRow z) {
+                zupunkt = z.getZupunkt();
+                bemerkung = z.getBemerkung();
+                standort = z.getStandort();
+                plan = z.getPlan();
+                bildnr = z.getBildnr();
+                beh = z.getBeh();
+                nbeh = z.getNbeh();
+            }
+
+            else if (o instanceof WartungsprotokollSeite10.ZusatzMSPRow z) {
+                zupunkt = z.getZupunkt();
+                bemerkung = z.getBemerkung();
+                standort = z.getStandort();
+                plan = z.getPlan();
+                bildnr = z.getBildnr();
+                beh = z.getBeh();
+                nbeh = z.getNbeh();
+            }
+
+            else if (o instanceof WartungsprotokollSeite11.ZusatzMSsichtRow z) {
+                zupunkt = z.getZupunkt();
+                bemerkung = z.getBemerkung();
+                standort = z.getStandort();
+                plan = z.getPlan();
+                bildnr = z.getBildnr();
+                beh = z.getBeh();
+                nbeh = z.getNbeh();
+            }
+
+            else if (o instanceof WartungsprotokollSeite11.ZusatzSonstigesRow z) {
+                zupunkt = z.getZupunkt();
+                bemerkung = z.getBemerkung();
+                standort = z.getStandort();
+                plan = z.getPlan();
+                bildnr = z.getBildnr();
+                beh = z.getBeh();
+                nbeh = z.getNbeh();
+            }
+
             float rowTopY = topY - headerHeight - (i * rowHeight);
             float textY = rowTopY - 13;
 
