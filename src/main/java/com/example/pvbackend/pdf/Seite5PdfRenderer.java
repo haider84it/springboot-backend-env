@@ -43,8 +43,8 @@ public class Seite5PdfRenderer {
                     s.getMessungenPV().get(0).getNein(),
                     s.getMessungenPV().get(0).getNz(), y);
 
-            cs.moveTo(40, y);
-            cs.lineTo(555, y);
+            cs.moveTo(40, y + 5);
+            cs.lineTo(555, y + 5);
             cs.stroke();
 
             y = drawCheckTriple(cs, "5.2 Alle Modulstränge gemessen",
