@@ -50,7 +50,7 @@ public class Seite11PdfRenderer {
                 cs.stroke();
 
 
-                y -= 2; // space after the line
+                y -= 12; // space after the line
 
 
             }
@@ -80,7 +80,7 @@ public class Seite11PdfRenderer {
                 cs.lineTo(555, y);
                 cs.stroke();
 
-                y -= 1; // space after the line
+                y -= 12; // space after the line
             }
 
 
