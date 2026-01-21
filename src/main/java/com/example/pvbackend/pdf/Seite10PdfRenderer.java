@@ -38,10 +38,12 @@ public class Seite10PdfRenderer {
             for (int i = 0; i < MSP_LABELS.length; i++) {
                 WartungsprotokollSeite10.MSPRow row = s.getPruefungMSP().get(i);
 
-                text(cs,
-                        "14." + (i + 1) + " " + MSP_LABELS[i] + "  " +
-                                threeChecks(row.getJa(), row.getNein(), row.getNz()),
-                        40, y, 9);
+                y = drawCheckTriple(
+                        cs,
+                        "14." + (i + 1) + " " + MSP_LABELS[i],
+                        row.getJa(), row.getNein(), row.getNz(),
+                        y
+                );
 
 
                 cs.moveTo(40, y - 2);

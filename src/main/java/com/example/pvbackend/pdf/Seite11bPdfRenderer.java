@@ -31,19 +31,7 @@ public class Seite11bPdfRenderer {
 
             float y = 740;
 
-            // Schulnoten
-            text(cs, "Bewertung – Schulnoten (1 bis 6)", 40, y, 11);
-            y -= 20;
-
-            for (int i = 0; i < s.getNoten().size(); i++) {
-                Boolean b = s.getNoten().get(i);
-                text(cs,
-                        "Note " + (i + 1) + ": " + checkbox(Boolean.TRUE.equals(b)),
-                        40, y, 9);
-                y -= 15;
-            }
-
-            y -= 10;
+            y -= 7; //vertical space
 
             // Abschluss der Arbeiten
             text(cs, "Abschluss der Arbeiten", 40, y, 11);

@@ -38,10 +38,12 @@ public class Seite9PdfRenderer {
             for (int i = 0; i < ZENTRAL_WR_LABELS.length; i++) {
                 WartungsprotokollSeite9.ZentralWRRow row = s.getPruefungWRZentral().get(i);
 
-                text(cs,
-                        "13." + (i + 1) + " " + ZENTRAL_WR_LABELS[i] + "  " +
-                                threeChecks(row.getJa(), row.getNein(), row.getNz()),
-                        40, y, 9);
+                y = drawCheckTriple(
+                        cs,
+                        "13." + (i + 1) + " " + ZENTRAL_WR_LABELS[i],
+                        row.getJa(), row.getNein(), row.getNz(),
+                        y
+                );
 
                 cs.moveTo(40, y - 2);
                 cs.lineTo(555, y - 2);

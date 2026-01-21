@@ -38,10 +38,11 @@ public class Seite8PdfRenderer {
             for (int i = 0; i < AUSSEN_LABELS.length; i++) {
                 WartungsprotokollSeite8.AussenRow row = s.getPruefungAussen().get(i);
 
-                text(cs,
-                        "11." + (i + 1) + " " + AUSSEN_LABELS[i] + "   " +
-                                threeChecks(row.getJa(), row.getNein(), row.getNz()),
-                        40, y, 9
+                y = drawCheckTriple(
+                        cs,
+                        "11." + (i + 1) + " " + AUSSEN_LABELS[i],
+                        row.getJa(), row.getNein(), row.getNz(),
+                        y
                 );
 
                 cs.moveTo(40, y - 2);
@@ -64,10 +65,11 @@ public class Seite8PdfRenderer {
             for (int i = 0; i < DIEBSTAHL_LABELS.length; i++) {
                 WartungsprotokollSeite8.DiebstahlRow row = s.getPruefungDiebstahl().get(i);
 
-                text(cs,
-                        "12." + (i + 1) + " " + DIEBSTAHL_LABELS[i] + "   " +
-                                threeChecks(row.getJa(), row.getNein(), row.getNz()),
-                        40, y, 9
+                y = drawCheckTriple(
+                        cs,
+                        "12." + (i + 1) + " " + DIEBSTAHL_LABELS[i],
+                        row.getJa(), row.getNein(), row.getNz(),
+                        y
                 );
 
                 cs.moveTo(40, y - 2);

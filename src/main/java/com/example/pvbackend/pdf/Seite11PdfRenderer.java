@@ -45,7 +45,7 @@ public class Seite11PdfRenderer {
                         y
                 );
 
-                y -= 14; // more space under the text
+                y -= 9; // more space under the text
 
 
                 cs.moveTo(40, y );
@@ -77,7 +77,9 @@ public class Seite11PdfRenderer {
                         "16." + (i + 1) + " " + SONSTIGES_LABELS[i],
                         row.getJa(), row.getNein(), row.getNz(),
                         y
-                ); // more space under the text
+                );
+
+                y -= 9; // more space under the text
 
                 cs.moveTo(40, y);
                 cs.lineTo(555, y);
