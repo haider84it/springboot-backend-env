@@ -49,10 +49,13 @@ public class Seite11bPdfRenderer {
             text(cs, "Abschluss der Arbeiten", 40, y, 11);
             y -= 20;
 
-            for (int i = 0; i < s.getAbschluss().size(); i++) {
-                Boolean b = s.getAbschluss().get(i);
+            for (int i = 0; i < ABSCHLUSS_LABELS.length; i++) {
+                Boolean b = (s.getAbschluss() != null && s.getAbschluss().size() > i)
+                        ? s.getAbschluss().get(i)
+                        : null;
+
                 text(cs,
-                        "Punkt " + (i + 1) + ": " + checkbox(Boolean.TRUE.equals(b)),
+                        (i + 1) + " - " + ABSCHLUSS_LABELS[i] + ": " + checkbox(Boolean.TRUE.equals(b)),
                         40, y, 9);
                 y -= 15;
             }
@@ -74,7 +77,7 @@ public class Seite11bPdfRenderer {
 
             // Alles erledigt
             text(cs,
-                    "Alles erledigt: " + checkbox(Boolean.TRUE.equals(s.getAllesErledigt())),
+                    "Alle Arbeiten erledigt und dokumentiert, Protokoll vollständig ausgefüllt: " + checkbox(Boolean.TRUE.equals(s.getAllesErledigt())),
                     40, y, 10);
             y -= 25;
 
@@ -98,6 +101,16 @@ public class Seite11bPdfRenderer {
     private String checkbox(boolean b) {
         return b ? "[X]" : "[ ]";
     }
+
+
+    private static final String[] ABSCHLUSS_LABELS = {
+            "Alle WR sind in Betrieb und speisen ein",
+            "Anlage und Gebäude geschlossen",
+            "Unterlagen, Wartungsmappe und Schlüssel zurückgegeben",
+            "Messgeräte funktionsfähig",
+            "Dokumentationsbilder und Messprotokoll abgelegt",
+            "Beiblätter vorhanden"
+    };
 
 
 }

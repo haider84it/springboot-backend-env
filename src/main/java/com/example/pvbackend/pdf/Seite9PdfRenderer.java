@@ -35,14 +35,15 @@ public class Seite9PdfRenderer {
             text(cs, "SECTION 13 – Zentralwechselrichter (13.1 – 13.23)", 40, y, 11);
             y -= 20;
 
-            int nr = 1;
-            for (WartungsprotokollSeite9.ZentralWRRow row : s.getPruefungWRZentral()) {
+            for (int i = 0; i < ZENTRAL_WR_LABELS.length; i++) {
+                WartungsprotokollSeite9.ZentralWRRow row = s.getPruefungWRZentral().get(i);
+
                 text(cs,
-                        "13." + nr + "  " +
+                        "13." + (i + 1) + " " + ZENTRAL_WR_LABELS[i] + "  " +
                                 threeChecks(row.getJa(), row.getNein(), row.getNz()),
                         40, y, 9);
+
                 y -= 15;
-                nr++;
             }
 
             y -= 10;
@@ -59,4 +60,31 @@ public class Seite9PdfRenderer {
         cs.showText(txt == null ? "" : txt);
         cs.endText();
     }
+
+
+    private static final String[] ZENTRAL_WR_LABELS = {
+            "Die WR-Gebäude sind frei und zugänglich",
+            "Die WR-Gebäude befinden sich in gutem Zustand",
+            "Der Innenraum der WR ist in Ordnung (Verschmutzung, Feuchtigkeit usw.)",
+            "Die Türen der WR in Ordnung (Dichtungen, Scharniere, Verriegelungen)",
+            "Heizung vorhanden und betriebsbereit",
+            "Hygrostat in Ordnung",
+            "Lüfter in Ordnung",
+            "Reinigung Lüfter durchgeführt",
+            "Stationsbeleuchtung und Steckdosen in Ordnung",
+            "Die Kabelverschraubungen sind fest und dicht",
+            "Sammelschienen und Isolatoren in Ordnung (bei Bedarf gereinigt)",
+            "Klemmverbindung der Leistungseverkabelung in Ordnung",
+            "Steck-/Klemmverbindung der Strangverkabelung in Ordnung",
+            "Erdverbindungen in Ordnung",
+            "Sicherungen in Ordnung",
+            "Isolierungen in Ordnung",
+            "Berührungsschutz vorhanden und in Ordnung",
+            "Überspannungsableiter in Ordnung",
+            "Die Schalteinheiten sind funktionsfähig und in Ordnung",
+            "Alle WR sind funktionsfähig und speisen ein, ohne Fehlermeldungen",
+            "Versorgungsspannung und USV in Ordnung",
+            "Weitere Wartungsmaßnahmen laut Angaben WR-Hersteller durchgeführt"
+    };
+
 }

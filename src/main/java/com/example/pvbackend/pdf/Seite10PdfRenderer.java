@@ -35,18 +35,15 @@ public class Seite10PdfRenderer {
             text(cs, "SECTION 14 – Prüfung Mittelspannungsanlagen (14.1 – 14.29)", 40, y, 11);
             y -= 20;
 
-            int nr = 1;
-            for (WartungsprotokollSeite10.MSPRow row : s.getPruefungMSP()) {
-                text(
-                        cs,
-                        "14." + nr + "  " +
+            for (int i = 0; i < MSP_LABELS.length; i++) {
+                WartungsprotokollSeite10.MSPRow row = s.getPruefungMSP().get(i);
+
+                text(cs,
+                        "14." + (i + 1) + " " + MSP_LABELS[i] + "  " +
                                 threeChecks(row.getJa(), row.getNein(), row.getNz()),
-                        40,
-                        y,
-                        9
-                );
+                        40, y, 9);
+
                 y -= 15;
-                nr++;
             }
 
             y -= 10;
@@ -63,4 +60,40 @@ public class Seite10PdfRenderer {
         cs.showText(txt == null ? "" : txt);
         cs.endText();
     }
+
+
+    private static final String[] MSP_LABELS = {
+            "Die Gebäude der MSP-Anlagen sind frei und zugänglich",
+            "Die Gebäude der MSP-Anlagen befinden sich in gutem Zustand",
+            "Innenraum der Gebäude in Ordnung (Verschmutzung, Feuchtigkeit, usw.)",
+            "Türen in Ordnung (Dichtungen, Scharniere, Verriegelungen)",
+            "Heizung vorhanden und betriebsbereit",
+            "Hygrostat in Ordnung",
+            "Reinigung Luftkanal, Insektenschutzgitter und Filter durchgeführt",
+            "Lüfter in Ordnung",
+            "Reinigung Lüfter durchgeführt",
+            "Stationsbeleuchtung und Steckdosen in Ordnung",
+            "Die Kabelverschraubungen sind fest und dicht",
+            "Die Anzugsmomente aller Schrauben sind richtig (Kabelanschlüsse)",
+            "Sammelschienen und Isolatoren sind in Ordnung (bei Bedarf gereinigt)",
+            "Klemmenverbindung der Leistungskabelung in Ordnung",
+            "Steck-/Klemmverbindung der Strangkabelung in Ordnung",
+            "Erdverbindungen in Ordnung",
+            "Sicherungen in Ordnung",
+            "Isolierungen in Ordnung",
+            "Berührungsschutz vorhanden und in Ordnung",
+            "Erdungsscharnitur, Betätigungshebel für Schaltanlage, Spannungsprüfer i.O.",
+            "Notfallplan vorhanden und aktuell",
+            "Warnschilder und Beschriftungen vorhanden und i.O.",
+            "NSHV in Ordnung",
+            "Gasdruck der SF6-Schaltanlage in Ordnung",
+            "Trafo, Öl, Kühlung, Flüssigkeitsstand in Ordnung",
+            "Netz- und Anlagenschutz in Betrieb ohne Fehlermeldungen",
+            "Versorgungsspannung in Ordnung",
+            "USV funktionsfähig, Batterien in Ordnung (Schutzgerät, usw.)",
+            "Parkregelung in Betrieb und ohne Fehlermeldungen"
+    };
+
+
+
 }

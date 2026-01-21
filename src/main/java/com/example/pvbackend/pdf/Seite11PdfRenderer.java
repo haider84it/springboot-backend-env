@@ -37,18 +37,11 @@ public class Seite11PdfRenderer {
             text(cs, "SECTION 15 – Sichtprüfung Mittelspannungsanlagen (15.1 – 15.4)", 40, y, 11);
             y -= 20;
 
-            int nr = 1;
-            for (WartungsprotokollSeite11.MSsichtRow row : s.getPruefungMSsicht()) {
-                text(
-                        cs,
-                        "15." + nr + "  " +
-                                threeChecks(row.getJa(), row.getNein(), row.getNz()),
-                        40,
-                        y,
-                        9
-                );
+            for (int i = 0; i < MS_SICHT_LABELS.length; i++) {
+                var row = s.getPruefungMSsicht().get(i);
+                text(cs, "15." + (i + 1) + " " + MS_SICHT_LABELS[i] + "  " +
+                        threeChecks(row.getJa(), row.getNein(), row.getNz()), 40, y, 9);
                 y -= 15;
-                nr++;
             }
 
             y -= 10;
@@ -61,18 +54,12 @@ public class Seite11PdfRenderer {
             text(cs, "SECTION 16 – Sonstiges (16.1 – 16.4)", 40, y, 11);
             y -= 20;
 
-            nr = 1;
-            for (WartungsprotokollSeite11.SonstigesRow row : s.getSonstiges()) {
-                text(
-                        cs,
-                        "16." + nr + "  " +
-                                threeChecks(row.getJa(), row.getNein(), row.getNz()),
-                        40,
-                        y,
-                        9
-                );
+
+            for (int i = 0; i < SONSTIGES_LABELS.length; i++) {
+                var row = s.getSonstiges().get(i);
+                text(cs, "16." + (i + 1) + " " + SONSTIGES_LABELS[i] + "  " +
+                        threeChecks(row.getJa(), row.getNein(), row.getNz()), 40, y, 9);
                 y -= 15;
-                nr++;
             }
 
             y -= 10;
@@ -89,4 +76,20 @@ public class Seite11PdfRenderer {
         cs.showText(txt == null ? "" : txt);
         cs.endText();
     }
+
+    private static final String[] MS_SICHT_LABELS = {
+            "Sichtprüfung der Trafostation durchgeführt, ohne Beanstandungen",
+            "Sichtprüfung der Übergabestation durchgeführt, ohne Beanstandungen",
+            "Die Anzugsmomente aller Schrauben sind richtig (Kabelanschlüsse)",
+            "Reinigung Station / Lüftungswege u.ä. (ohne Abschaltung) ausgeführt"
+    };
+
+    private static final String[] SONSTIGES_LABELS = {
+            "Warnschilder für PV-Anlage und Komp. vorhanden und in Ordnung",
+            "Brandschutzkonzept ist vorhanden und aktuell (Pläne, usw.)",
+            "Brandschutzmaßnahmen i. O. (Feuerlöscher, Schlüssel, usw.)",
+            "Blitzschutzkonzept vorhanden, Maßnahmen in Ordnung"
+    };
+
+
 }
