@@ -41,31 +41,31 @@ public class Seite5PdfRenderer {
             y = drawCheckTriple(cs, "5.1 Modultragende Teile gemessen",
                     s.getMessungenPV().get(0).getJa(),
                     s.getMessungenPV().get(0).getNein(),
-                    s.getMessungenPV().get(0).getNz(), y + 2);
+                    s.getMessungenPV().get(0).getNz(), y );
             drawLine(cs, 40, y + 8, 555, y + 8);
 
             y = drawCheckTriple(cs, "5.2 Alle Modulstränge gemessen",
                     s.getMessungenPV().get(1).getJa(),
                     s.getMessungenPV().get(1).getNein(),
-                    s.getMessungenPV().get(1).getNz(), y + 2);
+                    s.getMessungenPV().get(1).getNz(), y);
             drawLine(cs, 40, y + 8, 555, y + 8);
 
             y = drawCheckTriple(cs, "5.3 Erdungswiderstand gemessen",
                     s.getMessungenPV().get(2).getJa(),
                     s.getMessungenPV().get(2).getNein(),
-                    s.getMessungenPV().get(2).getNz(), y + 2);
+                    s.getMessungenPV().get(2).getNz(), y);
             drawLine(cs, 40, y + 8, 555, y + 8);
 
             y = drawCheckTriple(cs, "5.4 Erdung durchgeführt",
                     s.getMessungenPV().get(3).getJa(),
                     s.getMessungenPV().get(3).getNein(),
-                    s.getMessungenPV().get(3).getNz(), y + 2);
+                    s.getMessungenPV().get(3).getNz(), y);
             drawLine(cs, 40, y + 8, 555, y + 8);
 
             y = drawCheckTriple(cs, "5.5 Nach DIN 62446 geprüft",
                     s.getMessungenPV().get(4).getJa(),
                     s.getMessungenPV().get(4).getNein(),
-                    s.getMessungenPV().get(4).getNz(), y + 2);
+                    s.getMessungenPV().get(4).getNz(), y);
             drawLine(cs, 40, y + 8, 555, y + 8);
 
             y -= 10;
@@ -81,79 +81,79 @@ public class Seite5PdfRenderer {
             y = drawCheckThree(cs, "6.1  Alle GAKs sind frei und zugänglich",
                     s.getPruefungGAKs().get(0).getJa(),
                     s.getPruefungGAKs().get(0).getNein(),
-                    s.getPruefungGAKs().get(0).getNz(), y + 2);
+                    s.getPruefungGAKs().get(0).getNz(), y);
             drawLine(cs, 40, y + 8, 555, y + 8);
 
             y = drawCheckThree(cs, "6.2 Die Strangsicherungen sind funktionsfähig",
                     s.getPruefungGAKs().get(1).getJa(),
                     s.getPruefungGAKs().get(1).getNein(),
-                    s.getPruefungGAKs().get(1).getNz(), y + 2);
+                    s.getPruefungGAKs().get(1).getNz(), y);
             drawLine(cs, 40, y + 8, 555, y + 8);
 
             y = drawCheckThree(cs, "6.3 Die ÜSS-Einrichtungen sind funktionsfähig",
                     s.getPruefungGAKs().get(2).getJa(),
                     s.getPruefungGAKs().get(2).getNein(),
-                    s.getPruefungGAKs().get(2).getNz(), y + 2);
+                    s.getPruefungGAKs().get(2).getNz(), y);
             drawLine(cs, 40, y + 8, 555, y + 8);
 
             y = drawCheckThree(cs, "6.4 Die Schalter sind funktionsfähig",
                     s.getPruefungGAKs().get(3).getJa(),
                     s.getPruefungGAKs().get(3).getNein(),
-                    s.getPruefungGAKs().get(3).getNz(), y + 2);
+                    s.getPruefungGAKs().get(3).getNz(), y);
             drawLine(cs, 40, y + 8, 555, y + 8);
 
             y = drawCheckThree(cs, "6.5 Die GAKs sind frei von Schäden",
                     s.getPruefungGAKs().get(4).getJa(),
                     s.getPruefungGAKs().get(4).getNein(),
-                    s.getPruefungGAKs().get(4).getNz(), y + 2);
+                    s.getPruefungGAKs().get(4).getNz(), y);
             drawLine(cs, 40, y + 8, 555, y + 8);
 
             y = drawCheckThree(cs, "6.6 Die GAKs sind frei von Feuchtigkeit",
                     s.getPruefungGAKs().get(5).getJa(),
                     s.getPruefungGAKs().get(5).getNein(),
-                    s.getPruefungGAKs().get(5).getNz(), y + 2);
+                    s.getPruefungGAKs().get(5).getNz(), y);
             drawLine(cs, 40, y + 8, 555, y + 8);
 
             y = drawCheckThree(cs, "6.7 Der innere Zustand der GAKs ist in Ordnung",
                     s.getPruefungGAKs().get(6).getJa(),
                     s.getPruefungGAKs().get(6).getNein(),
-                    s.getPruefungGAKs().get(6).getNz(), y + 2);
+                    s.getPruefungGAKs().get(6).getNz(), y);
             drawLine(cs, 40, y + 8, 555, y + 8);
 
             y = drawCheckThree(cs, "6.8 Die Erdung der Verteiler ist frei von Schäden und richtig montiert",
                     s.getPruefungGAKs().get(7).getJa(),
                     s.getPruefungGAKs().get(7).getNein(),
-                    s.getPruefungGAKs().get(7).getNz(), y + 2);
+                    s.getPruefungGAKs().get(7).getNz(), y);
             drawLine(cs, 40, y + 8, 555, y + 8);
 
             y = drawCheckThree(cs, "6.9 Die Beschriftung ist vollständig und i.O.",
                     s.getPruefungGAKs().get(8).getJa(),
                     s.getPruefungGAKs().get(8).getNein(),
-                    s.getPruefungGAKs().get(8).getNz(), y + 2);
+                    s.getPruefungGAKs().get(8).getNz(), y);
             drawLine(cs, 40, y + 8, 555, y + 8);
 
             y = drawCheckThree(cs, "6.10 Die Kabelverschraubungen sind fest und dicht",
                     s.getPruefungGAKs().get(9).getJa(),
                     s.getPruefungGAKs().get(9).getNein(),
-                    s.getPruefungGAKs().get(9).getNz(), y + 2);
+                    s.getPruefungGAKs().get(9).getNz(), y);
             drawLine(cs, 40, y + 8, 555, y + 8);
 
             y = drawCheckThree(cs, "6.11 Die Anzugsmomente aller Schrauben sind korrekt",
                     s.getPruefungGAKs().get(10).getJa(),
                     s.getPruefungGAKs().get(10).getNein(),
-                    s.getPruefungGAKs().get(10).getNz(), y + 2);
+                    s.getPruefungGAKs().get(10).getNz(), y);
             drawLine(cs, 40, y + 8, 555, y + 8);
 
             y = drawCheckThree(cs, "6.12 Die GAKs wurden gereinigt",
                     s.getPruefungGAKs().get(11).getJa(),
                     s.getPruefungGAKs().get(11).getNein(),
-                    s.getPruefungGAKs().get(11).getNz(), y + 2);
+                    s.getPruefungGAKs().get(11).getNz(), y);
             drawLine(cs, 40, y + 8, 555, y + 8);
 
             y = drawCheckThree(cs, "6.13 Keine Auffälligkeiten aus Thermografieuntersuchung",
                     s.getPruefungGAKs().get(12).getJa(),
                     s.getPruefungGAKs().get(12).getNein(),
-                    s.getPruefungGAKs().get(12).getNz(), y + 2);
+                    s.getPruefungGAKs().get(12).getNz(), y);
             drawLine(cs, 40, y + 8, 555, y + 8);
 
             y -= 10;

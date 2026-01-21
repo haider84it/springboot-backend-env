@@ -45,7 +45,7 @@ public class Seite7PdfRenderer {
                         row.getJa(),
                         row.getNein(),
                         row.getNz(),
-                        y + 2
+                        y
                 );
 
                 cs.moveTo(40, y + 8);
@@ -73,7 +73,7 @@ public class Seite7PdfRenderer {
                         row.getJa(),
                         row.getNein(),
                         row.getNz(),
-                        y + 2
+                        y
                 );
 
                 cs.moveTo(40, y + 8);
