@@ -93,6 +93,8 @@ public class Seite3PdfRenderer {
                 cs.lineTo(555, y );
                 cs.stroke();
 
+                y -= 12; // IMPORTANT: move down after separator
+
             }
 
 
@@ -132,6 +134,8 @@ public class Seite3PdfRenderer {
                 cs.moveTo(40, y );
                 cs.lineTo(555, y );
                 cs.stroke();
+
+                y -= 12; // IMPORTANT: move down after separator
 
             }
 
