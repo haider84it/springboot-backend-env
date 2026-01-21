@@ -108,18 +108,107 @@ public class PdfRenderUtils {
             float y
     ) throws IOException {
 
-        text(cs, title, 40, y, 11);
-        y -= 20;
+        // --- TABLE SETTINGS ---
+        final float startX = 40f;
+        final float tableWidth = 515f;
+        final float headerHeight = 18f;
+        final float rowHeight = 18f;
+        final int maxRows = 3;
 
-        for (Object o : list) {
+        // Column widths
+        final float wZuPunkt = 75f;
+        final float wBemerkung = 190f;
+        final float wStandort = 70f;
+        final float wPlan = 25f;
+        final float wBildNr = 45f;
+        final float wBeh = 35f;
+        final float wNBeh = 35f;
 
-            String zupunkt;
-            String bemerkung;
-            String standort;
-            Boolean plan;
-            String bildnr;
-            Boolean beh;
-            Boolean nbeh;
+        final float extra = tableWidth - (wZuPunkt + wBemerkung + wStandort + wPlan + wBildNr + wBeh + wNBeh);
+        final float wBemerkungFinal = wBemerkung + extra;
+
+        // --- TITLE ---
+        text(cs, title, startX, y, 11);
+        y -= 16;
+
+        float topY = y;
+        float tableLeft = startX;
+        float tableRight = startX + tableWidth;
+
+        // Outer border
+        cs.addRect(tableLeft, topY - (headerHeight + maxRows * rowHeight), tableWidth, headerHeight + maxRows * rowHeight);
+        cs.stroke();
+
+        // Header separator
+        cs.moveTo(tableLeft, topY - headerHeight);
+        cs.lineTo(tableRight, topY - headerHeight);
+        cs.stroke();
+
+        // Row lines
+        for (int r = 1; r <= maxRows; r++) {
+            float lineY = topY - headerHeight - (r * rowHeight);
+            cs.moveTo(tableLeft, lineY);
+            cs.lineTo(tableRight, lineY);
+            cs.stroke();
+        }
+
+        // Vertical lines
+        float x = tableLeft;
+
+        x += wZuPunkt;
+        cs.moveTo(x, topY);
+        cs.lineTo(x, topY - (headerHeight + maxRows * rowHeight));
+        cs.stroke();
+
+        x += wBemerkungFinal;
+        cs.moveTo(x, topY);
+        cs.lineTo(x, topY - (headerHeight + maxRows * rowHeight));
+        cs.stroke();
+
+        x += wStandort;
+        cs.moveTo(x, topY);
+        cs.lineTo(x, topY - (headerHeight + maxRows * rowHeight));
+        cs.stroke();
+
+        x += wPlan;
+        cs.moveTo(x, topY);
+        cs.lineTo(x, topY - (headerHeight + maxRows * rowHeight));
+        cs.stroke();
+
+        x += wBildNr;
+        cs.moveTo(x, topY);
+        cs.lineTo(x, topY - (headerHeight + maxRows * rowHeight));
+        cs.stroke();
+
+        x += wBeh;
+        cs.moveTo(x, topY);
+        cs.lineTo(x, topY - (headerHeight + maxRows * rowHeight));
+        cs.stroke();
+
+        // --- HEADER TEXT ---
+        float headerTextY = topY - 13;
+        float pad = 3f;
+
+        text(cs, "Zu Punkt", tableLeft + pad, headerTextY, 8);
+        text(cs, "Bemerkungen / Mängel", tableLeft + wZuPunkt + pad, headerTextY, 8);
+        text(cs, "Standort Mangel", tableLeft + wZuPunkt + wBemerkungFinal + pad, headerTextY, 8);
+        text(cs, "Plan", tableLeft + wZuPunkt + wBemerkungFinal + wStandort + pad, headerTextY, 8);
+        text(cs, "Bild-Nr.", tableLeft + wZuPunkt + wBemerkungFinal + wStandort + wPlan + pad, headerTextY, 8);
+        text(cs, "Beh.", tableLeft + wZuPunkt + wBemerkungFinal + wStandort + wPlan + wBildNr + pad, headerTextY, 8);
+        text(cs, "n. Beh.", tableLeft + wZuPunkt + wBemerkungFinal + wStandort + wPlan + wBildNr + wBeh + pad, headerTextY, 8);
+
+        // --- FILL 3 ROWS ---
+        for (int i = 0; i < maxRows; i++) {
+
+            Object o = (list != null && i < list.size()) ? list.get(i) : null;
+
+            String zupunkt = "";
+            String bemerkung = "";
+            String standort = "";
+            Boolean plan = false;
+            String bildnr = "";
+            Boolean beh = false;
+            Boolean nbeh = false;
 
             if (o instanceof WartungsprotokollSeite4.ZusatzRow z) {
                 zupunkt = z.getZupunkt();
@@ -145,7 +234,7 @@ public class PdfRenderUtils {
                 bildnr = z.getBildnr();
                 beh = z.getBeh();
                 nbeh = z.getNbeh();
-            }  else if (o instanceof WartungsprotokollSeite7.ZusatzZaehlerRow z) {
+            } else if (o instanceof WartungsprotokollSeite7.ZusatzZaehlerRow z) {
                 zupunkt = z.getZupunkt();
                 bemerkung = z.getBemerkung();
                 standort = z.getStandort();
@@ -163,46 +252,59 @@ public class PdfRenderUtils {
                 nbeh = z.getNbeh();
             }
 
+            float rowTopY = topY - headerHeight - (i * rowHeight);
+            float textY = rowTopY - 13;
 
-            else {
-                continue;
+            // Text cells
+            text(cs, safe(zupunkt), tableLeft + pad, textY, 8);
+            text(cs, safe(bemerkung), tableLeft + wZuPunkt + pad, textY, 8);
+            text(cs, safe(standort), tableLeft + wZuPunkt + wBemerkungFinal + pad, textY, 8);
+            text(cs, safe(bildnr), tableLeft + wZuPunkt + wBemerkungFinal + wStandort + wPlan + pad, textY, 8);
+
+            // Checkbox cells
+            float cbSize = 7f;
+
+            float planX = tableLeft + wZuPunkt + wBemerkungFinal + wStandort + (wPlan / 2f) - (cbSize / 2f);
+            float behX = tableLeft + wZuPunkt + wBemerkungFinal + wStandort + wPlan + wBildNr + (wBeh / 2f) - (cbSize / 2f);
+            float nbehX = tableLeft + wZuPunkt + wBemerkungFinal + wStandort + wPlan + wBildNr + wBeh + (wNBeh / 2f) - (cbSize / 2f);
+
+            float cbY = rowTopY - 6;
+
+            // Plan
+            cs.addRect(planX, cbY - cbSize, cbSize, cbSize);
+            cs.stroke();
+            if (Boolean.TRUE.equals(plan)) {
+                cs.moveTo(planX + 1, cbY - 1);
+                cs.lineTo(planX + cbSize - 1, cbY - cbSize + 1);
+                cs.moveTo(planX + 1, cbY - cbSize + 1);
+                cs.lineTo(planX + cbSize - 1, cbY - 1);
+                cs.stroke();
             }
 
-            if (!isBlank(zupunkt)) {
-                text(cs, "• Zu Punkt: " + zupunkt, 40, y, 9);
-                y -= 12;
+            // Beh
+            cs.addRect(behX, cbY - cbSize, cbSize, cbSize);
+            cs.stroke();
+            if (Boolean.TRUE.equals(beh)) {
+                cs.moveTo(behX + 1, cbY - 1);
+                cs.lineTo(behX + cbSize - 1, cbY - cbSize + 1);
+                cs.moveTo(behX + 1, cbY - cbSize + 1);
+                cs.lineTo(behX + cbSize - 1, cbY - 1);
+                cs.stroke();
             }
 
-            if (!isBlank(bemerkung)) {
-                text(cs, "  Bemerkung: " + bemerkung, 40, y, 9);
-                y -= 12;
+            // n.Beh
+            cs.addRect(nbehX, cbY - cbSize, cbSize, cbSize);
+            cs.stroke();
+            if (Boolean.TRUE.equals(nbeh)) {
+                cs.moveTo(nbehX + 1, cbY - 1);
+                cs.lineTo(nbehX + cbSize - 1, cbY - cbSize + 1);
+                cs.moveTo(nbehX + 1, cbY - cbSize + 1);
+                cs.lineTo(nbehX + cbSize - 1, cbY - 1);
+                cs.stroke();
             }
-
-            if (!isBlank(standort)) {
-                text(cs, "  Standort: " + standort, 40, y, 9);
-                y -= 12;
-            }
-
-            boolean hasBottom =
-                    Boolean.TRUE.equals(plan) ||
-                            !isBlank(bildnr) ||
-                            Boolean.TRUE.equals(beh) ||
-                            Boolean.TRUE.equals(nbeh);
-
-            if (hasBottom) {
-                text(cs,
-                        "  Plan:" + checkbox(Boolean.TRUE.equals(plan)) +
-                                "  Bild-Nr: " + safe(bildnr) +
-                                "  Beh:" + checkbox(Boolean.TRUE.equals(beh)) +
-                                "  n.Beh:" + checkbox(Boolean.TRUE.equals(nbeh)),
-                        40, y, 9);
-                y -= 18;
-            }
-
-            y -= 6;
         }
 
-        return y;
+        return topY - (headerHeight + maxRows * rowHeight) - 10;
     }
 
     // ============================================================

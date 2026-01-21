@@ -154,12 +154,12 @@ public class Seite3PdfRenderer {
 
         // Column widths (sum must be tableWidth)
         final float wZuPunkt = 75f;
-        final float wBemerkung = 210f;
+        final float wBemerkung = 190f;
         final float wStandort = 70f;
         final float wPlan = 25f;
         final float wBildNr = 45f;
-        final float wBeh = 25f;
-        final float wNBeh = 25f;
+        final float wBeh = 35f;
+        final float wNBeh = 35f;
         // sum = 75 + 210 + 70 + 25 + 45 + 25 + 25 = 475
         // we still need 40 more to reach 515, so distribute to remarks:
         final float extra = tableWidth - (wZuPunkt + wBemerkung + wStandort + wPlan + wBildNr + wBeh + wNBeh);
