@@ -35,14 +35,15 @@ public class Seite8PdfRenderer {
             text(cs, "SECTION 11 – Prüfung Außenanlage (11.1 – 11.9)", 40, y, 11);
             y -= 20;
 
-            int nr = 1;
-            for (WartungsprotokollSeite8.AussenRow row : s.getPruefungAussen()) {
+            for (int i = 0; i < AUSSEN_LABELS.length; i++) {
+                WartungsprotokollSeite8.AussenRow row = s.getPruefungAussen().get(i);
+
                 text(cs,
-                        "11." + nr + "  " +
+                        "11." + (i + 1) + " " + AUSSEN_LABELS[i] + "   " +
                                 threeChecks(row.getJa(), row.getNein(), row.getNz()),
-                        40, y, 9);
+                        40, y, 9
+                );
                 y -= 15;
-                nr++;
             }
 
             y -= 10;
@@ -55,14 +56,15 @@ public class Seite8PdfRenderer {
             text(cs, "SECTION 12 – Prüfung Diebstahlschutz (12.1 – 12.5)", 40, y, 11);
             y -= 20;
 
-            nr = 1;
-            for (WartungsprotokollSeite8.DiebstahlRow row : s.getPruefungDiebstahl()) {
+            for (int i = 0; i < DIEBSTAHL_LABELS.length; i++) {
+                WartungsprotokollSeite8.DiebstahlRow row = s.getPruefungDiebstahl().get(i);
+
                 text(cs,
-                        "12." + nr + "  " +
+                        "12." + (i + 1) + " " + DIEBSTAHL_LABELS[i] + "   " +
                                 threeChecks(row.getJa(), row.getNein(), row.getNz()),
-                        40, y, 9);
+                        40, y, 9
+                );
                 y -= 15;
-                nr++;
             }
 
             y -= 10;
@@ -79,4 +81,27 @@ public class Seite8PdfRenderer {
         cs.showText(txt == null ? "" : txt);
         cs.endText();
     }
+
+
+    private static final String[] AUSSEN_LABELS = {
+            "Die Zaunanlage ist frei von Schäden",
+            "Tore und Schließmechanismus sind in Ordnung",
+            "Das Gelände befindet sich in gutem Zustand",
+            "Die Straßen im Gelände befinden sich in gutem Zustand",
+            "Die Zufahrten befinden sich in gutem Zustand, sind frei und zugänglich",
+            "Der Bewuchs der Anlage ist in Ordnung, auch bei WR, Verteiler, Gebäude",
+            "Die Anlagengebäude befinden sich in gutem Zustand",
+            "Das Dach / die Eindeckung befindet sich in gutem Zustand",
+            "Die Anlagenbeleuchtung befindet sich in gutem Zustand"
+    };
+
+    private static final String[] DIEBSTAHL_LABELS = {
+            "Die Videokameras sind frei von Schäden",
+            "Die Videokameras sind richtig ausgerichtet und werden nicht bedeckt",
+            "Die Datenübertragung wurde bestätigt",
+            "Die Alarmanlage ist funktionsfähig (Zu- und Abschaltung)",
+            "Die Sensoren sind frei von Beschädigungen und funktionsfähig"
+    };
+
+
 }
