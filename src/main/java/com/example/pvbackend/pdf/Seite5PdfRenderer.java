@@ -43,8 +43,8 @@ public class Seite5PdfRenderer {
                     s.getMessungenPV().get(0).getNein(),
                     s.getMessungenPV().get(0).getNz(), y);
 
-            cs.moveTo(40, y - 6);
-            cs.lineTo(555, y - 6);
+            cs.moveTo(40, y);
+            cs.lineTo(555, y);
             cs.stroke();
 
             y = drawCheckTriple(cs, "5.2 Alle Modulstränge gemessen",
@@ -52,8 +52,8 @@ public class Seite5PdfRenderer {
                     s.getMessungenPV().get(1).getNein(),
                     s.getMessungenPV().get(1).getNz(), y);
 
-            cs.moveTo(40, y - 6);
-            cs.lineTo(555, y - 6);
+            cs.moveTo(40, y);
+            cs.lineTo(555, y);
             cs.stroke();
 
             y = drawCheckTriple(cs, "5.3 Erdungswiderstand gemessen",
@@ -61,8 +61,8 @@ public class Seite5PdfRenderer {
                     s.getMessungenPV().get(2).getNein(),
                     s.getMessungenPV().get(2).getNz(), y);
 
-            cs.moveTo(40, y - 6);
-            cs.lineTo(555, y - 6);
+            cs.moveTo(40, y);
+            cs.lineTo(555, y);
             cs.stroke();
 
             y = drawCheckTriple(cs, "5.4 Erdung durchgeführt",
@@ -70,18 +70,20 @@ public class Seite5PdfRenderer {
                     s.getMessungenPV().get(3).getNein(),
                     s.getMessungenPV().get(3).getNz(), y);
 
-            cs.moveTo(40, y - 6);
-            cs.lineTo(555, y - 6);
+            cs.moveTo(40, y);
+            cs.lineTo(555, y);
             cs.stroke();
+
 
             y = drawCheckTriple(cs, "5.5 Nach DIN 62446 geprüft",
                     s.getMessungenPV().get(4).getJa(),
                     s.getMessungenPV().get(4).getNein(),
                     s.getMessungenPV().get(4).getNz(), y);
 
-            cs.moveTo(40, y - 6);
-            cs.lineTo(555, y - 6);
+            cs.moveTo(40, y);
+            cs.lineTo(555, y);
             cs.stroke();
+
 
             y -= 10;
 
@@ -98,72 +100,86 @@ public class Seite5PdfRenderer {
                     s.getPruefungGAKs().get(0).getNein(),
                     s.getPruefungGAKs().get(0).getNz(), y);
 
-            cs.moveTo(40, y - 6);
-            cs.lineTo(555, y - 6);
+
+            cs.moveTo(40, y);
+            cs.lineTo(555, y);
             cs.stroke();
+
 
             y = drawCheckThree(cs, "6.2 Die Strangsicherungen sind funktionsfähig",
                     s.getPruefungGAKs().get(1).getJa(),
                     s.getPruefungGAKs().get(1).getNein(),
                     s.getPruefungGAKs().get(1).getNz(), y);
 
-            cs.moveTo(40, y - 6);
-            cs.lineTo(555, y - 6);
+
+            cs.moveTo(40, y);
+            cs.lineTo(555, y);
             cs.stroke();
+
 
             y = drawCheckThree(cs, "6.3 Die ÜSS-Einrichtungen sind funktionsfähig",
                     s.getPruefungGAKs().get(2).getJa(),
                     s.getPruefungGAKs().get(2).getNein(),
                     s.getPruefungGAKs().get(2).getNz(), y);
 
-            cs.moveTo(40, y - 6);
-            cs.lineTo(555, y - 6);
+
+            cs.moveTo(40, y);
+            cs.lineTo(555, y);
             cs.stroke();
+
 
             y = drawCheckThree(cs, "6.4 Die Schalter sind funktionsfähig",
                     s.getPruefungGAKs().get(3).getJa(),
                     s.getPruefungGAKs().get(3).getNein(),
                     s.getPruefungGAKs().get(3).getNz(), y);
 
-            cs.moveTo(40, y - 6);
-            cs.lineTo(555, y - 6);
+            cs.moveTo(40, y);
+            cs.lineTo(555, y);
             cs.stroke();
+
+
 
             y = drawCheckThree(cs, "6.5 Die GAKs sind frei von Schäden",
                     s.getPruefungGAKs().get(4).getJa(),
                     s.getPruefungGAKs().get(4).getNein(),
                     s.getPruefungGAKs().get(4).getNz(), y);
 
-            cs.moveTo(40, y - 6);
-            cs.lineTo(555, y - 6);
+            cs.moveTo(40, y);
+            cs.lineTo(555, y);
             cs.stroke();
+
 
             y = drawCheckThree(cs, "6.6 Die GAKs sind frei von Feuchtigkeit",
                     s.getPruefungGAKs().get(5).getJa(),
                     s.getPruefungGAKs().get(5).getNein(),
                     s.getPruefungGAKs().get(5).getNz(), y);
 
-            cs.moveTo(40, y - 6);
-            cs.lineTo(555, y - 6);
+
+            cs.moveTo(40, y);
+            cs.lineTo(555, y);
             cs.stroke();
+
 
             y = drawCheckThree(cs, "6.7 Der innere Zustand der GAKs ist in Ordnung",
                     s.getPruefungGAKs().get(6).getJa(),
                     s.getPruefungGAKs().get(6).getNein(),
                     s.getPruefungGAKs().get(6).getNz(), y);
 
-            cs.moveTo(40, y - 6);
-            cs.lineTo(555, y - 6);
+            cs.moveTo(40, y);
+            cs.lineTo(555, y);
             cs.stroke();
+
 
             y = drawCheckThree(cs, "6.8 Die Erdung der Verteiler ist frei von Schäden und richtig montiert",
                     s.getPruefungGAKs().get(7).getJa(),
                     s.getPruefungGAKs().get(7).getNein(),
                     s.getPruefungGAKs().get(7).getNz(), y);
 
-            cs.moveTo(40, y - 6);
-            cs.lineTo(555, y - 6);
+
+            cs.moveTo(40, y);
+            cs.lineTo(555, y);
             cs.stroke();
+
 
 
             y = drawCheckThree(cs, "6.9 Die Beschriftung ist vollständig und i.O.",
@@ -171,8 +187,9 @@ public class Seite5PdfRenderer {
                     s.getPruefungGAKs().get(8).getNein(),
                     s.getPruefungGAKs().get(8).getNz(), y);
 
-            cs.moveTo(40, y - 6);
-            cs.lineTo(555, y - 6);
+
+            cs.moveTo(40, y);
+            cs.lineTo(555, y);
             cs.stroke();
 
 
@@ -181,8 +198,9 @@ public class Seite5PdfRenderer {
                     s.getPruefungGAKs().get(9).getNein(),
                     s.getPruefungGAKs().get(9).getNz(), y);
 
-            cs.moveTo(40, y - 6);
-            cs.lineTo(555, y - 6);
+
+            cs.moveTo(40, y);
+            cs.lineTo(555, y);
             cs.stroke();
 
 
@@ -191,17 +209,20 @@ public class Seite5PdfRenderer {
                     s.getPruefungGAKs().get(10).getNein(),
                     s.getPruefungGAKs().get(10).getNz(), y);
 
-            cs.moveTo(40, y - 6);
-            cs.lineTo(555, y - 6);
+
+            cs.moveTo(40, y);
+            cs.lineTo(555, y);
             cs.stroke();
+
 
             y = drawCheckThree(cs, "6.12 Die GAKs wurden gereinigt",
                     s.getPruefungGAKs().get(11).getJa(),
                     s.getPruefungGAKs().get(11).getNein(),
                     s.getPruefungGAKs().get(11).getNz(), y);
 
-            cs.moveTo(40, y - 6);
-            cs.lineTo(555, y - 6);
+
+            cs.moveTo(40, y);
+            cs.lineTo(555, y);
             cs.stroke();
 
 
@@ -210,8 +231,9 @@ public class Seite5PdfRenderer {
                     s.getPruefungGAKs().get(12).getNein(),
                     s.getPruefungGAKs().get(12).getNz(), y);
 
-            cs.moveTo(40, y - 6);
-            cs.lineTo(555, y - 6);
+
+            cs.moveTo(40, y);
+            cs.lineTo(555, y);
             cs.stroke();
 
 
