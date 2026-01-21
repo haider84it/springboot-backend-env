@@ -11,9 +11,6 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.List;
 
-import static io.micrometer.common.util.StringUtils.isBlank;
-import static org.springframework.util.ObjectUtils.isEmpty;
-
 import static com.example.pvbackend.util.PdfRenderUtils.safe;
 
 
@@ -55,6 +52,10 @@ public class Seite4PdfRenderer {
 
                 drawCheckbox(cs, 520, abitUpY, Boolean.TRUE.equals(row.getNz()));
                 text(cs, "n.z.", 532, y, 9);
+
+                cs.moveTo(40, y - 2);
+                cs.lineTo(555, y - 2);
+                cs.stroke();
 
 
                 y -= 15;
