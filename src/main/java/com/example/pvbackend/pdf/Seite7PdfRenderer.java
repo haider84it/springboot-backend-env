@@ -35,18 +35,18 @@ public class Seite7PdfRenderer {
             text(cs, "SECTION 9 – Prüfung Zähler (9.1 – 9.4)", 40, y, 11);
             y -= 20;
 
-            int nr = 1;
-            for (WartungsprotokollSeite7.ZaehlerRow row : s.getPruefungZaehler()) {
+
+            for (int i = 0; i < ZAEHLER_LABELS.length; i++) {
+                WartungsprotokollSeite7.ZaehlerRow row = s.getPruefungZaehler().get(i);
+
                 y = drawCheckTriple(
                         cs,
-                        "9." + nr,
+                        "9." + (i + 1) + " " + ZAEHLER_LABELS[i],
                         row.getJa(),
                         row.getNein(),
                         row.getNz(),
                         y
                 );
-
-                nr++;
             }
 
             y -= 10;
@@ -59,17 +59,18 @@ public class Seite7PdfRenderer {
             text(cs, "SECTION 10 – Prüfung Überwachungssystem (10.1 – 10.10)", 40, y, 11);
             y -= 20;
 
-            nr = 1;
-            for (WartungsprotokollSeite7.UeberwachungRow row : s.getPruefungUeberwachung()) {
+
+            for (int i = 0; i < UEBERWACHUNG_LABELS.length; i++) {
+                WartungsprotokollSeite7.UeberwachungRow row = s.getPruefungUeberwachung().get(i);
+
                 y = drawCheckTriple(
                         cs,
-                        "10." + nr,
+                        "10." + (i + 1) + " " + UEBERWACHUNG_LABELS[i],
                         row.getJa(),
                         row.getNein(),
                         row.getNz(),
                         y
                 );
-                nr++;
             }
 
             y -= 10;
@@ -86,4 +87,29 @@ public class Seite7PdfRenderer {
         cs.showText(txt == null ? "" : txt);
         cs.endText();
     }
+
+
+
+    private static final String[] ZAEHLER_LABELS = {
+            "Der Zähler ist funktionsfähig",
+            "Zählerstand 2.8.0 (alternativ 2.8.1 und 2.8.2, oder Lieferung PV)",
+            "Umrechnungsfaktor Zähler",
+            "Zähler Nr."
+    };
+
+    private static final String[] UEBERWACHUNG_LABELS = {
+            "Die Datenlogger sind in Betrieb ohne Störungsmeldungen",
+            "Der Router ist in Betrieb ohne Störungsmeldungen",
+            "Die ÜW-Schnittstelle ist in Betrieb ohne Störungsmeldungen",
+            "Das Netzwerk ist in Betrieb",
+            "Die Überwachungsverteiler sind frei von Schäden und Feuchtigkeit",
+            "Die Beschriftung der ÜW-Verteiler ist in Ordnung",
+            "Die Werte aller WR werden übertragen (prüfen mit Überwachungszentrale)",
+            "Die Einstrahlungssensoren und deren Kabel sind frei von Schäden",
+            "Die Oberfläche der Einstrahlungssensoren wurde gereinigt",
+            "Die Temperatursensoren und deren Kabel sind frei von Schäden"
+    };
+
+
+
 }
