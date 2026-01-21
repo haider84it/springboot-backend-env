@@ -92,7 +92,7 @@ public class Seite3PdfRenderer {
                 cs.lineTo(555, y - 6);
                 cs.stroke();
 
-                y -= 7;
+                y -= 12;
 
             }
 
@@ -131,7 +131,7 @@ public class Seite3PdfRenderer {
                 cs.lineTo(555, y - 6);
                 cs.stroke();
 
-                y -= 7;
+                y -= 12;
 
             }
 
