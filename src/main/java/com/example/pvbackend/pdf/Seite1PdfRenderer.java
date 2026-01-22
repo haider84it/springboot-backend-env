@@ -61,14 +61,24 @@ public class Seite1PdfRenderer {
 
 
             float infoX = 500;        // align with logo left
-            float infoY = 700;   // below logo
+            float infoY = 707;   // below logo
 
             cs.setFont(PDType1Font.HELVETICA_BOLD, 8);
             text(cs, "ENVARIS GmbH", infoX, infoY, 8);
 
-            cs.setFont(PDType1Font.HELVETICA, 8);
+            cs.setFont(PDType1Font.HELVETICA_BOLD, 8);
             text(cs, "Friedrich-Olbricht-Damm 62", infoX, infoY - 10, 8);
+
+            cs.setFont(PDType1Font.HELVETICA_BOLD, 8);
+
             text(cs, "13627 Berlin", infoX, infoY - 20, 8);
+            cs.setFont(PDType1Font.HELVETICA_BOLD, 8);
+
+            cs.setFont(PDType1Font.HELVETICA, 8);
+            text(cs, "Telefon: +49 (0)30 - 288 8493 11", infoX, infoY - 30, 8);
+            text(cs, "Telefax: +49 (0)30 - 288 8493 12", infoX, infoY - 40, 8);
+            text(cs, "Email: info@envaris.de",           infoX, infoY - 50, 8);
+            text(cs, "Internet: www.envaris.de",         infoX, infoY - 60, 8);
 
 
 
