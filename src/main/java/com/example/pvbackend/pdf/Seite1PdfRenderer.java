@@ -66,7 +66,7 @@ public class Seite1PdfRenderer {
             // ---------- Header ----------
             cs.setFont(PDType1Font.HELVETICA_BOLD, 14);
             cs.beginText();
-            cs.newLineAtOffset(140, 750);
+            cs.newLineAtOffset(140, 670);
             cs.showText("Kontrollliste Wartungsarbeiten vor Ort - PV-Anlagen");
             cs.endText();
 
