@@ -45,7 +45,7 @@ public class Seite11PdfRenderer {
                         y
                 );
 
-                y -= 9; // more space under the text
+                y -= 4; // more space under the text
 
 
                 cs.moveTo(40, y );
@@ -79,7 +79,7 @@ public class Seite11PdfRenderer {
                         y
                 );
 
-                y -= 9; // more space under the text
+                y -= 4; // more space under the text
 
                 cs.moveTo(40, y);
                 cs.lineTo(555, y);

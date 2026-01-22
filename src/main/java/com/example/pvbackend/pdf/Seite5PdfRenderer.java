@@ -70,7 +70,7 @@ public class Seite5PdfRenderer {
                         row.getJa(), row.getNein(), row.getNz(), y);
 
                 drawLine(cs, 40, y + 2, 555, y + 2);
-                y -= 7;
+                y -= 5;
             }
 
             y -= 10;
@@ -88,7 +88,7 @@ public class Seite5PdfRenderer {
                         row.getJa(), row.getNein(), row.getNz(), y);
 
                 drawLine(cs, 40, y + 2, 555, y + 2);
-                y -= 7;
+                y -= 5;
             }
 
             y -= 10;
