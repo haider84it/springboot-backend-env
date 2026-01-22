@@ -122,7 +122,7 @@ public class Seite1PdfRenderer {
             y -= 22;
 
             // AC-Messungen block
-            checkboxRow(cs, 60, y, Boolean.TRUE.equals(s.getAcMessungen()), "AC-Messungen", 2);
+            checkboxRow(cs, 60, y, Boolean.TRUE.equals(s.getAcMessungen()), "AC-Messungen", 7);
 
             y -= 14;
 
