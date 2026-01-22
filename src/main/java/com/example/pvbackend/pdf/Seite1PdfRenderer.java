@@ -70,7 +70,7 @@ public class Seite1PdfRenderer {
             //Envaris GmbH information
 
             float infoX = 490;        // align with logo left
-            float infoY = 707;   // below logo
+            float infoY = 704;   // below logo
 
             cs.setFont(PDType1Font.HELVETICA_BOLD, 8);
             text(cs, "ENVARIS GmbH", infoX, infoY, 8);
@@ -124,7 +124,7 @@ public class Seite1PdfRenderer {
 
 
 
-            y -= 170; // move down by 10 points
+            y -= 180; // move down by 10 points
 
             // ---------- Header ----------
             cs.setFont(PDType1Font.HELVETICA_BOLD, 14);
