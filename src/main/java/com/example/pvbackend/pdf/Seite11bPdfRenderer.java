@@ -26,7 +26,7 @@ public class Seite11bPdfRenderer {
             cs.setFont(PDType1Font.HELVETICA_BOLD, 14);
             cs.beginText();
             cs.newLineAtOffset(40, 780);
-            cs.showText("Seite 11b – Abschluss & Bewertung");
+            cs.showText("Seite 12 – Abschluss & Bewertung");
             cs.endText();
 
             float y = 740;

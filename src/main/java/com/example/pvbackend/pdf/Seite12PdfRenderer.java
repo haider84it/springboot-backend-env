@@ -27,7 +27,7 @@ public class Seite12PdfRenderer {
             cs.setFont(PDType1Font.HELVETICA_BOLD, 14);
             cs.beginText();
             cs.newLineAtOffset(40, 780);
-            cs.showText("Seite 12 – Empfehlungen");
+            cs.showText("Seite 13 – Empfehlungen");
             cs.endText();
 
             float y = 740;
