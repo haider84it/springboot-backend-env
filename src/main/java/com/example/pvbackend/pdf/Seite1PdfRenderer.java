@@ -34,12 +34,12 @@ public class Seite1PdfRenderer {
         PDPage page = new PDPage();
         doc.addPage(page);
 
+
+
         try (PDPageContentStream cs = new PDPageContentStream(doc, page)) {
 
 
             float y = 745;
-
-
 
             try (InputStream is = getClass().getClassLoader().getResourceAsStream("picture/logo.jpg")) {
 
@@ -52,7 +52,7 @@ public class Seite1PdfRenderer {
 
 // position (top right)
                     float xLogo = 550 - logoW;   // right margin
-                    float yLogo = 730;           // near top
+                    float yLogo = 700;           // near top
 
                     cs.drawImage(logo, xLogo, yLogo, logoW, logoH);
                 }
@@ -61,7 +61,7 @@ public class Seite1PdfRenderer {
 
 
 
-            y -= 70; // move down by 10 points
+            y -= 120; // move down by 10 points
 
             // ---------- Header ----------
             cs.setFont(PDType1Font.HELVETICA_BOLD, 14);
