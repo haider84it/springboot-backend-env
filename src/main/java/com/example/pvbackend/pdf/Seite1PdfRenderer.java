@@ -117,14 +117,11 @@ public class Seite1PdfRenderer {
 
 
 
-
-
-
             //
 
 
 
-            y -= 180; // move down by 10 points
+            y -= 190; // move down by 190 points
 
             // ---------- Header ----------
             cs.setFont(PDType1Font.HELVETICA_BOLD, 14);
