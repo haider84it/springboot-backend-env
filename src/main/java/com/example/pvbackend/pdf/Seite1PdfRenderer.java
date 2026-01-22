@@ -61,7 +61,7 @@ public class Seite1PdfRenderer {
 
 
             float infoX = 500;        // align with logo left
-            float infoY = 700 - 12;   // below logo
+            float infoY = 700;   // below logo
 
             cs.setFont(PDType1Font.HELVETICA_BOLD, 8);
             text(cs, "ENVARIS GmbH", infoX, infoY, 8);
@@ -72,12 +72,12 @@ public class Seite1PdfRenderer {
 
 
 
-            y -= 120; // move down by 10 points
+            y -= 150; // move down by 10 points
 
             // ---------- Header ----------
             cs.setFont(PDType1Font.HELVETICA_BOLD, 14);
             cs.beginText();
-            cs.newLineAtOffset(140, 670);
+            cs.newLineAtOffset(140, 620);
             cs.showText("Kontrollliste Wartungsarbeiten vor Ort - PV-Anlagen");
             cs.endText();
 
