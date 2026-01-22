@@ -68,9 +68,9 @@ public class Seite5PdfRenderer {
 
                 y = drawCheckTriple(cs, "5." + (i + 1) + " " + PV_LABELS[i],
                         row.getJa(), row.getNein(), row.getNz(), y);
-                y += 3;
+                y += 5;
                 drawLine(cs, 40, y + 2, 555, y + 2);
-                y -= 7;
+                y -= 9;
             }
 
             y -= 10;
@@ -87,9 +87,9 @@ public class Seite5PdfRenderer {
                 y = drawCheckThree(cs, "6." + (i + 1) + " " + GAK_LABELS[i],
                         row.getJa(), row.getNein(), row.getNz(), y);
 
-                y += 3;
+                y += 5;
                 drawLine(cs, 40, y + 2, 555, y + 2);
-                y -= 7;
+                y -= 9;
             }
 
             y -= 10;
