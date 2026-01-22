@@ -41,7 +41,7 @@ public class Seite5PdfRenderer {
             y = drawCheckTriple(cs, "5.1 Modultragende Teile gemessen",
                     s.getMessungenPV().get(0).getJa(),
                     s.getMessungenPV().get(0).getNein(),
-                    s.getMessungenPV().get(0).getNz(), y + 4 ); //check this
+                    s.getMessungenPV().get(0).getNz(), y + 9 ); //check this
             drawLine(cs, 40, y + 8, 555, y + 8);
 
             y = drawCheckTriple(cs, "5.2 Alle Modulstränge gemessen",
