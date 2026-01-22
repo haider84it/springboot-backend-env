@@ -12,6 +12,8 @@ import lombok.Setter;
 @Embeddable
 public class WartungsprotokollSeite1 {
 
+    private Long kundeId;
+
     private String anlagenbezeichnung;
     private String vorgang;
     private String auftraggeber;
@@ -58,6 +60,7 @@ public class WartungsprotokollSeite1 {
 
     public boolean hasContent() {
         return notEmpty(anlagenbezeichnung)
+                || kundeId != null
                 || notEmpty(vorgang)
                 || notEmpty(auftraggeber)
                 || wartungspaket != null

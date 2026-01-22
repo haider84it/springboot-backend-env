@@ -1,7 +1,9 @@
 package com.example.pvbackend.pdf;
 
+import com.example.pvbackend.model.Kunde;
 import com.example.pvbackend.model.Wartungspaket;
 import com.example.pvbackend.model.WartungsprotokollSeite1;
+import com.example.pvbackend.service.KundeService;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -17,6 +19,12 @@ import static com.example.pvbackend.util.PdfRenderUtils.safe;
 
 @Component
 public class Seite1PdfRenderer {
+
+    private final KundeService kundeService;
+
+    public Seite1PdfRenderer(KundeService kundeService) {
+        this.kundeService = kundeService;
+    }
 
     private static final float MARGIN_LEFT = 40;
     private static final float MARGIN_RIGHT = 550;
@@ -59,6 +67,7 @@ public class Seite1PdfRenderer {
 
             }
 
+            //Envaris GmbH information
 
             float infoX = 490;        // align with logo left
             float infoY = 707;   // below logo
@@ -79,6 +88,39 @@ public class Seite1PdfRenderer {
             text(cs, "Telefax: +49 (0)30 - 288 8493 12", infoX, infoY - 40, 8);
             text(cs, "Email: info@envaris.de",           infoX, infoY - 50, 8);
             text(cs, "Internet: www.envaris.de",         infoX, infoY - 60, 8);
+
+            //
+
+
+            //kunde information
+
+
+// --- Kunde information (left side) ---
+            float kundeX = 40;
+            float kundeY = 750;
+
+            Kunde kunde = (s.getKundeId() != null)
+                    ? kundeService.findById(s.getKundeId()).orElse(null)
+                    : null;
+
+            String kundeName = (kunde != null)
+                    ? safe(kunde.getVorname()) + " " + safe(kunde.getNachname())
+                    : "";
+
+            String kundeStrasse = (kunde != null) ? safe(kunde.getStrasse()) : "";
+            String kundePlzOrt   = (kunde != null) ? safe(kunde.getPlzOrt())   : "";
+
+            text(cs, kundeName,    kundeX, kundeY,      10);
+            text(cs, kundeStrasse, kundeX, kundeY - 12, 10);
+            text(cs, kundePlzOrt,  kundeX, kundeY - 24, 10);
+
+
+
+
+
+
+
+            //
 
 
 
