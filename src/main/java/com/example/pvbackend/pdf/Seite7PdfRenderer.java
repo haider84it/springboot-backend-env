@@ -51,6 +51,9 @@ public class Seite7PdfRenderer {
                 cs.moveTo(40, y + 8);
                 cs.lineTo(555, y + 8);
                 cs.stroke();
+
+                y -= 7;
+
             }
 
             y -= 10;
@@ -79,6 +82,8 @@ public class Seite7PdfRenderer {
                 cs.moveTo(40, y + 8);
                 cs.lineTo(555, y + 8);
                 cs.stroke();
+
+                y -= 7;
             }
 
             y -= 10;
