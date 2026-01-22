@@ -51,13 +51,24 @@ public class Seite1PdfRenderer {
                     float logoH = 90;
 
 // position (top right)
-                    float xLogo = 550 - logoW;   // right margin
+                    float xLogo = 590 - logoW;   // right margin
                     float yLogo = 700;           // near top
 
                     cs.drawImage(logo, xLogo, yLogo, logoW, logoH);
                 }
 
             }
+
+
+            float infoX = 500;        // align with logo left
+            float infoY = 700 - 12;   // below logo
+
+            cs.setFont(PDType1Font.HELVETICA_BOLD, 8);
+            text(cs, "ENVARIS GmbH", infoX, infoY, 8);
+
+            cs.setFont(PDType1Font.HELVETICA, 8);
+            text(cs, "Friedrich-Olbricht-Damm 62", infoX, infoY - 10, 8);
+            text(cs, "13627 Berlin", infoX, infoY - 20, 8);
 
 
 
