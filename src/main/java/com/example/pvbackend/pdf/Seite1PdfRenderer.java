@@ -60,7 +60,7 @@ public class Seite1PdfRenderer {
             }
 
 
-            float infoX = 500;        // align with logo left
+            float infoX = 490;        // align with logo left
             float infoY = 707;   // below logo
 
             cs.setFont(PDType1Font.HELVETICA_BOLD, 8);
@@ -82,12 +82,12 @@ public class Seite1PdfRenderer {
 
 
 
-            y -= 150; // move down by 10 points
+            y -= 170; // move down by 10 points
 
             // ---------- Header ----------
             cs.setFont(PDType1Font.HELVETICA_BOLD, 14);
             cs.beginText();
-            cs.newLineAtOffset(140, 620);
+            cs.newLineAtOffset(140, 600);
             cs.showText("Kontrollliste Wartungsarbeiten vor Ort - PV-Anlagen");
             cs.endText();
 
