@@ -191,7 +191,7 @@ public class Seite2PdfRenderer {
 
         // text
         cs.beginText();
-        cs.newLineAtOffset(x + 3, y + 5);
+        cs.newLineAtOffset(x + 3, y + 3);
         cs.showText(text == null ? "" : text);
         cs.endText();
     }
