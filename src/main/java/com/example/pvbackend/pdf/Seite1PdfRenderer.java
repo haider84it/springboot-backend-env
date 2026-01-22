@@ -67,9 +67,10 @@ public class Seite1PdfRenderer {
 
             }
 
+
             //Envaris GmbH information
 
-            float infoX = 490;        // align with logo left
+            float infoX = 480;        // align with logo left
             float infoY = 704;   // below logo
 
             cs.setFont(PDType1Font.HELVETICA_BOLD, 8);
@@ -89,13 +90,12 @@ public class Seite1PdfRenderer {
             text(cs, "Email: info@envaris.de",           infoX, infoY - 50, 8);
             text(cs, "Internet: www.envaris.de",         infoX, infoY - 60, 8);
 
-            //
+            // --- End Envaris GmbH information
 
 
-            //kunde information
 
+            // --- Kunde information (left side) ---
 
-// --- Kunde information (left side) ---
             float kundeX = 40;
             float kundeY = 750;
 
@@ -114,10 +114,7 @@ public class Seite1PdfRenderer {
             text(cs, kundeStrasse, kundeX, kundeY - 12, 10);
             text(cs, kundePlzOrt,  kundeX, kundeY - 24, 10);
 
-
-
-
-            //
+            // -- End Kunde information
 
 
 
