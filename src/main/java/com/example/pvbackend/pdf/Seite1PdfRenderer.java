@@ -6,9 +6,12 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
+import org.apache.pdfbox.pdmodel.graphics.image.JPEGFactory;
+import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import static com.example.pvbackend.util.PdfRenderUtils.safe;
 
@@ -34,6 +37,32 @@ public class Seite1PdfRenderer {
         try (PDPageContentStream cs = new PDPageContentStream(doc, page)) {
 
 
+            float y = 745;
+
+
+
+            try (InputStream is = getClass().getClassLoader().getResourceAsStream("picture/logo.jpg")) {
+
+                if (is != null) {
+                    PDImageXObject logo = JPEGFactory.createFromStream(doc, is);
+
+                    // size of the logo in the PDF
+                    float logoW = 90;
+                    float logoH = 90;
+
+// position (top right)
+                    float xLogo = 550 - logoW;   // right margin
+                    float yLogo = 730;           // near top
+
+                    cs.drawImage(logo, xLogo, yLogo, logoW, logoH);
+                }
+
+            }
+
+
+
+            y -= 70; // move down by 10 points
+
             // ---------- Header ----------
             cs.setFont(PDType1Font.HELVETICA_BOLD, 14);
             cs.beginText();
@@ -42,9 +71,6 @@ public class Seite1PdfRenderer {
             cs.endText();
 
             cs.setFont(PDType1Font.HELVETICA, 9);
-            float y = 745;
-
-            y -= 70; // move down by 10 points
 
             // ---------- Top fields ----------
             // left column
