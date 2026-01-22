@@ -42,7 +42,7 @@ public class Seite5PdfRenderer {
                     s.getMessungenPV().get(0).getJa(),
                     s.getMessungenPV().get(0).getNein(),
                     s.getMessungenPV().get(0).getNz(), y); //check this
-            drawLine(cs, 40, y + 8, 555, y + 8);
+            drawLine(cs, 40, y + 5, 555, y + 5);
 
             y = drawCheckTriple(cs, "5.2 Alle Modulstränge gemessen",
                     s.getMessungenPV().get(1).getJa(),
