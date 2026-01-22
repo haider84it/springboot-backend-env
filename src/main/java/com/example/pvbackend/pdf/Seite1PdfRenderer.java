@@ -83,7 +83,7 @@ public class Seite1PdfRenderer {
 
             // DC-Messungen block
             checkboxRow(cs, 60, y, Boolean.TRUE.equals(s.getDcMessungen()),
-                    "DC-Messungen (erforderlich wenn kein Überwachungssystem vorhanden, oder bei Unregelmäßigkeiten)");
+                    "DC-Messungen (erforderlich wenn kein Überwachungssystem vorhanden, oder bei Unregelmäßigkeiten)", 2);
 
 
             y -= 14;
@@ -94,7 +94,7 @@ public class Seite1PdfRenderer {
                     80,
                     y,
                     Boolean.TRUE.equals(s.getDcNurBeiUnregelmaessigkeiten()),
-                    "nur bei erkennbaren Unregelmäßigkeiten / Auffälligkeiten bei der Wartung vor Ort"
+                    "nur bei erkennbaren Unregelmäßigkeiten / Auffälligkeiten bei der Wartung vor Ort", 2
             );
 
 
@@ -122,7 +122,7 @@ public class Seite1PdfRenderer {
             y -= 22;
 
             // AC-Messungen block
-            checkboxRow(cs, 60, y, Boolean.TRUE.equals(s.getAcMessungen()), "AC-Messungen");
+            checkboxRow(cs, 60, y, Boolean.TRUE.equals(s.getAcMessungen()), "AC-Messungen", 2);
 
             y -= 14;
 
@@ -135,7 +135,7 @@ public class Seite1PdfRenderer {
                     y,
                     Boolean.TRUE.equals(s.getAcNurBeiUnregelmaessigkeiten()),
                     "nur bei erkennbaren Unregelmäßigkeiten / Auffälligkeiten bei der Wartung vor Ort"
-            );
+            , 2);
 
 
             y -= 14;
@@ -150,7 +150,7 @@ public class Seite1PdfRenderer {
 
             // Weitere Optionen (einzelne Checkboxes)
             checkboxRow(cs, 60, y, Boolean.TRUE.equals(s.getZentralwechselrichter()),
-                    "Wartung Zentralwechselrichter");
+                    "Wartung Zentralwechselrichter", 2);
 
 
 
@@ -161,7 +161,7 @@ public class Seite1PdfRenderer {
                     60,
                     y,
                     Boolean.TRUE.equals(s.getMittelspannungsanlagenErweitert()),
-                    "Wartung Mittelspannungsanlagen erweitert"
+                    "Wartung Mittelspannungsanlagen erweitert", 2
             );
 
 
@@ -175,7 +175,7 @@ public class Seite1PdfRenderer {
                     60,
                     y,
                     Boolean.TRUE.equals(s.getErdungsmessungenStationen()),
-                    "Erdungsmessungen Stationen"
+                    "Erdungsmessungen Stationen", 2
             );
 
 
@@ -188,7 +188,7 @@ public class Seite1PdfRenderer {
                     60,
                     y,
                     Boolean.TRUE.equals(s.getSichtpruefungMittelspannungsanlagen()),
-                    "Sichtprüfung Mittelspannungsanlagen (Trafo- und Übergabestationen)"
+                    "Sichtprüfung Mittelspannungsanlagen (Trafo- und Übergabestationen)", 2
             );
 
 
@@ -203,7 +203,7 @@ public class Seite1PdfRenderer {
                     60,
                     y,
                     Boolean.TRUE.equals(s.getReinigung()),
-                    "Reinigung (sofern verschmutzt bzw. notwendig)"
+                    "Reinigung (sofern verschmutzt bzw. notwendig)", 2
             );
 
 
@@ -214,9 +214,9 @@ public class Seite1PdfRenderer {
 
 
 
-            checkboxRow(cs, 80, y, Boolean.TRUE.equals(s.getReinigungWr()), "WR");
-            checkboxRow(cs, 120, y, Boolean.TRUE.equals(s.getReinigungGak()), "GAK");
-            checkboxRow(cs, 170, y, Boolean.TRUE.equals(s.getReinigungModule()), "Module");
+            checkboxRow(cs, 80, y, Boolean.TRUE.equals(s.getReinigungWr()), "WR", 2);
+            checkboxRow(cs, 120, y, Boolean.TRUE.equals(s.getReinigungGak()), "GAK", 2);
+            checkboxRow(cs, 170, y, Boolean.TRUE.equals(s.getReinigungModule()), "Module", 2);
 
 
 
@@ -230,7 +230,7 @@ public class Seite1PdfRenderer {
                     60,
                     y,
                     Boolean.TRUE.equals(s.getThermografie()),
-                    "Thermografieuntersuchung der folgenden Komponenten"
+                    "Thermografieuntersuchung der folgenden Komponenten", 2
             );
 
 
@@ -238,9 +238,9 @@ public class Seite1PdfRenderer {
 
 
 
-            checkboxRow(cs, 80, y, Boolean.TRUE.equals(s.getThermografieVerteiler()), "Verteiler");
-            checkboxRow(cs, 150, y, Boolean.TRUE.equals(s.getThermografieModule()), "Module");
-            checkboxRow(cs, 210, y, Boolean.TRUE.equals(s.getThermografieMspAnlagen()), "MSP-Anlagen");
+            checkboxRow(cs, 80, y, Boolean.TRUE.equals(s.getThermografieVerteiler()), "Verteiler", 2);
+            checkboxRow(cs, 150, y, Boolean.TRUE.equals(s.getThermografieModule()), "Module", 2);
+            checkboxRow(cs, 210, y, Boolean.TRUE.equals(s.getThermografieMspAnlagen()), "MSP-Anlagen", 2);
 
 
 
@@ -253,7 +253,7 @@ public class Seite1PdfRenderer {
                     60,
                     y,
                     Boolean.TRUE.equals(s.getKennlinienmessungen()),
-                    "Kennlinienmessungen"
+                    "Kennlinienmessungen", 2
             );
 
 
@@ -328,10 +328,10 @@ public class Seite1PdfRenderer {
         }
     }
 
-    private void checkboxRow(PDPageContentStream cs, float x, float y, boolean checked, String label)
+    private void checkboxRow(PDPageContentStream cs, float x, float y, boolean checked, String label, float checkboxYOffset)
             throws IOException {
-        drawCheckbox(cs, x, y, checked);
-        text(cs, label, x + 12, y, FONT_BODY);
+        drawCheckbox(cs, x, y + checkboxYOffset, checked);   // checkbox moved
+        text(cs, label, x + 12, y, FONT_BODY);               // text stays
     }
 
 }
