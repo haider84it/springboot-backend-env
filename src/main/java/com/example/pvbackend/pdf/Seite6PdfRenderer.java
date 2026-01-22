@@ -11,6 +11,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+import static com.example.pvbackend.util.PdfRenderUtils.drawZusatzTabelle;
+
 
 @Component
 public class Seite6PdfRenderer {
@@ -69,7 +71,7 @@ public class Seite6PdfRenderer {
             y -= 10;
 
             // Zusatz-Tabelle WR
-            y = PdfTableUtils.drawZusatzTabelle(cs, s.getZusatzWR(), "Zusatz-Tabelle WR", y);
+            y = drawZusatzTabelle(cs, s.getZusatzWR(), "Zusatz-Tabelle WR", y);
 
             y -= 10;
 
@@ -103,7 +105,7 @@ public class Seite6PdfRenderer {
             y -= 10;
 
             // Zusatz-Tabelle AC
-            y = PdfTableUtils.drawZusatzTabelle(cs, s.getZusatzAC(), "Zusatz-Tabelle AC-Verteiler", y);        }
+            drawZusatzTabelle(cs, s.getZusatzAC(), "Zusatz-Tabelle AC-Verteiler", y);        }
     }
 
     private void text(PDPageContentStream cs, String txt, float x, float y, int size) throws IOException {
