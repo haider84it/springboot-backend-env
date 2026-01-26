@@ -8,7 +8,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/service-partner")
-@CrossOrigin(origins = "https://envaris.cloudaxes.de")
+@CrossOrigin(origins = {
+        "https://envaris.cloudaxes.de",
+        "https://wartung.envaris.de"
+})
 public class ServicePartnerController {
 
     private final ServicePartnerService service;

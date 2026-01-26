@@ -15,7 +15,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/zaehleranlage")
-@CrossOrigin(origins = "https://envaris.cloudaxes.de")
+@CrossOrigin(origins = {
+        "https://envaris.cloudaxes.de",
+        "https://wartung.envaris.de"
+})
 @RequiredArgsConstructor
 public class ZaehlerAnlageController {
 

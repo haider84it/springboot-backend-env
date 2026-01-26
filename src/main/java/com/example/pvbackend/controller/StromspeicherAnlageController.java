@@ -11,7 +11,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping ("/api/stromspeicher")
-@CrossOrigin(origins = "https://envaris.cloudaxes.de")
+@CrossOrigin(origins = {
+        "https://envaris.cloudaxes.de",
+        "https://wartung.envaris.de"
+})
 public class StromspeicherAnlageController {
 
     private final StromspeicherAnlageService stromspeicherAnlageService;

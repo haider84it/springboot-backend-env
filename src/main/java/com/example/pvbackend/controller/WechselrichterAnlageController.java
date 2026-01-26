@@ -9,7 +9,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/wechselrichter")
-@CrossOrigin(origins = "https://envaris.cloudaxes.de")
+@CrossOrigin(origins = {
+        "https://envaris.cloudaxes.de",
+        "https://wartung.envaris.de"
+})
 public class WechselrichterAnlageController {
 
     private final WechselrichterAnlageService wechselrichterAnlageService;

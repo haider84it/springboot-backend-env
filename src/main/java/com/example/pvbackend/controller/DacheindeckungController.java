@@ -13,7 +13,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/dacheindeckung")
-@CrossOrigin(origins = "https://envaris.cloudaxes.de")
+@CrossOrigin(origins = {
+        "https://envaris.cloudaxes.de",
+        "https://wartung.envaris.de"
+})
 @RequiredArgsConstructor
 public class DacheindeckungController {
 

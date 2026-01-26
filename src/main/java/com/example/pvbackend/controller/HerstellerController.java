@@ -8,7 +8,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/hersteller")
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = {
+        "https://envaris.cloudaxes.de",
+        "https://wartung.envaris.de"
+})
 public class HerstellerController {
 
     private final HerstellerService herstellerService;

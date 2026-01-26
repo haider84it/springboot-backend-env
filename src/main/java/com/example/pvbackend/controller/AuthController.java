@@ -13,6 +13,7 @@ import java.util.Map;
 @RequestMapping("/auth")
 @CrossOrigin(origins = {
         "https://envaris.cloudaxes.de",
+        "https://wartung.envaris.de",
         "https://i0ko848g8wwgws400884sg4c.168.119.177.216.sslip.io"
 })
 public class AuthController {

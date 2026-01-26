@@ -9,7 +9,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/kunden")
-@CrossOrigin(origins = "https://envaris.cloudaxes.de") // Allow React frontend
+@CrossOrigin(origins = {
+        "https://envaris.cloudaxes.de",
+        "https://wartung.envaris.de"
+})
 public class KundeController {
 
     private final KundeService service;

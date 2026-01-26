@@ -11,7 +11,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/datenlogger")
-@CrossOrigin(origins = "https://envaris.cloudaxes.de")
+@CrossOrigin(origins = {
+        "https://envaris.cloudaxes.de",
+        "https://wartung.envaris.de"
+})
 public class DatenloggerAnlageController {
 
    private final DatenloggerAnlageService datenloggerAnlageService;

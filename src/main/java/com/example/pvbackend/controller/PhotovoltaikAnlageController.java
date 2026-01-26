@@ -13,7 +13,10 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/anlagen")
-@CrossOrigin(origins = "https://envaris.cloudaxes.de")
+@CrossOrigin(origins = {
+        "https://envaris.cloudaxes.de",
+        "https://wartung.envaris.de"
+})
 @RequiredArgsConstructor// Allow React frontend
 public class PhotovoltaikAnlageController {
 
