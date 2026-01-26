@@ -45,6 +45,7 @@ public class SecurityConfig {
                     CorsConfiguration config = new CorsConfiguration();
                     config.setAllowedOriginPatterns(List.of(
                             "https://envaris.cloudaxes.de",
+                            "https://wartung.envaris.de",
                             "https://*.sslip.io"
                     ));
                     config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
