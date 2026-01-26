@@ -5,7 +5,6 @@ import com.example.pvbackend.model.PhotovoltaikAnlage;
 import com.example.pvbackend.pdf.PdfService;
 import com.example.pvbackend.service.PhotovoltaikAnlageService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -58,8 +57,16 @@ public class PhotovoltaikAnlageController {
     public PhotovoltaikAnlage update(@PathVariable Long id, @RequestBody PhotovoltaikAnlage updated) {
         return service.findById(id)
                 .map(existing -> {
-                    updated.setId(id);
-                    return service.save(updated);
+                    existing.setProjektNummer(updated.getProjektNummer());
+                    existing.setAnlagenName(updated.getAnlagenName());
+                    existing.setAnlagenGroesse(updated.getAnlagenGroesse());
+                    existing.setStrasse(updated.getStrasse());
+                    existing.setPlz(updated.getPlz());
+                    existing.setOrt(updated.getOrt());
+                    existing.setLatitude(updated.getLatitude());
+                    existing.setLongitude(updated.getLongitude());
+
+                    return service.save(existing); // keeps wartung relation
                 })
                 .orElseThrow(() -> new RuntimeException("Anlage not found with id " + id));
     }
