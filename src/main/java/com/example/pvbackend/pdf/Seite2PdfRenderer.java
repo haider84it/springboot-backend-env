@@ -34,11 +34,14 @@ public class Seite2PdfRenderer {
             y = drawCheckboxRow(cs, "Vorhanden", Boolean.TRUE.equals(s.getZugangsschluesselVorhanden()), MARGIN_X, y);
             y = drawInputRow(cs, "Anmerkung", safe(s.getZugangsschluesselAnmerkung()), MARGIN_X, y);
 
+            /*
             // Thermokamera
             y -= 8;
             y = drawSectionTitle(cs, "Thermografiekamera für Wartungsarbeiten", MARGIN_X, y);
             y = drawCheckboxRow(cs, "Vorhanden", Boolean.TRUE.equals(s.getThermoKameraVorhanden()), MARGIN_X, y);
             y = drawInputRow(cs, "Anmerkung", safe(s.getThermoKameraAnmerkung()), MARGIN_X, y);
+
+             */
 
             // Vorgehensweise
             y -= 8;

@@ -21,8 +21,7 @@ public class Seite11bPdfRenderer {
     private static final String[] ABSCHLUSS_LABELS = {
             "Alle WR sind in Betrieb und speisen ein",
             "Anlage und Gebäude geschlossen",
-            "Unterlagen, Wartungsmappe und Schlüssel zurückgegeben",
-            "Messgeräte funktionsfähig",
+            "Schlüssel zurückgegeben oder Tresor hinterlegt",
             "Dokumentationsbilder und Messprotokoll abgelegt",
             "Beiblätter vorhanden"
     };

@@ -116,7 +116,7 @@ public class Seite12PdfRenderer {
         text(cs, "Sicherheit", startX + wZuNr + wEmpfehlung + pad, headerTextY, 8);
         text(cs, "Ertrag", startX + wZuNr + wEmpfehlung + wSicherheit + pad, headerTextY, 8);
         text(cs, "Erhaltung", startX + wZuNr + wEmpfehlung + wSicherheit + wErtrag + pad, headerTextY, 8);
-        text(cs, "Kosten", startX + wZuNr + wEmpfehlung + wSicherheit + wErtrag + wErhaltung + pad, headerTextY, 8);
+        text(cs, "Kosten geschätzt", startX + wZuNr + wEmpfehlung + wSicherheit + wErtrag + wErhaltung + pad, headerTextY, 8);
 
         // Rows
         for (int i = 0; i < rowCount; i++) {
