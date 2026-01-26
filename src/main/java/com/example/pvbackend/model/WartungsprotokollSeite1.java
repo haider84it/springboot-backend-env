@@ -16,7 +16,7 @@ public class WartungsprotokollSeite1 {
 
     private String anlagenbezeichnung;
     private String vorgang;
-    private String auftraggeber;
+    private String anlagenName;
 
     @Enumerated(EnumType.STRING)
     private Wartungspaket wartungspaket;
@@ -62,7 +62,7 @@ public class WartungsprotokollSeite1 {
         return notEmpty(anlagenbezeichnung)
                 || kundeId != null
                 || notEmpty(vorgang)
-                || notEmpty(auftraggeber)
+                || notEmpty(anlagenName)
                 || wartungspaket != null
                 || dcMessungen != null
                 || dcNurBeiUnregelmaessigkeiten != null

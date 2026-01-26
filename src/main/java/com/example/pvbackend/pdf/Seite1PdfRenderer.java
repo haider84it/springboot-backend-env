@@ -131,12 +131,12 @@ public class Seite1PdfRenderer {
 
             // ---------- Top fields ----------
             // left column
-            text(cs, "Anlagenbezeichnung / ID", 40, y, 9);
+            text(cs, "AnlageID / Projekt Nummer", 40, y, 9);
             text(cs, safe(s.getAnlagenbezeichnung()), 40, y - 13, 9);
             drawLine(cs, 40, y - 15, 260, y - 15);
 
-            text(cs, "Auftrag erteilt von", 40, y - 32, 9);
-            text(cs, safe(s.getAuftraggeber()), 40, y - 45, 9);
+            text(cs, "Anlage Name", 40, y - 32, 9);
+            text(cs, safe(s.getAnlagenName()), 40, y - 45, 9);
             drawLine(cs, 40, y - 47, 260, y - 47);
 
             // right column
