@@ -2,6 +2,7 @@ package com.example.pvbackend.controller;
 
 import com.example.pvbackend.dto.AnlageCreateDto;
 import com.example.pvbackend.model.PhotovoltaikAnlage;
+import com.example.pvbackend.model.WartungNeueAnlage;
 import com.example.pvbackend.pdf.PdfService;
 import com.example.pvbackend.service.PhotovoltaikAnlageService;
 import lombok.RequiredArgsConstructor;
@@ -65,7 +66,14 @@ public class PhotovoltaikAnlageController {
                     existing.setOrt(updated.getOrt());
                     existing.setLatitude(updated.getLatitude());
                     existing.setLongitude(updated.getLongitude());
-
+                    if (updated.getWartung() != null) {
+                        if (existing.getWartung() == null) {
+                            WartungNeueAnlage w = new WartungNeueAnlage();
+                            w.setAnlage(existing);
+                            existing.setWartung(w);
+                        }
+                        existing.getWartung().setJahrErsteWartung(updated.getWartung().getJahrErsteWartung());
+                    }
                     return service.save(existing); // keeps wartung relation
                 })
                 .orElseThrow(() -> new RuntimeException("Anlage not found with id " + id));
