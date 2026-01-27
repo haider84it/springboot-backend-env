@@ -1,6 +1,7 @@
 package com.example.pvbackend.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +17,7 @@ public class KundenAnlageZuordnung {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonBackReference("kunde_zuordnung")
+    @JsonManagedReference("kunde_zuordnung")
     @ManyToOne
     @JoinColumn(name = "kunde_id")
     private Kunde kunde;
