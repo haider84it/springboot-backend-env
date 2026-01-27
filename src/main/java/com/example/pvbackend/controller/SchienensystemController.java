@@ -39,27 +39,28 @@ public class SchienensystemController {
     }
 
     @PostMapping
-    public SchienensystemAnlage createSchienensystem(@RequestBody Map<String, Object> body) {
+    public SchienensystemAnlage createSchienensystem(
+            @RequestBody SchienensystemAnlage sys) {
 
-        List<String> systemarten = (List<String>) body.get("systemarten");
-        Map anlageMap = (Map) body.get("anlage");
-        Long anlageId = Long.valueOf(anlageMap.get("id").toString());
-
-        SchienensystemAnlage sys = new SchienensystemAnlage();
-        sys.setAnlage(new PhotovoltaikAnlage(anlageId));
-
-        sys.setEinlagige(systemarten.contains("einlagig"));
-        sys.setZweilagig(systemarten.contains("zweilagig"));
-        sys.setAufgeständert(systemarten.contains("aufgeständert"));
-        sys.setAndere(systemarten.contains("andere"));
+        if (sys.getAnlage() != null) {
+            sys.getAnlage().setSchienensystemAnlage(sys);
+        }
 
         return schienensystemAnlageService.saveSchienensystem(sys);
     }
 
     @PutMapping("/{id}")
-    public SchienensystemAnlage updateSchienensystem(@PathVariable Long id, @RequestBody SchienensystemAnlage updateSchienensystem) {
-        updateSchienensystem.setId(id);
-        return schienensystemAnlageService.saveSchienensystem(updateSchienensystem);
+    public SchienensystemAnlage updateSchienensystem(
+            @PathVariable Long id,
+            @RequestBody SchienensystemAnlage sys) {
+
+        sys.setId(id);
+
+        if (sys.getAnlage() != null) {
+            sys.getAnlage().setSchienensystemAnlage(sys);
+        }
+
+        return schienensystemAnlageService.saveSchienensystem(sys);
     }
 
     @DeleteMapping("/{id}")

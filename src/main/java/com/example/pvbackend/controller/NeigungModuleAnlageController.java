@@ -39,24 +39,28 @@ public class NeigungModuleAnlageController {
     }
 
     @PostMapping
-    public NeigungModuleAnlage createNeigungModuleAnlage(@RequestBody Map<String, Object> body) {
+    public NeigungModuleAnlage createNeigungModuleAnlage(
+            @RequestBody NeigungModuleAnlage n) {
 
-        BigDecimal neigung = BigDecimal.valueOf(Double.valueOf(body.get("neigung").toString()));
-
-        Map anlageMap = (Map) body.get("anlage");
-        Long anlageId = Long.valueOf(anlageMap.get("id").toString());
-
-        NeigungModuleAnlage n = new NeigungModuleAnlage();
-        n.setAnlage(new PhotovoltaikAnlage(anlageId));
-        n.setNeigung(neigung);
+        if (n.getAnlage() != null) {
+            n.getAnlage().setNeigungModuleAnlage(n);
+        }
 
         return neigungModuleAnlageService.saveNeigungModule(n);
     }
 
     @PutMapping("/{id}")
-    public NeigungModuleAnlage updateNeigungModuleAnlage(@PathVariable Long id, @RequestBody NeigungModuleAnlage updateNeigungModuleAnlage) {
-        updateNeigungModuleAnlage.setId(id);
-        return neigungModuleAnlageService.saveNeigungModule(updateNeigungModuleAnlage);
+    public NeigungModuleAnlage updateNeigungModuleAnlage(
+            @PathVariable Long id,
+            @RequestBody NeigungModuleAnlage n) {
+
+        n.setId(id);
+
+        if (n.getAnlage() != null) {
+            n.getAnlage().setNeigungModuleAnlage(n);
+        }
+
+        return neigungModuleAnlageService.saveNeigungModule(n);
     }
 
     @DeleteMapping("/{id}")

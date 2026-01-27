@@ -27,10 +27,29 @@ public class KundenAnlageZuordnungController {
 
     @PostMapping
     public KundenAnlageZuordnung create(@RequestBody KundenAnlageZuordnung zuordnung) {
-        // 🔹 Fetch and attach real entities
-        Kunde kunde = kundeRepository.findById(zuordnung.getKunde().getId()).orElseThrow();
-        PhotovoltaikAnlage anlage = anlageRepository.findById(zuordnung.getAnlage().getId()).orElseThrow();
 
+        Kunde kunde = kundeRepository.findById(zuordnung.getKunde().getId())
+                .orElseThrow();
+        PhotovoltaikAnlage anlage = anlageRepository.findById(zuordnung.getAnlage().getId())
+                .orElseThrow();
+
+        zuordnung.setKunde(kunde);
+        zuordnung.setAnlage(anlage);
+
+        return service.save(zuordnung);
+    }
+
+    @PutMapping("/{id}")
+    public KundenAnlageZuordnung update(
+            @PathVariable Long id,
+            @RequestBody KundenAnlageZuordnung zuordnung) {
+
+        Kunde kunde = kundeRepository.findById(zuordnung.getKunde().getId())
+                .orElseThrow();
+        PhotovoltaikAnlage anlage = anlageRepository.findById(zuordnung.getAnlage().getId())
+                .orElseThrow();
+
+        zuordnung.setId(id);
         zuordnung.setKunde(kunde);
         zuordnung.setAnlage(anlage);
 

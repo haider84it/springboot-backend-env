@@ -39,28 +39,28 @@ public class ModulbefestigungController {
     }
 
     @PostMapping
-    public ModulbefestigungAnlage createModulbefestigung(@RequestBody Map<String, Object> body) {
+    public ModulbefestigungAnlage createModulbefestigung(
+            @RequestBody ModulbefestigungAnlage bef) {
 
-        List<String> befestigungsarten = (List<String>) body.get("befestigungsarten");
-        Map anlageMap = (Map) body.get("anlage");
-        Long anlageId = Long.valueOf(anlageMap.get("id").toString());
-
-        ModulbefestigungAnlage bef = new ModulbefestigungAnlage();
-        bef.setAnlage(new PhotovoltaikAnlage(anlageId));
-
-        bef.setKlemmen(befestigungsarten.contains("Klemmen"));
-        bef.setEinschubsystem(befestigungsarten.contains("Einschubsystem"));
-        bef.setSchraubeAnUK(befestigungsarten.contains("Schraube an UK"));
-        bef.setAndere(befestigungsarten.contains("andere"));
+        if (bef.getAnlage() != null) {
+            bef.getAnlage().setModulbefestigungAnlage(bef);
+        }
 
         return modulbefestigungService.saveModulbefestigung(bef);
     }
 
-
     @PutMapping("/{id}")
-    public ModulbefestigungAnlage updateModulbefestigungAnlage(@PathVariable Long id, @RequestBody ModulbefestigungAnlage updateModulbefestigung) {
-        updateModulbefestigung.setId(id);
-        return modulbefestigungService.saveModulbefestigung(updateModulbefestigung);
+    public ModulbefestigungAnlage updateModulbefestigung(
+            @PathVariable Long id,
+            @RequestBody ModulbefestigungAnlage bef) {
+
+        bef.setId(id);
+
+        if (bef.getAnlage() != null) {
+            bef.getAnlage().setModulbefestigungAnlage(bef);
+        }
+
+        return modulbefestigungService.saveModulbefestigung(bef);
     }
 
     @DeleteMapping("/{id}")
