@@ -42,14 +42,27 @@ public class AufstellungsortController {
     public AufstellungsortAnlage createAufstellungsort(
             @RequestBody AufstellungsortAnlage ort) {
 
+        if (ort.getAnlage() != null) {
+            ort.getAnlage().setAufstellungsortAnlage(ort);
+        }
+
         return aufstellungsortService.saveAufstellungsort(ort);
     }
-    @PutMapping("/{id}")
-    public AufstellungsortAnlage updateAufstellungsort(@PathVariable Long id, @RequestBody AufstellungsortAnlage updateAufstellungsort) {
-        updateAufstellungsort.setId(id);
-        return aufstellungsortService.saveAufstellungsort(updateAufstellungsort);
-    }
 
+
+    @PutMapping("/{id}")
+    public AufstellungsortAnlage updateAufstellungsort(
+            @PathVariable Long id,
+            @RequestBody AufstellungsortAnlage ort) {
+
+        ort.setId(id);
+
+        if (ort.getAnlage() != null) {
+            ort.getAnlage().setAufstellungsortAnlage(ort);
+        }
+
+        return aufstellungsortService.saveAufstellungsort(ort);
+    }
 
 
     @DeleteMapping("/{id}")
