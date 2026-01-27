@@ -38,29 +38,28 @@ public class DacheindeckungController {
     }
 
     @PostMapping
-    public DacheindeckungAnlage createDacheindeckung(@RequestBody Map<String, Object> body) {
+    public DacheindeckungAnlage createDacheindeckung(
+            @RequestBody DacheindeckungAnlage deckung) {
 
-        List<String> deckungsarten = (List<String>) body.get("deckungsarten");
-        Map anlageMap = (Map) body.get("anlage");
-        Long anlageId = Long.valueOf(anlageMap.get("id").toString());
-
-        DacheindeckungAnlage deckung = new DacheindeckungAnlage();
-        deckung.setAnlage(new PhotovoltaikAnlage(anlageId));
-
-        deckung.setZiegel(deckungsarten.contains("Ziegel"));
-        deckung.setFaserzement(deckungsarten.contains("Faserzement"));
-        deckung.setMetall(deckungsarten.contains("Metall"));
-        deckung.setBitumen(deckungsarten.contains("Bitumen"));
-        deckung.setFolie(deckungsarten.contains("Folie"));
+        if (deckung.getAnlage() != null) {
+            deckung.getAnlage().setDacheindeckungAnlage(deckung);
+        }
 
         return dacheindeckungService.saveDacheindeckung(deckung);
     }
 
-
     @PutMapping("/{id}")
-    public DacheindeckungAnlage updateDacheindeckung(@PathVariable Long id, @RequestBody DacheindeckungAnlage updateDacheindeckung) {
-        updateDacheindeckung.setId(id);
-        return dacheindeckungService.saveDacheindeckung(updateDacheindeckung);
+    public DacheindeckungAnlage updateDacheindeckung(
+            @PathVariable Long id,
+            @RequestBody DacheindeckungAnlage deckung) {
+
+        deckung.setId(id);
+
+        if (deckung.getAnlage() != null) {
+            deckung.getAnlage().setDacheindeckungAnlage(deckung);
+        }
+
+        return dacheindeckungService.saveDacheindeckung(deckung);
     }
 
 

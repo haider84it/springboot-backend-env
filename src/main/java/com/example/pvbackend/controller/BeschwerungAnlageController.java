@@ -38,27 +38,27 @@ public class BeschwerungAnlageController {
     }
 
     @PostMapping
-    public BeschwerungAnlage createBeschwerung(@RequestBody Map<String, Object> body) {
+    public BeschwerungAnlage createBeschwerung(@RequestBody BeschwerungAnlage b) {
 
-        List<String> arten = (List<String>) body.get("beschwerungsarten");
-        Map anlageMap = (Map) body.get("anlage");
-        Long anlageId = Long.valueOf(anlageMap.get("id").toString());
-
-        BeschwerungAnlage b = new BeschwerungAnlage();
-        b.setAnlage(new PhotovoltaikAnlage(anlageId));
-
-        b.setWannen(arten.contains("Wannen"));
-        b.setSteine(arten.contains("Steine"));
-        b.setKies(arten.contains("Kies"));
-        b.setAndere(arten.contains("andere"));
+        if (b.getAnlage() != null) {
+            b.getAnlage().setBeschwerungAnlage(b);
+        }
 
         return beschwerungAnlageService.saveBeschwerung(b);
     }
 
     @PutMapping("/{id}")
-    public BeschwerungAnlage updateBeschwerung(@PathVariable Long id, @RequestBody BeschwerungAnlage updateBeschwerungAnlage) {
-        updateBeschwerungAnlage.setId(id);
-        return beschwerungAnlageService.saveBeschwerung(updateBeschwerungAnlage);
+    public BeschwerungAnlage updateBeschwerung(
+            @PathVariable Long id,
+            @RequestBody BeschwerungAnlage b) {
+
+        b.setId(id);
+
+        if (b.getAnlage() != null) {
+            b.getAnlage().setBeschwerungAnlage(b);
+        }
+
+        return beschwerungAnlageService.saveBeschwerung(b);
     }
 
     @DeleteMapping("/{id}")

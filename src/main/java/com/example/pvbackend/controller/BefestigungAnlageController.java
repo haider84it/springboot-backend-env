@@ -38,27 +38,28 @@ public class BefestigungAnlageController {
     }
 
     @PostMapping
-    public BefestigungAnlage createBefestigung(@RequestBody Map<String, Object> body) {
+    public BefestigungAnlage createBefestigung(
+            @RequestBody BefestigungAnlage b) {
 
-        List<String> arten = (List<String>) body.get("befestigungsarten");
-        Map anlageMap = (Map) body.get("anlage");
-        Long anlageId = Long.valueOf(anlageMap.get("id").toString());
-
-        BefestigungAnlage b = new BefestigungAnlage();
-        b.setAnlage(new PhotovoltaikAnlage(anlageId));
-
-        b.setDachhacken(arten.contains("Dachhacken"));
-        b.setStockschrauben(arten.contains("Stockschrauben"));
-        b.setBallastierung(arten.contains("Ballastierung"));
-        b.setAndere(arten.contains("andere"));
+        if (b.getAnlage() != null) {
+            b.getAnlage().setBefestigungAnlage(b);
+        }
 
         return befestigungAnlageService.saveBefestigungAnlage(b);
     }
 
     @PutMapping("/{id}")
-    public BefestigungAnlage updateBefestigungAnlage(@PathVariable Long id, @RequestBody BefestigungAnlage updateBefestigungAnlage) {
-        updateBefestigungAnlage.setId(id);
-        return befestigungAnlageService.saveBefestigungAnlage(updateBefestigungAnlage);
+    public BefestigungAnlage updateBefestigungAnlage(
+            @PathVariable Long id,
+            @RequestBody BefestigungAnlage b) {
+
+        b.setId(id);
+
+        if (b.getAnlage() != null) {
+            b.getAnlage().setBefestigungAnlage(b);
+        }
+
+        return befestigungAnlageService.saveBefestigungAnlage(b);
     }
 
     @DeleteMapping("/{id}")

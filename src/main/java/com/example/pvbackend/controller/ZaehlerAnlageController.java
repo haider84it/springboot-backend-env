@@ -41,27 +41,28 @@ public class ZaehlerAnlageController {
 
 
     @PostMapping
-    public ZaehlerAnlage createZaehlerAnlage(@RequestBody Map<String, Object> body) {
+    public ZaehlerAnlage createZaehlerAnlage(
+            @RequestBody ZaehlerAnlage z) {
 
-        Map anlageMap = (Map) body.get("anlage");
-        Long anlageId = Long.valueOf(anlageMap.get("id").toString());
-
-        ZaehlerAnlage z = new ZaehlerAnlage();
-        z.setAnlage(new PhotovoltaikAnlage(anlageId));
-
-        z.setZaehlernummer(body.get("zaehlernummer").toString());
-
-        if (body.get("wandlerfaktor") != null) {
-            z.setWandlerFaktor(new BigDecimal(body.get("wandlerfaktor").toString()));
+        if (z.getAnlage() != null) {
+            z.getAnlage().setZaehlerAnlage(z);
         }
 
         return zaehlerAnlageService.saveZaehlerAnlage(z);
     }
 
     @PutMapping("/{id}")
-    public ZaehlerAnlage updateZaehlerAnlage(@PathVariable Long id, @RequestBody ZaehlerAnlage updateZaehlerAnlage) {
-        updateZaehlerAnlage.setId(id);
-        return zaehlerAnlageService.saveZaehlerAnlage(updateZaehlerAnlage);
+    public ZaehlerAnlage updateZaehlerAnlage(
+            @PathVariable Long id,
+            @RequestBody ZaehlerAnlage z) {
+
+        z.setId(id);
+
+        if (z.getAnlage() != null) {
+            z.getAnlage().setZaehlerAnlage(z);
+        }
+
+        return zaehlerAnlageService.saveZaehlerAnlage(z);
     }
 
 
