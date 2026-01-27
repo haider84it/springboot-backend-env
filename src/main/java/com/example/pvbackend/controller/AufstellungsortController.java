@@ -33,31 +33,17 @@ public class AufstellungsortController {
     }
 
 
-    @GetMapping("/anlage/{analgeId}")
+    @GetMapping("/anlage/{anlageId}")
     public AufstellungsortAnlage getAufstellungsortByAnlage(@PathVariable Long anlageId) {
-       return aufstellungsortService.getAufstellungsortByAnlage(anlageId);
+        return aufstellungsortService.getAufstellungsortByAnlage(anlageId);
     }
 
     @PostMapping
-    public AufstellungsortAnlage createAufstellungsort(@RequestBody Map<String, Object> body) {
-
-        List<String> orte = (List<String>) body.get("orte");
-        Map anlageMap = (Map) body.get("anlage");
-        Long anlageId = Long.valueOf(anlageMap.get("id").toString());
-
-        AufstellungsortAnlage ort = new AufstellungsortAnlage();
-        ort.setAnlage(new PhotovoltaikAnlage(anlageId));
-
-        ort.setWohngebaeude(orte.contains("Wohngebäude"));
-        ort.setGarage(orte.contains("Garage"));
-        ort.setLandwirtschaftsgebaeude(orte.contains("landw. Gebäude"));
-        ort.setGewerblicheHalle(orte.contains("gewerbl. Halle"));
-        ort.setFreiland(orte.contains("Freiland"));
-        ort.setAndere(orte.contains("andere"));
+    public AufstellungsortAnlage createAufstellungsort(
+            @RequestBody AufstellungsortAnlage ort) {
 
         return aufstellungsortService.saveAufstellungsort(ort);
     }
-
     @PutMapping("/{id}")
     public AufstellungsortAnlage updateAufstellungsort(@PathVariable Long id, @RequestBody AufstellungsortAnlage updateAufstellungsort) {
         updateAufstellungsort.setId(id);
