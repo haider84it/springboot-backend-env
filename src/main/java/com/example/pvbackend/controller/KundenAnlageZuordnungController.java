@@ -13,6 +13,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/zuordnungen")
+@CrossOrigin(origins = {
+        "https://envaris.cloudaxes.de",
+        "https://wartung.envaris.de",
+        "http://localhost:3000"
+})
 @RequiredArgsConstructor
 public class KundenAnlageZuordnungController {
 
