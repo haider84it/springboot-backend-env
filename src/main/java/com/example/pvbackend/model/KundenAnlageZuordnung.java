@@ -17,7 +17,6 @@ public class KundenAnlageZuordnung {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonManagedReference("kunde_zuordnung")
     @ManyToOne
     @JoinColumn(name = "kunde_id")
     private Kunde kunde;
