@@ -58,6 +58,8 @@ public class PhotovoltaikAnlageController {
     public PhotovoltaikAnlage update(@PathVariable Long id, @RequestBody PhotovoltaikAnlage updated) {
         return service.findById(id)
                 .map(existing -> {
+
+                    // --- basic fields ---
                     existing.setProjektNummer(updated.getProjektNummer());
                     existing.setAnlagenName(updated.getAnlagenName());
                     existing.setAnlagenGroesse(updated.getAnlagenGroesse());
@@ -66,15 +68,34 @@ public class PhotovoltaikAnlageController {
                     existing.setOrt(updated.getOrt());
                     existing.setLatitude(updated.getLatitude());
                     existing.setLongitude(updated.getLongitude());
+
+                    // --- wartung ---
                     if (updated.getWartung() != null) {
                         if (existing.getWartung() == null) {
                             WartungNeueAnlage w = new WartungNeueAnlage();
                             w.setAnlage(existing);
                             existing.setWartung(w);
                         }
-                        existing.getWartung().setJahrErsteWartung(updated.getWartung().getJahrErsteWartung());
+                        existing.getWartung()
+                                .setJahrErsteWartung(updated.getWartung().getJahrErsteWartung());
                     }
-                    return service.save(existing); // keeps wartung relation
+
+                    // --- one-to-one relations ---
+                    existing.setMobilefunkRouter(updated.getMobilefunkRouter());
+                    existing.setNetzwerkRouterAnlage(updated.getNetzwerkRouterAnlage());
+                    existing.setZaehlerAnlage(updated.getZaehlerAnlage());
+
+                    existing.setAufstellungsortAnlage(updated.getAufstellungsortAnlage());
+                    existing.setAngabenZumDachAnlage(updated.getAngabenZumDachAnlage());
+                    existing.setDacheindeckungAnlage(updated.getDacheindeckungAnlage());
+                    existing.setSchienensystemAnlage(updated.getSchienensystemAnlage());
+                    existing.setModulbefestigungAnlage(updated.getModulbefestigungAnlage());
+                    existing.setBefestigungAnlage(updated.getBefestigungAnlage());
+                    existing.setBeschwerungAnlage(updated.getBeschwerungAnlage());
+                    existing.setAusrichtungNeigungModule(updated.getAusrichtungNeigungModule());
+                    existing.setNeigungModuleAnlage(updated.getNeigungModuleAnlage());
+
+                    return service.save(existing);
                 })
                 .orElseThrow(() -> new RuntimeException("Anlage not found with id " + id));
     }
