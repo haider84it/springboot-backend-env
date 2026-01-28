@@ -5,7 +5,6 @@ import com.example.pvbackend.model.PhotovoltaikAnlage;
 import com.example.pvbackend.model.SchienensystemAnlage;
 import com.example.pvbackend.service.SchienensystemAnlageService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -35,18 +34,18 @@ public class SchienensystemController {
     }
 
     @GetMapping("/anlage/{anlageId}")
-    public ResponseEntity<SchienensystemAnlage> getSchienensystemByAnlage(
-            @PathVariable Long anlageId) {
-
-        return schienensystemAnlageService
-                .getSchienensystemByAnlage(anlageId)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public SchienensystemAnlage getSchienensystemByAnlage(@PathVariable Long anlageId) {
+        return schienensystemAnlageService.getSchienensystemByAnlage(anlageId);
     }
 
     @PostMapping
     public SchienensystemAnlage createSchienensystem(
             @RequestBody SchienensystemAnlage sys) {
+
+        if (sys.getAnlage() != null) {
+            sys.getAnlage().setSchienensystemAnlage(sys);
+        }
+
         return schienensystemAnlageService.saveSchienensystem(sys);
     }
 
@@ -56,6 +55,11 @@ public class SchienensystemController {
             @RequestBody SchienensystemAnlage sys) {
 
         sys.setId(id);
+
+        if (sys.getAnlage() != null) {
+            sys.getAnlage().setSchienensystemAnlage(sys);
+        }
+
         return schienensystemAnlageService.saveSchienensystem(sys);
     }
 
