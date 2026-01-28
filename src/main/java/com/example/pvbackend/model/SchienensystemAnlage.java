@@ -20,9 +20,16 @@ public class SchienensystemAnlage {
 
 
 
+    @Column(nullable = false)
     private boolean einlagig;
+
+    @Column(nullable = false)
     private boolean zweilagig;
+
+    @Column(nullable = false)
     private boolean aufgestaendert;
+
+    @Column(nullable = false)
     private boolean andere;
 
 
