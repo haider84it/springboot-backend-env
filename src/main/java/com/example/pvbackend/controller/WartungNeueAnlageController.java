@@ -34,6 +34,12 @@ public class WartungNeueAnlageController {
         return service.save(updated);
     }
 
+    @GetMapping("/anlage/{anlageId}")
+    public WartungNeueAnlage getByAnlage(@PathVariable Long anlageId) {
+        return service.findByAnlageId(anlageId);
+    }
+
+
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         service.deleteById(id);

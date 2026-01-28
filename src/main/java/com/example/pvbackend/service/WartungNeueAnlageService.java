@@ -45,6 +45,10 @@ public class WartungNeueAnlageService {
         return wartungRepo.findAll();
     }
 
+    public WartungNeueAnlage findByAnlageId(Long anlageId) {
+        return wartungRepo.findByAnlage_Id(anlageId).orElse(null);
+    }
+
     public void deleteById(Long id) {
         wartungRepo.deleteById(id);
     }
