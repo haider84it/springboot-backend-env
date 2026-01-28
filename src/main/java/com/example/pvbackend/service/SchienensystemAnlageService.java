@@ -29,7 +29,7 @@ public class SchienensystemAnlageService {
         return schienensystemRepository.findById(id);
     }
 
-    public SchienensystemAnlage getSchienensystemByAnlage(Long anlageId) {
+    public Optional<SchienensystemAnlage> getSchienensystemByAnlage(Long anlageId) {
         return schienensystemRepository.findByAnlageId(anlageId);
     }
 
