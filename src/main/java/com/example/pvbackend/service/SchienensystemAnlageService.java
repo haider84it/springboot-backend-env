@@ -1,7 +1,9 @@
 package com.example.pvbackend.service;
 
 
+import com.example.pvbackend.model.PhotovoltaikAnlage;
 import com.example.pvbackend.model.SchienensystemAnlage;
+import com.example.pvbackend.repository.PhotovoltaikAnlageRepository;
 import com.example.pvbackend.repository.SchienensystemRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,7 @@ public class SchienensystemAnlageService {
 
 
     private final SchienensystemRepository schienensystemRepository;
+    private final PhotovoltaikAnlageRepository photovoltaikAnlageRepository;
 
     public List<SchienensystemAnlage> getAllSchienensysteme() {
         return schienensystemRepository.findAll();
@@ -31,8 +34,17 @@ public class SchienensystemAnlageService {
     }
 
 
-    public SchienensystemAnlage saveSchienensystem(SchienensystemAnlage schienensystemAnlage) {
-        return schienensystemRepository.save(schienensystemAnlage);
+    public SchienensystemAnlage saveSchienensystem(SchienensystemAnlage sys) {
+        if (sys.getAnlage() != null && sys.getAnlage().getId() != null) {
+            PhotovoltaikAnlage anlage =
+                    photovoltaikAnlageRepository.findById(sys.getAnlage().getId())
+                            .orElseThrow(() -> new RuntimeException("Anlage not found"));
+
+            sys.setAnlage(anlage);
+            anlage.setSchienensystemAnlage(sys);
+        }
+
+        return schienensystemRepository.save(sys);
     }
 
     public void deleteSchienensystem(Long id) {
