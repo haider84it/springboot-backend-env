@@ -18,6 +18,8 @@ public class Seite11bPdfRenderer {
     private static final float START_Y  = 780;
     private static final float LINE_GAP = 18;
 
+    private static final int MAX_ANMERKUNGEN = 5;
+
     private static final String[] ABSCHLUSS_LABELS = {
             "Alle WR sind in Betrieb und speisen ein",
             "Anlage und Gebäude geschlossen",
@@ -54,8 +56,14 @@ public class Seite11bPdfRenderer {
             y = drawSectionTitle(cs, "Anmerkungen", MARGIN_X, y);
 
             if (s.getAnmerkungen() != null) {
-                for (int i = 0; i < s.getAnmerkungen().size(); i++) {
-                    y = drawInputRow(cs, "Anmerkung " + (i + 1), safe(s.getAnmerkungen().get(i)), MARGIN_X, y);
+                for (int i = 0; i < Math.min(MAX_ANMERKUNGEN, s.getAnmerkungen().size()); i++) {
+                    y = drawInputRow(
+                            cs,
+                            "Anmerkung " + (i + 1),
+                            safe(s.getAnmerkungen().get(i)),
+                            MARGIN_X,
+                            y
+                    );
                 }
             }
 
