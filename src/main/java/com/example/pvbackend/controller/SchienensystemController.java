@@ -41,11 +41,6 @@ public class SchienensystemController {
     @PostMapping
     public SchienensystemAnlage createSchienensystem(
             @RequestBody SchienensystemAnlage sys) {
-
-        if (sys.getAnlage() != null) {
-            sys.getAnlage().setSchienensystemAnlage(sys);
-        }
-
         return schienensystemAnlageService.saveSchienensystem(sys);
     }
 
@@ -55,11 +50,6 @@ public class SchienensystemController {
             @RequestBody SchienensystemAnlage sys) {
 
         sys.setId(id);
-
-        if (sys.getAnlage() != null) {
-            sys.getAnlage().setSchienensystemAnlage(sys);
-        }
-
         return schienensystemAnlageService.saveSchienensystem(sys);
     }
 
