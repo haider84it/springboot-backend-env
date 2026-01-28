@@ -14,6 +14,7 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Optional;
 
 import static com.example.pvbackend.util.PdfRenderUtils.safe;
 
@@ -68,10 +69,10 @@ public class Seite1PdfRenderer {
             }
 
 
-            //Envaris GmbH information
+            //Envaris GmbH information (right side)
 
             float infoX = 480;        // align with logo left
-            float infoY = 704;   // below logo
+            float infoY = 690;   // below logo
 
             cs.setFont(PDType1Font.HELVETICA_BOLD, 8);
             text(cs, "ENVARIS GmbH", infoX, infoY, 8);
@@ -103,9 +104,11 @@ public class Seite1PdfRenderer {
                     ? kundeService.findById(s.getKundeId()).orElse(null)
                     : null;
 
-            String kundeName = (kunde != null)
-                    ? safe(kunde.getVorname()) + " " + safe(kunde.getNachname())
-                    : "";
+            String kundeName = Optional.ofNullable(kunde)
+                    .map(k -> Optional.ofNullable(k.getFirma())
+                            .filter(f -> !f.isBlank())
+                            .orElse((safe(k.getVorname()) + " " + safe(k.getNachname())).trim()))
+                    .orElse("");
 
             String kundeStrasse = (kunde != null) ? safe(kunde.getStrasse()) : "";
             String kundePlzOrt   = (kunde != null) ? safe(kunde.getPlzOrt())   : "";
