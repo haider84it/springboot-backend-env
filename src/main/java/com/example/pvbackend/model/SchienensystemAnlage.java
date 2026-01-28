@@ -20,9 +20,9 @@ public class SchienensystemAnlage {
 
 
 
-    private boolean einlagige;
+    private boolean einlagig;
     private boolean zweilagig;
-    private boolean aufgeständert;
+    private boolean aufgestaendert;
     private boolean andere;
 
 
